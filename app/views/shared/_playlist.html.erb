@@ -1,0 +1,27 @@
+<div class="shaker-made-icones">
+</div>
+
+
+
+<div class="shaker-made-playlist">
+
+  <% @playlist_songs.each do |song| %>
+     <div class="shaker-made-playlist-card">
+        <div class="shaker-made-playlist-card-photo"><%= song.photoalbum %></div>
+        <div class="shaker-made-playlist-card-infos">
+          <div class="shaker-made-playlist-card-infos-song">
+            <h1> <%= song.title %> </h1>
+            <h2> <%= song.artist %> </h2>
+          </div>
+          <div class="shaker-made-playlist-card-infos-icones">
+            <ul>
+              <li>like</li>
+              <li>share</li>
+              <li>add</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+</div>
