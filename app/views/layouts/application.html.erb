@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MELOV</title>
+    <title>MELOV | Music Social Network</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag %>
+
+    <meta property="og:type" content="music.listens">
+    <meta property="og:title" content="MELOV | Music Social Network">
+    <meta property="og:url" content="https://www.melov.fr/">
+    <meta property="og:description" content="Social network around music to share your latest discoveries and create unique playlists linking the tastes of your friends and you.">
+    <meta property="og:image" content="<%= image_path 'og-image.jpg' %>">
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
