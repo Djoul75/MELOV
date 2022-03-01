@@ -20,32 +20,33 @@
   </head>
 
   <body>
-    <%= render 'shared/flashes' %>
+    <%#= render 'shared/flashes' %>
 
-    <div class="main">
-      <div class="sidebar">
-        <div class="sidebar-header">logo here</div>
-        <div class="sidebar-content">
-          <div class="siderbar-menu">
-            <ul>
-              <li>Home</li>
-              <li>Playlist</li>
-              <li>Discover</li>
-              <li>Shake It Up</li>
-              <li>Search</li>
-            </ul>
-          </div>
+    <%= render 'shared/navbar' %>
+    <div class="wrap">
+      <div class="main">
+        <div class="sidebar">
+          <div class="sidebar-header"></div>
+            <div class="sidebar-content">
+              <div class="siderbar-menu">
+                <ul>
+                  <li>Playlist</li>
+                  <li>Discover</li>
+                  <li>Shake It Up</li>
+                  <li>Search</li>
+                </ul>
+              </div>
 
-          <div class="sidebar-player">
-          Player
-          </div>
+            <div class="sidebar-player">
+              Player
+            </div>
+            </div>
         </div>
-      </div>
 
-      <div class="container">
-        <div class="user-profile">avatar</div>
-        <div class="content">
-          <%= yield %>
+        <div class="container">
+          <div class="content">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
