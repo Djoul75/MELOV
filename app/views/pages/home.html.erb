@@ -1,4 +1,9 @@
-<h1>Welcome, <%= current_user.email %></h1>
+
+<% if user_signed_in? %>
+  <h1>Welcome,  <%= current_user.email %></h1>
+<% else %>
+  <h1>Sign up toi stp</h1>
+<% end %>
 <p>Lastest news from your melow friends :</p>
 <div class="content-home">
   <div class="content-feed">
