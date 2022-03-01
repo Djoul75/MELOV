@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :playlist_songs, only: :delete
   resources :publications
   resources :subscriptions, only: %i[index new create delete]
+
 end
