@@ -32,6 +32,7 @@ gem 'devise'
 gem 'pundit'
 
 gem 'rspotify'
+gem "omniauth-rails_csrf_protection"
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
