@@ -1,0 +1,27 @@
+<div class="user-infos">
+  <div class="user-infos-avatar">
+    <img src="avatar" alt="avatar">
+  </div>
+  <div class="user-infos-profile">
+    <div class="user-infos-profile-header">
+      <h1>current_user.nickname</h1>
+      <p>Member since...</p>
+    </div>
+    <div class="user-infos-profile-playlists">
+      <%= current_user.playlists.each do |paylist| %>
+        <div class="user-infos-profile-playlists-card">
+          <div class="user-infos-profile-playlists-card-image">
+            <%=  <img src="playlist.photo" alt="playlist_photo"> %>
+          </div>
+          <div class="user-infos-profile-playlists-card-name">
+            <%= <p> playlist.name </p> %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="user-feed" >
+
+</div>
