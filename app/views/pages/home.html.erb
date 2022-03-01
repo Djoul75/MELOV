@@ -1,56 +1,155 @@
+<div class="container-home">
+  <div class="container-page-home">
 
-<% if user_signed_in? %>
-  <h1>Welcome,  <%= current_user.email %></h1>
-<% else %>
-  <h1>Sign up toi stp</h1>
-<% end %>
-<p>Lastest news from your melow friends :</p>
-<div class="content-home">
-  <div class="content-feed">
-     <div class="content-cards">
-      <div class="post-card">
-        <div class="post-card-photo">
-        <%= image_tag("eminem.jpg", size: "200x200") %>
+    <% if user_signed_in? %>
+      <h1>Welcome,  <%= current_user.email %></h1>
+    <% else %>
+      <h1>Sign up toi stp</h1>
+    <% end %>
+    <p>Lastest news from your melow friends :</p>
+
+    <div class="home-posts-cards">
+      <div class="home-post-card">
+        <div class="home-post-card-cover">
+          <%= image_tag("eminem.jpg", size: "200x200") %>
         </div>
-        <div class="post-card-right">
-          <div class="post-card-right-header">
-            <div class="post-card-right-header-song">
+        <div class="home-post-card-infos">
+          <div class="home-post-card-content-top">
+            <div class="home-post-card-title-artist">
               <h2>Song title</h2>
               <p>Artist</p>
             </div>
-            <div class="post-card-right-header-user">
-              <div class="post-card-right-header-user-details">
-                <p>Nickname</p>
-                <%= image_tag("zizou.jpg", :class => "avatar") %>
-              </div>
+            <div class="home-post-card-avatar-nickname">
+              <p>Nickname</p>
+              <%= image_tag("zizou.jpg", :class => "avatar") %>
             </div>
           </div>
-          <div class="post-card-right-content">
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing
+          <div class="home-post-card-content-bottom">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing
             lit, sed do eiusmod tempor incididunt ut labore et dolore magna
             aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
             laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
-          <div class="post-card-right-footer">
-              <ul>
-                <li><i class="fas fa-heart"></i></li>
-                <li><i class="fas fa-comment"></i></li>
-                <li><i class="fas fa-share"></i></li>
-              </ul>
-          </div>
+        </div>
+        <div class="home-post-card-interraction">
+          <i class="fas fa-heart"></i>
+          <i class="fas fa-comment"></i>
+          <i class="fas fa-share"></i>
         </div>
       </div>
-     </div>
-
-    <div class="content-post">
-      <div>form</div>
-      <div>
-        <i>
-          icone post
-        </i>
+      <div class="home-post-card">
+        <div class="home-post-card-cover">
+          <%= image_tag("eminem.jpg", size: "200x200") %>
+        </div>
+        <div class="home-post-card-infos">
+          <div class="home-post-card-content-top">
+            <div class="home-post-card-title-artist">
+              <h2>Song title</h2>
+              <p>Artist</p>
+            </div>
+            <div class="home-post-card-avatar-nickname">
+              <p>Nickname</p>
+              <%= image_tag("zizou.jpg", :class => "avatar") %>
+            </div>
+          </div>
+          <div class="home-post-card-content-bottom">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing
+            lit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+        </div>
+        <div class="home-post-card-interraction">
+          <i class="fas fa-heart"></i>
+          <i class="fas fa-comment"></i>
+          <i class="fas fa-share"></i>
+        </div>
+      </div>
+      <div class="home-post-card">
+        <div class="home-post-card-cover">
+          <%= image_tag("eminem.jpg", size: "200x200") %>
+        </div>
+        <div class="home-post-card-infos">
+          <div class="home-post-card-content-top">
+            <div class="home-post-card-title-artist">
+              <h2>Song title</h2>
+              <p>Artist</p>
+            </div>
+            <div class="home-post-card-avatar-nickname">
+              <p>Nickname</p>
+              <%= image_tag("zizou.jpg", :class => "avatar") %>
+            </div>
+          </div>
+          <div class="home-post-card-content-bottom">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing
+            lit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+        </div>
+        <div class="home-post-card-interraction">
+          <i class="fas fa-heart"></i>
+          <i class="fas fa-comment"></i>
+          <i class="fas fa-share"></i>
+        </div>
       </div>
     </div>
-  </div>
 
+
+    <%# <div class="content-home">
+      <div class="content-feed">
+        <div class="content-cards">
+          <div class="post-card">
+            <div class="post-card-photo"> %>
+            <%#= image_tag("eminem.jpg", size: "200x200") %>
+            <%# </div>
+            <div class="post-card-right">
+              <div class="post-card-right-header">
+                <div class="post-card-right-header-song">
+                  <h2>Song title</h2>
+                  <p>Artist</p>
+                </div>
+                <div class="post-card-right-header-user">
+                  <div class="post-card-right-header-user-details">
+                    <p>Nickname</p> %>
+                    <%#= image_tag("zizou.jpg", :class => "avatar") %>
+                  <%# </div>
+                </div>
+              </div>
+              <div class="post-card-right-content">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing
+                lit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+              <div class="post-card-right-footer">
+                  <ul>
+                    <li><i class="fas fa-heart"></i></li>
+                    <li><i class="fas fa-comment"></i></li>
+                    <li><i class="fas fa-share"></i></li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div> %>
+
+        <%# <div class="content-post">
+          <div>form</div>
+          <div>
+            <i>
+              icone post
+            </i>
+          </div>
+        </div> %>
+      </div>
+
+    </div>
+  </div>
 </div>
