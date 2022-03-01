@@ -1,1 +1,18 @@
 // Specific CSS for your home-page
+.container-home {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1620120966883-d977b57a96ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80');
+  background-size: cover;
+}
+
+.container-page-home {
+  width: 70vw;
+  margin-left: 25vw;
+  padding-top: 10vh;
+}
+
+.home-posts-cards {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

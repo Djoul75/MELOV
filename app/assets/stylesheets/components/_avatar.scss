@@ -1,21 +1,32 @@
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 8vh;
+  height: 8vh;
   border-radius: 50%;
 }
-.avatar-large {
-  width: 56px;
+
+.avatar-fix {
+  width: 8vh;
+  height: 8vh;
   border-radius: 50%;
+  position: fixed;
+  right: 5vw;
+  top: 5vh;
+  z-index: 10;
 }
-.avatar-bordered {
-  width: 40px;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
-}
-.avatar-square {
-  width: 40px;
-  border-radius: 0px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
+
+.login-button {
+  position: fixed;
+  right: 5vw;
+  top: 5vh;
+  z-index: 10;
+
+  color: #20242C;
+  background: #F9B63A;
+  border-radius: 10px;
+
+  &:hover {
+    background: #20242C;
+    color: #F9B63A;
+
+  }
 }
