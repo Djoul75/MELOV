@@ -4,4 +4,5 @@ class Song < ApplicationRecord
 
   validates :artist, :title, presence: true
   validates :title, uniqueness: { scope: :artist }
+  serialize :genres, Array
 end

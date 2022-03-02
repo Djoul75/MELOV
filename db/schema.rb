@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_02_140013) do
+ActiveRecord::Schema.define(version: 2022_03_02_194221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 2022_03_02_140013) do
 
   create_table "songs", force: :cascade do |t|
     t.string "artist"
-    t.string "genre"
     t.string "title"
     t.integer "length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "spotify_track_id"
+    t.text "genres"
   end
 
   create_table "subscriptions", force: :cascade do |t|
