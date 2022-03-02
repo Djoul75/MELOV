@@ -2,8 +2,7 @@ class PublicationsController < ApplicationController
   before_action :publication_find, only: %i[show edit update destroy]
 
   def index
-    @publications = policy_scope(Publication)
-    @publication = Publication.new
+    @publications = Publication.where(user_id: current_user.followings.ids).order(created_at: :desc)
   end
 
   def show

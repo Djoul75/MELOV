@@ -1,0 +1,51 @@
+.home-post-card {
+  display: flex;
+  // padding: 2vw;
+  // background-color: rgba(68, 54, 67, 0.5);
+  // border-radius: 20px;
+  // margin: 5vh 0;
+}
+
+.home-post-card-cover {
+  padding: 1vw;
+}
+
+.home-post-card-infos {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1vw;
+
+  .home-post-card-content-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+
+    .home-post-card-title-artist {
+      flex-grow: 1;
+      color: #C5C7CD;
+    }
+
+    .home-post-card-avatar-nickname {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 40%;
+      color: white;
+    }
+  }
+
+  .home-post-card-content-bottom {
+    text-align: justify;
+    padding: 1vw;
+    color: white;
+  }
+}
+
+.home-post-card-interraction {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1vw;
+  color: #F9B63A;
+}
