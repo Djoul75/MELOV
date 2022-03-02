@@ -19,7 +19,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
+  <body data-controller='player' data-player-token-value='<%= current_user&.token %>'>
     <%#= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
 

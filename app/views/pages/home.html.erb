@@ -9,10 +9,10 @@
     <% end %>
     <p>Lastest news from your melow friends :</p>
 
-    <div class="home-posts-cards">
+    <div class="home-posts-cards" >
       <div class="test">
         <div class="home-post-card">
-          <div class="home-post-card-cover">
+          <div class="home-post-card-cover" data-action='click->player#sendtrack' data-track-id='3UmaczJpikHgJFyBTAJVoz'>
             <%= image_tag("eminem.jpg", size: "200x200") %>
           </div>
           <div class="home-post-card-infos">
@@ -41,12 +41,9 @@
             <i class="fas fa-share"></i>
           </div>
         </div>
-          <div class="home-post-card-lecteur">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7lQ8MOhq6IN2w8EYcFNSUk?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-          </div>
       </div>
       <div class="home-post-card">
-        <div class="home-post-card-cover">
+        <div class="home-post-card-cover" data-player-songId-value='3UmaczJpikHgJFjfdhfksb'>
           <%= image_tag("eminem.jpg", size: "200x200") %>
         </div>
         <div class="home-post-card-infos">

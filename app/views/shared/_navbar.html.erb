@@ -9,9 +9,28 @@
           <li>Search</li>
         </ul>
       </div>
-      <div class="sidebar-player">
-        Player
-      </div>
+      <% if user_signed_in? %>
+        <script src="https://sdk.scdn.co/spotify-player.js"></script>
+        <div class="sidebar-player d-flex flex-column">
+          <img class="player-cover w-50" data-player-target='playerCoverImg' src="" alt="">
+          <div class="player-song-name" data-player-target='playerSongName'></div>
+          <div class="player-artist" data-player-target='playerArtist'></div>
+            <input type="range" id="seekbar" data-player-target='seekbar' data-action='change->player#changeSeek'
+                  name="seekbar" min="0" max="" value="0" step="1">
+          <div class="player-controls d-flex">
+            <i data-player-target='previous' data-action='click->player#previous' class="far fa-arrow-alt-circle-left"></i>
+            <i data-player-target='play' data-action='click->player#play' class="far fa-play-circle"></i>
+            <i data-player-target='pause' data-action='click->player#play' class="far fa-pause-circle d-none"></i>
+            <i data-player-target='next' data-action='click->player#next' class="far fa-arrow-alt-circle-right"></i>
+          </div>
+          <div class='-player-set-volume d-flex flex-column align-items-center' data-action='change->player#changeVolume'>
+            <input type="range" id="volume" data-player-target='volume' name="volume"
+                  min="0" max="1" value="50" step="0.01">
+            <label for="volume">Volume</label>
+          </div>
+
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="fix-item-avatar">
