@@ -19,7 +19,7 @@ class User < ApplicationRecord
                         class_name: "User"
 
 
-  has_many :buddies
-  has_many :publications
-  has_many :playlists
+  has_many :buddies, dependent: :destroy
+  has_many :publications, dependent: :destroy
+  has_many :playlists, dependent: :destroy
 end
