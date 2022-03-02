@@ -3,7 +3,6 @@ class PlaylistsController < ApplicationController
     user = RSpotify::User.find(current_user.spotify_id)
     user.playlists.each do |p|
       @playlist = Playlist.new(name: p.name, spotify_id: p.id, user_id: current_user.id)
-      raise
       authorize @playlist
       @playlist.save
 
