@@ -1,4 +1,4 @@
-class UserPolicy < ApplicationPolicy
+class PlaylistPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
@@ -6,7 +6,7 @@ class UserPolicy < ApplicationPolicy
     # end
   end
 
-  def authentification?
+  def create?
     true
   end
 end
