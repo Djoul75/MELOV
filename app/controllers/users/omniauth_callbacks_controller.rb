@@ -6,12 +6,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # Access private data
     @user.spotify_token = @spotify_user.id
     @user.token = @spotify_user.credentials["token"]
-    @user.save
 
     if @user.new_record?
       @user.password = Devise.friendly_token
-      @user.save
     end
+    @user.save!
     sign_in @user
 
     redirect_to root_path
