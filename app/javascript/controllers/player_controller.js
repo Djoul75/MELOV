@@ -1,0 +1,130 @@
+import { Controller } from "stimulus"
+
+export default class extends Controller {
+  static targets = [ "play", "next", "previous", "playerSongName", "playerArtist", 'playerCoverImg', 'volume', 'seekbar', 'pause' ]
+  static values = { token: String, songId: String }
+
+  connect() {
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const token = this.tokenValue;
+      this.player = new Spotify.Player({
+          name: 'MELOV APP',
+          getOAuthToken: cb => { cb(token); },
+          volume: 0.5
+      });
+
+      // Ready
+      this.player.addListener('ready', ({ device_id }) => {
+          console.log('Ready with Device ID', device_id);
+          this.id = device_id
+          this.setPlay('4BNiO9JthDUkbNsKxLH9lg');
+      });
+
+      this.player.addListener('player_state_changed', ({
+        position,
+        duration,
+        paused,
+        track_window: { current_track }
+      }) => {
+        console.log('Currently Playing', current_track);
+        console.log('Position in Song', position);
+        console.log('Duration of Song', duration);
+
+        this.playerCoverImgTarget.src = current_track.album.images[0].url
+        this.playerSongNameTarget.innerText = current_track.name
+        this.playerArtistTarget.innerText = current_track.artists[0].name
+
+        this.seekbarTarget.value = position
+        this.seekbarTarget.max = duration
+
+        clearInterval(this.seekInterval)
+
+        if (!paused) {
+          this.seekInterval = setInterval(() => {
+            this.seekbarTarget.value = parseInt(this.seekbarTarget.value) + 100
+            console.log(this.seekbarTarget.value);
+          }, 100);
+          this.playTarget.classList.add('d-none')
+          this.pauseTarget.classList.remove('d-none')
+        } else {
+          this.pauseTarget.classList.add('d-none')
+          this.playTarget.classList.remove('d-none')
+        }
+
+        this.player.getVolume().then(volume => {
+          let volume_percentage = volume * 100;
+          console.log(`The volume of the player is ${volume_percentage}%`);
+        });
+      });
+
+      // Not Ready
+      this.player.addListener('not_ready', ({ device_id }) => {
+          console.log('Device ID has gone offline', device_id);
+      });
+
+      this.player.addListener('initialization_error', ({ message }) => {
+          console.error(message);
+      });
+
+      this.player.addListener('authentication_error', ({ message }) => {
+          console.error(message);
+      });
+
+      this.player.addListener('account_error', ({ message }) => {
+          console.error(message);
+      });
+
+      this.player.connect();
+    }
+  }
+
+  play() {
+    this.player.togglePlay();
+  }
+
+  changeVolume() {
+    const newVolume = this.volumeTarget.value
+    this.player.setVolume(newVolume).then(() => {
+    console.log('Volume updated!');
+    });
+  };
+
+  changeSeek() {
+    const newSeek = this.seekbarTarget.value
+    this.player.seek(newSeek).then(() => {
+      console.log('Changed position!');
+    });
+  }
+
+  sendtrack(e) {
+    this.setPlay(e.currentTarget.dataset.trackId);
+  }
+
+  setPlay(songId) {
+    const play = ({
+      spotify_uri,
+      playerInstance: {
+        _options: {
+          getOAuthToken
+        }
+      }
+    }) => {
+      getOAuthToken(access_token => {
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({ uris: [spotify_uri] }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+          },
+        });
+      });
+    };
+
+    play({
+      playerInstance: this.player,
+      spotify_uri: `spotify:track:${songId}`,
+    });
+  }
+
+}

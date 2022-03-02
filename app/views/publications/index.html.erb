@@ -1,0 +1,18 @@
+<div class="container" data-controller="feed-subscription">
+<%# data-feed-subscription-feed-id-value="<%= @feed.id %>
+  <h1>Social Feed</h1>
+    <div class="container-message" data-feed-subscription-target="messages">
+      <% @publications.each do | publication | %>
+        <%= render "messages", publication: publication %>
+      <% end %>
+    </div>
+
+    <div class="container-form">
+      <%= simple_form_for @publication, remote: true, html: {data: {feed_subscription_target: "form"}} do |f| %>
+        <%= f.input :content, label: false, placeholder: "Insert your message here" %>
+        <%= f.submit "Submit", class: "btn btn-primary"%>
+      <% end %>
+    </div>
+</div>
+
+<% console %>
