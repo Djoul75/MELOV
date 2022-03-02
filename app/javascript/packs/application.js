@@ -14,3 +14,7 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+
+// document.addEventListener('turbolinks:load', () => {
+//   rails.refreshCSRFTokens()
+// });

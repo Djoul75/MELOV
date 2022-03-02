@@ -1,9 +1,10 @@
 class FeedChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    feed = Feed.find(params[:id])
+    user = User.find(params[:id])
+    #user = point en commun
     # Feed for users
-    stream_for feed
+    stream_for user
   end
 
   def unsubscribed
