@@ -7,14 +7,20 @@ class User < ApplicationRecord
   has_many :received_subscriptions, foreign_key: :following_id,
                                     class_name: "Subscription"
 
-  has_many :followers, through: :received_subscriptions,
+  # has_many :followers, through: :received_subscriptions,
+  #                      source: :follower,
+  #                      class_name: "User"
+  has_many :followings, through: :received_subscriptions,
                        source: :follower,
                        class_name: "User"
 
   has_many :send_subscriptions, foreign_key: :follower_id,
                                 class_name: "Subscription"
 
-  has_many :followings, through: :send_subscriptions,
+  # has_many :followings, through: :send_subscriptions,
+  #                       source: :following,
+  #                       class_name: "User"
+  has_many :followers, through: :send_subscriptions,
                         source: :following,
                         class_name: "User"
 

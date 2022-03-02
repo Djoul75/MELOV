@@ -2,12 +2,13 @@ class PublicationsController < ApplicationController
   before_action :publication_find, only: %i[show edit update destroy]
 
   def index
-    @publications = Publication.where(user_id: current_user.followings.ids).order(created_at: :desc)
+    following_ids = current_user.followings.ids+[current_user.id]
+    @publications = policy_scope(Publication).where(user_id: following_ids).order(created_at: :desc)
+    @publication = Publication.new
   end
 
   def show
     authorize @publication
-
   end
 
   def new
@@ -25,7 +26,14 @@ class PublicationsController < ApplicationController
     authorize @publication
     @publication.save!
     if @publication.save
-      redirect_to publications_path(anchor: "publication-#{@publication.id}")
+      current_user.followers.each { | user |
+        FeedChannel.broadcast_to(
+          user,
+          render_to_string(partial: "publication", locals: {publication: @publication})
+        )
+        head :ok
+      }
+      redirect_to publications_path
     else
       render :show
     end
@@ -50,7 +58,7 @@ end
 private
 
   def publication_find
-    @forest = Publication.find(params[:id])
+    @publication = Publication.find(params[:id])
   end
 
   def publication_params
