@@ -16,3 +16,11 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
+.test {
+  flex-direction: column;
+  padding: 2vw;
+  background-color: rgba(68, 54, 67, 0.5);
+  border-radius: 20px;
+  margin: 5vh 0;
+}
