@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  include Pundit
+  before_action :lol
+  include Pundit::Authorization
 
   # Pundit: white-list approach.
+  def lol
+    # binding.pry
+  end
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
@@ -18,7 +22,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name nickname])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name nickname])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name nickname photo])
   end
 
   private

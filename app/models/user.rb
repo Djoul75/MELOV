@@ -28,4 +28,5 @@ class User < ApplicationRecord
   has_many :buddies, dependent: :destroy
   has_many :publications, dependent: :destroy
   has_many :playlists, dependent: :destroy
+  has_one_attached :photo
 end
