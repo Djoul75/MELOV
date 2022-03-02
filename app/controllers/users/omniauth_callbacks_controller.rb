@@ -10,7 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.new_record?
       @user.password = Devise.friendly_token
     end
-    @user.save!
+    @user.save
     sign_in @user
 
     redirect_to root_path
