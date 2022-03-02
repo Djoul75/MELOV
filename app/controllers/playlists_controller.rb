@@ -1,4 +1,10 @@
 class PlaylistsController < ApplicationController
+  def index
+    @playlists = policy_scope(Playlist)
+    @user = User.find(current_user.id)
+    @playlists = Playlist.where(user_id: @user)
+  end
+
   def create
     user = RSpotify::User.find(current_user.spotify_id)
     user.playlists.first(5).each do |p|
@@ -20,5 +26,7 @@ class PlaylistsController < ApplicationController
         playlist_song.save
       end
     end
+
+    redirect_to playlists_path
   end
 end
