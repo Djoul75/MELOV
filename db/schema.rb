@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2022_03_01_154050) do
 
   # These are extensions that must be enabled in order to support this database
@@ -45,12 +46,8 @@ ActiveRecord::Schema.define(version: 2022_03_01_154050) do
   create_table "publications", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
-    t.bigint "playlist_id", null: false
-    t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["playlist_id"], name: "index_publications_on_playlist_id"
-    t.index ["song_id"], name: "index_publications_on_song_id"
     t.index ["user_id"], name: "index_publications_on_user_id"
   end
 
@@ -95,8 +92,6 @@ ActiveRecord::Schema.define(version: 2022_03_01_154050) do
   add_foreign_key "playlist_songs", "playlists"
   add_foreign_key "playlist_songs", "songs"
   add_foreign_key "playlists", "users"
-  add_foreign_key "publications", "playlists"
-  add_foreign_key "publications", "songs"
   add_foreign_key "publications", "users"
   add_foreign_key "subscriptions", "users", column: "follower_id"
   add_foreign_key "subscriptions", "users", column: "following_id"

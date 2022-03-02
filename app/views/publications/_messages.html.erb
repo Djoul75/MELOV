@@ -1,0 +1,7 @@
+<div id="publication-<%= publication.id %>">
+  <small>
+    <strong><%= publication.user.nickname %></strong>
+      <i><%= publication.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+  </small>
+    <p><%= publication.content %></p>
+</div>
