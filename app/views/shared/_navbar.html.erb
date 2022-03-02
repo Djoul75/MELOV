@@ -25,7 +25,7 @@
           </div>
           <div class='-player-set-volume d-flex flex-column align-items-center' data-action='change->player#changeVolume'>
             <input type="range" id="volume" data-player-target='volume' name="volume"
-                  min="0" max="1" value="50" step="0.01">
+                  min="0" max="1" value="0.50" step="0.01">
             <label for="volume">Volume</label>
           </div>
 
@@ -36,11 +36,18 @@
   <div class="fix-item-avatar">
     <% if user_signed_in? %>
       <div class="nav-item dropdown">
-        <img class="avatar-fix dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+        <div class="avatar-fix dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier">
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, crop: :fill, class: 'avatar-fix' %>
+          <% else %>
+            <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+          <% end %>
+        </div>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="/playlists">Playlists</a>
+          <%= link_to 'Edit Profil', edit_user_registration_path, class: 'dropdown-item' %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
         </div>
       </div>
