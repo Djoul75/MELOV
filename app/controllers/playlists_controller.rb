@@ -1,7 +1,7 @@
 class PlaylistsController < ApplicationController
   def create
     user = RSpotify::User.find(current_user.spotify_id)
-    user.playlists.each do |p|
+    user.playlists.first(5).each do |p|
       @playlist = Playlist.new(name: p.name, spotify_id: p.id, user_id: current_user.id)
       authorize @playlist
       @playlist.save ? playlist_id = @playlist.id : playlist_id = Playlist.find_by(name: @playlist.name).id
