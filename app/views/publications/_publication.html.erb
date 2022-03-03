@@ -1,7 +1,58 @@
-<div id="publication-<%= publication.id %>">
-  <small>
-    <strong><%= publication.user.nickname %></strong>
-      <i><%= publication.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-  </small>
-    <p><%= publication.content %></p>
+<div class="test">
+  <div class="home-post-card">
+    <% if publication.track %>
+    <div class="home-post-card-cover" data-action='click->player#sendtrack' data-track-id='<%= publication.track_id %>'>
+      <%= image_tag(publication.track.album.images.first["url"], size: "200x200") %>
+    </div>
+    <div class="home-post-card-infos">
+      <div class="home-post-card-content-top">
+        <div class="home-post-card-title-artist">
+          <h2><%= publication.track.name %></h2>
+          <p><%= publication.track.artists[0].name %></p>
+        </div>
+        <div class="home-post-card-avatar-nickname">
+          <p><strong><%= publication.user.nickname %></strong></p>
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, crop: :fill, class: 'avatar' %>
+          <% else %>
+            <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="home-post-card-content-bottom">
+        <p><%= publication.content %></p>
+      </div>
+    </div>
+    <div class="home-post-card-interraction">
+      <i class="fas fa-heart"></i>
+      <i class="fas fa-comment"></i>
+      <i class="fas fa-share"></i>
+    </div>
+    <% else %>
+    <div class="home-post-card-cover" data-action='click->player#sendtrack' data-track-id='<%= publication.track_id %>'>
+    </div>
+    <div class="home-post-card-infos">
+      <div class="home-post-card-content-top">
+        <div class="home-post-card-title-artist">
+        </div>
+        <div class="home-post-card-avatar-nickname">
+          <p><strong><%= publication.user.nickname %></strong></p>
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, crop: :fill, class: 'avatar' %>
+          <% else %>
+            <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="home-post-card-content-bottom">
+        <p><%= publication.content %></p>
+      </div>
+    </div>
+    <div class="home-post-card-interraction">
+      <i class="fas fa-heart"></i>
+      <i class="fas fa-comment"></i>
+      <i class="fas fa-share"></i>
+    </div>
+    <% end %>
+  </div>
 </div>
