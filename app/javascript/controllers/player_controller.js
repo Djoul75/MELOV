@@ -17,7 +17,6 @@ export default class extends Controller {
       this.player.addListener('ready', ({ device_id }) => {
           console.log('Ready with Device ID', device_id);
           this.id = device_id
-          this.setPlay('4BNiO9JthDUkbNsKxLH9lg');
       });
 
       this.player.addListener('player_state_changed', ({
@@ -79,7 +78,11 @@ export default class extends Controller {
   }
 
   play() {
-    this.player.togglePlay();
+    if (this.uri) {
+      this.player.togglePlay();
+    } else {
+      this.setPlay('spotify:track:4BNiO9JthDUkbNsKxLH9lg');
+    }
   }
 
   changeVolume() {
@@ -100,7 +103,8 @@ export default class extends Controller {
     this.setPlay(e.currentTarget.dataset.trackId);
   }
 
-  setPlay(songId) {
+  setPlay(uri) {
+    this.uri = uri
     const play = ({
       spotify_uri,
       playerInstance: {
@@ -123,7 +127,35 @@ export default class extends Controller {
 
     play({
       playerInstance: this.player,
-      spotify_uri: `spotify:track:${songId}`,
+      spotify_uri: uri,
+    });
+  }
+
+  setPlaylist(uri, playlist_uri) {
+    this.uri = uri
+    const play = ({
+      spotify_uri,
+      playerInstance: {
+        _options: {
+          getOAuthToken
+        }
+      }
+    }) => {
+      getOAuthToken(access_token => {
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({ context_uri: playlist_uri }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+          },
+        });
+      });
+    };
+
+    play({
+      playerInstance: this.player,
+      spotify_uri: uri,
     });
   }
 
