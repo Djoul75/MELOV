@@ -1,7 +1,10 @@
 <div class="container-login">
   <div class="container-page-login">
-  <% @songs_in_common.each do |s| %>
-    <%= s %>
-  <% end %>
+  <h1>See your shaker, you have <%= @songs_in_common.count %> songs in common : </h1>
+  <ul>
+    <% @songs_in_common.each do |song| %>
+      <li> Song Id : <%= song %> </li>
+    <% end %>
+  </ul>
   </div>
 </div>
