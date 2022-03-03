@@ -15,7 +15,7 @@
     <% if params[:query].present? %>
       <h1 class="page-header">Tracks Matching whith "<%= params[:query] %>"</h1>
       <% @tracks.each do |track| %>
-        <li data-action='click->player#sendtrack' data-track-id='<%= track.id %>'><%= track.name %> | <%= track.artists[0].name %> | <%= track.duration_ms %></li>
+        <li data-action='click->player#sendtrack' data-track-id='spotify:track:<%= track.id %>'><%= track.name %> | <%= track.artists[0].name %> | <%= track.duration_ms %></li>
       <% end %>
     <% end %>
   </div>

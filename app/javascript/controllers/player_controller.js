@@ -19,12 +19,14 @@ export default class extends Controller {
           this.id = device_id
       });
 
-      this.player.addListener('player_state_changed', ({
-        position,
-        duration,
-        paused,
-        track_window: { current_track }
-      }) => {
+      this.player.addListener('player_state_changed', (state) => {
+        if (!state) return
+        const {
+          position,
+          duration,
+          paused,
+          track_window: { current_track }
+        } = state
         console.log('Currently Playing', current_track);
         console.log('Position in Song', position);
         console.log('Duration of Song', duration);
@@ -101,6 +103,9 @@ export default class extends Controller {
 
   sendtrack(e) {
     this.setPlay(e.currentTarget.dataset.trackId);
+  }
+  sendplaylist(e) {
+    this.setPlaylist(e.currentTarget.dataset.trackId, e.currentTarget.dataset.playlistId);
   }
 
   setPlay(uri) {
