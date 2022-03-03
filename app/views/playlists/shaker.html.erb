@@ -3,5 +3,9 @@
   <% @songs_in_common.each do |s| %>
     <%= s %>
   <% end %>
+
+    <% @tracks.each do |track| %>
+      <li data-action='click->player#sendplaylist' data-playlist-id='spotify:playlist:<%= @playlist.id %>' data-track-id='spotify:track:<%= track.id %>'><%= track.name %> | <%= track.artists[0].name %> | <%= track.duration_ms %></li>
+    <% end %>
   </div>
 </div>
