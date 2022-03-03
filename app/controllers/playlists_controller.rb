@@ -1,8 +1,11 @@
 class PlaylistsController < ApplicationController
   def index
     @playlists = policy_scope(Playlist)
-    @user = User.find(current_user.id)
-    @playlists = Playlist.where(user_id: @user)
+  end
+
+  def show
+    @playlist = Playlist.find(params[:id])
+    authorize @playlist
   end
 
   def create
@@ -12,7 +15,7 @@ class PlaylistsController < ApplicationController
       authorize @playlist
       @playlist.save ? playlist_id = @playlist.id : playlist_id = Playlist.find_by(name: @playlist.name).id
 
-      p.tracks.each do |t|
+      p.tracks.first(20).each do |t|
         song = Song.find_by(title: t.name)
         artist = RSpotify::Artist.find(t.artists.first.id)
 
@@ -21,14 +24,16 @@ class PlaylistsController < ApplicationController
             artist: artist.name,
             genres: artist.genres,
             length: t.duration_ms,
-            title: t.name
+            title: t.name,
+            spotify_track_id: t.id
           )
         else
           song = Song.create!(
             artist: artist.name,
             genres: artist.genres,
             length: t.duration_ms,
-            title: t.name
+            title: t.name,
+            spotify_track_id: t.id
           )
         end
 
@@ -39,5 +44,37 @@ class PlaylistsController < ApplicationController
     end
 
     redirect_to playlists_path
+  end
+
+  def add_a_user
+    @user = User.new
+    authorize @user
+    @users = User.all
+  end
+
+  def shaker
+    @playlist = Playlist.new
+    authorize @playlist
+
+    @songs_in_common = []
+    current_user.playlists.each do |p|
+      p.songs.each do |s|
+        @songs_in_common << s.spotify_track_id
+      end
+    end
+
+    @user = User.find(params[:format].to_i)
+    @user.playlists.each do |p|
+      p.songs.each do |s|
+        @songs_in_common << s.spotify_track_id
+      end
+    end
+
+    @songs_in_common.reject! do |s|
+      @songs_in_common.count(s) == 1
+    end
+
+    @songs_in_common.uniq!
+
   end
 end

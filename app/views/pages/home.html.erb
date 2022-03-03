@@ -1,12 +1,11 @@
 <div class="container-home">
   <div class="container-page-home">
-<%= link_to 'Import playlists', playlists_path, method: :post %>
     <% if user_signed_in? %>
       <h1>Welcome,  <%= current_user.email %></h1>
     <% else %>
       <h1>Welcome to MELOV</h1>
-
     <% end %>
+     <%= link_to 'Shake it', adduser_path %>
     <p>Lastest news from your melow friends :</p>
 
     <div class="home-posts-cards" >
