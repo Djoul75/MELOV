@@ -26,14 +26,13 @@ class PublicationsController < ApplicationController
     authorize @publication
     @publication.save!
     if @publication.save
-      current_user.followers.each { | user |
+      (current_user.followers + [current_user]).each { | user |
         FeedChannel.broadcast_to(
           user,
           render_to_string(partial: "publication", locals: {publication: @publication})
         )
-        head :ok
       }
-      redirect_to publications_path
+      head :ok
     else
       render :show
     end
