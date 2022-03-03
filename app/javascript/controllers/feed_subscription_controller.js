@@ -24,8 +24,6 @@ export default class extends Controller {
   }
 
   reset(){
-    setTimeout(()=>{
-      this.formTarget.reset()
-    },50)
+    this.formTarget.reset()
   }
 }
