@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
   def index
     @playlists = policy_scope(Playlist)
+    @playlists = current_user.playlists
   end
 
   def show
@@ -78,10 +79,18 @@ class PlaylistsController < ApplicationController
     end
 
     @songs_in_common.uniq!
+    date = Time.now.strftime("%d/%m/%y")
 
     @songs_in_common.each do |song|
         PlaylistSong.create!(song_id: song, playlist_id: @playlist.id)
       end
 
+    if @songs_in_common.any?
+      spotify_user = RSpotify::User.find(current_user.spotify_id)
+      @playlist = spotify_user.create_playlist!("Shaker Playlist with #{@user.nickname} - #{date}") # et ajouter un id unique comme la date ?
+      @tracks = @songs_in_common.map { |track| RSpotify::Track.find(track) }
+      @playlist.add_tracks!(@tracks)
+    end
+    
   end
 end

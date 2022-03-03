@@ -17,15 +17,16 @@ export default class extends Controller {
       this.player.addListener('ready', ({ device_id }) => {
           console.log('Ready with Device ID', device_id);
           this.id = device_id
-          this.setPlay('4BNiO9JthDUkbNsKxLH9lg');
       });
 
-      this.player.addListener('player_state_changed', ({
-        position,
-        duration,
-        paused,
-        track_window: { current_track }
-      }) => {
+      this.player.addListener('player_state_changed', (state) => {
+        if (!state) return
+        const {
+          position,
+          duration,
+          paused,
+          track_window: { current_track }
+        } = state
         console.log('Currently Playing', current_track);
         console.log('Position in Song', position);
         console.log('Duration of Song', duration);
@@ -79,7 +80,11 @@ export default class extends Controller {
   }
 
   play() {
-    this.player.togglePlay();
+    if (this.uri) {
+      this.player.togglePlay();
+    } else {
+      this.setPlay('spotify:track:4BNiO9JthDUkbNsKxLH9lg');
+    }
   }
 
   changeVolume() {
@@ -99,8 +104,12 @@ export default class extends Controller {
   sendtrack(e) {
     this.setPlay(e.currentTarget.dataset.trackId);
   }
+  sendplaylist(e) {
+    this.setPlaylist(e.currentTarget.dataset.trackId, e.currentTarget.dataset.playlistId);
+  }
 
-  setPlay(songId) {
+  setPlay(uri) {
+    this.uri = uri
     const play = ({
       spotify_uri,
       playerInstance: {
@@ -123,7 +132,35 @@ export default class extends Controller {
 
     play({
       playerInstance: this.player,
-      spotify_uri: `spotify:track:${songId}`,
+      spotify_uri: uri,
+    });
+  }
+
+  setPlaylist(uri, playlist_uri) {
+    this.uri = uri
+    const play = ({
+      spotify_uri,
+      playerInstance: {
+        _options: {
+          getOAuthToken
+        }
+      }
+    }) => {
+      getOAuthToken(access_token => {
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({ context_uri: playlist_uri }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+          },
+        });
+      });
+    };
+
+    play({
+      playerInstance: this.player,
+      spotify_uri: uri,
     });
   }
 

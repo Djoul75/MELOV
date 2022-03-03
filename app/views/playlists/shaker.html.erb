@@ -1,10 +1,15 @@
 <div class="container-login">
   <div class="container-page-login">
+
   <h1>See your shaker, you have <%= @songs_in_common.count %> songs in common : </h1>
-  <ul>
-    <% @songs_in_common.each do |song| %>
-      <li> Song Id : <%= song %> </li>
+
+  <% @songs_in_common.each do |s| %>
+    <%= s %>
+  <% end %>
+
+    <% @tracks.each do |track| %>
+      <li data-action='click->player#sendplaylist' data-playlist-id='spotify:playlist:<%= @playlist.id %>' data-track-id='spotify:track:<%= track.id %>'><%= track.name %> | <%= track.artists[0].name %> | <%= track.duration_ms %></li>
     <% end %>
-  </ul>
+
   </div>
 </div>

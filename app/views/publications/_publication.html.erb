@@ -1,7 +1,7 @@
 <div class="test">
   <div class="home-post-card">
     <% if publication.track %>
-    <div class="home-post-card-cover" data-action='click->player#sendtrack' data-track-id='<%= publication.track_id %>'>
+    <div class="home-post-card-cover" data-action='click->player#sendtrack' data-track-id='spotify:track:<%= publication.track_id %>'>
       <%= image_tag(publication.track.album.images.first["url"], size: "200x200") %>
     </div>
     <div class="home-post-card-infos">
@@ -29,7 +29,7 @@
       <i class="fas fa-share"></i>
     </div>
     <% else %>
-    <div class="home-post-card-cover" data-action='click->player#sendtrack' data-track-id='<%= publication.track_id %>'>
+    <div class="home-post-card-cover" data-action='click->player#sendtrack' data-track-id='spotify:track:<%= publication.track_id %>'>
     </div>
     <div class="home-post-card-infos">
       <div class="home-post-card-content-top">
