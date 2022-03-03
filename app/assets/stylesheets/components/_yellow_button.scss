@@ -1,0 +1,12 @@
+.yellow-button {
+  color: #20242C;
+  background: #F9B63A;
+  border-radius: 10px;
+  border: 2px solid #F9B63A;
+  font-weight: 700;
+
+  &:hover {
+    background: transparent;
+    color: #F9B63A;
+  }
+}
