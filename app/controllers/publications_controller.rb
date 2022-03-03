@@ -2,9 +2,9 @@ class PublicationsController < ApplicationController
   before_action :publication_find, only: %i[show edit update destroy]
 
   def index
-    following_ids = current_user.followings.ids+[current_user.id]
-    @publications = policy_scope(Publication).where(user_id: following_ids).order(created_at: :desc)
-    @publication = Publication.new
+    # following_ids = current_user.followings.ids+[current_user.id]
+    # @publications = policy_scope(Publication).where(user_id: following_ids).order(created_at: :desc)
+    # @publication = Publication.new
   end
 
   def show
@@ -26,14 +26,13 @@ class PublicationsController < ApplicationController
     authorize @publication
     @publication.save!
     if @publication.save
-      current_user.followers.each { | user |
+      (current_user.followers + [current_user]).each { | user |
         FeedChannel.broadcast_to(
           user,
-          render_to_string(partial: "publication", locals: {publication: @publication})
+          render_to_string(partial: "publication", locals: { publication: @publication })
         )
-        head :ok
       }
-      redirect_to publications_path
+      head :ok
     else
       render :show
     end
@@ -62,5 +61,5 @@ private
   end
 
   def publication_params
-    params.require(:publication).permit(:content)
+    params.require(:publication).permit(:content, :spotify_url)
   end
