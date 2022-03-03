@@ -1,14 +1,103 @@
+.player-cover {
+  width: 90%;
+}
+
+.player-song-name {
+  margin-top: 2vh;
+  font-weight: bold;
+  text-align: center;
+}
+
+.player-artist {
+  margin-bottom: 2vh;
+  text-align: center;
+}
+
+.player-seekbar {
+  width: 85%;
+
+  input {
+    width: 100%;
+    transition: ease 300ms;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}
+
 .player-controls {
-  font-size: x-large;
+  display: flex;
+  margin: 2vh 0;
+
   align-items: center;
-  width: 50%;
+  width: 85%;
   justify-content: space-between;
 
+  .fa-arrow-alt-circle-left {
+    font-size: 3rem;
+    transition: ease 300ms;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+
   .fa-play-circle {
-    font-size: xx-large;
+    font-size: 4rem;
+    transition: ease 300ms;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
   }
 
   .fa-pause-circle {
-    font-size: xx-large;
+    font-size: 4rem;
+    transition: ease 300ms;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+
+  .fa-arrow-alt-circle-right {
+    font-size: 3rem;
+    transition: ease 300ms;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+}
+
+.player-set-volume {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+
+  input {
+    width: 70%;
+    transition: ease 300ms;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  i {
+    transition: ease 300ms;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
   }
 }

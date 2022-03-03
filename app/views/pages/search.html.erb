@@ -1,22 +1,41 @@
-<div class="container-login">
-  <div class="container-page-login">
-
-    <h1>search page</h1>
-
-    <%= form_tag search_path, method: :get do %>
-      <%= text_field_tag :query,
-                         params[:query],
-                         class: "form-control",
-                         placeholder: "Find a music"
-      %>
+<div class="container-form-post">
+  <%= form_tag search_path, method: :get do %>
+    <%= text_field_tag :query,
+                        params[:query],
+                        class: "form-control",
+                        placeholder: "Find a music"
+    %>
   <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
-
-    <% if params[:query].present? %>
-      <h1 class="page-header">Tracks Matching whith "<%= params[:query] %>"</h1>
-      <% @tracks.each do |track| %>
-        <li data-action='click->player#sendtrack' data-track-id='spotify:track:<%= track.id %>'><%= track.name %> | <%= track.artists[0].name %> | <%= track.duration_ms %></li>
-      <% end %>
+  <% end %>
+</div>
+<br><br>
+<div class="results">
+  <% if params[:query].present? %>
+    <h1 class="page-header">Tracks Matching whith "<%= params[:query] %>"</h1>
+    <% @tracks.each do |track| %>
+      <div class="card-result-search">
+        <div class="home-post-card-infos">
+          <div class="home-post-card-content-top">
+            <div class="home-post-card-cover">
+              <%= image_tag(track.album.images.first["url"]) %>
+            </div>
+            <div class="home-post-card-title-artist">
+              <h2><%= track.name %></h2>
+              <h4><%= track.artists[0].name %></h4>
+              <p><%= track.duration_ms %></p>
+            </div>
+            <div class="search-card-action">
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="search-card-action">
+              <i class="fas fa-share"></i>
+            </div>
+            <div class="post-card-play" data-action='click->player#sendtrack' data-track-id='spotify:track:<%= track.id %>'>
+              <i class="far fa-play-circle"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 </div>

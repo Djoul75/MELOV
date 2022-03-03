@@ -1,13 +1,10 @@
-<div class="container-login">
-  <div class="container-page-login">
+<h1>search page</h1>
 
-    <h1>search page</h1>
-
-    <%= form_tag playlist_users_path, method: :get do %>
-      <%= text_field_tag :query,
-                         params[:query],
-                         class: "form-control",
-                         placeholder: "Find a buddy"
-      %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+<%= form_tag playlist_users_path, method: :get do %>
+  <%= text_field_tag :query,
+                      params[:query],
+                      class: "form-control",
+                      placeholder: "Find a buddy"
+  %>
+<%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>

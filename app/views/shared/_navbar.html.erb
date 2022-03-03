@@ -1,38 +1,44 @@
 <div class="fix-items">
   <div class="sidebar">
     <div class="sidebar-content">
+
       <div class="siderbar-menu">
-        <ul>
+        <div class="sidebar-logo">
           <%= link_to root_path do %>
-            <%= image_tag("logo.jpg", width: '150') %>
+            <h1 id='logo'>MELOV</h1>
           <% end %>
-          <li><%= link_to 'Profile', user_path(current_user.id) %></li>
-          <li><%= link_to 'Playlists', playlists_path %></li>
-          <li><%= link_to 'Discover', publications_path %></li>
-          <li><%= link_to 'Shake It Up', adduser_path %></li>
-          <li><%= link_to 'Search', search_path %></li>
-        </ul>
+        </div>
+        <div class="sidebar-links">
+          <div class='sidebar-link'><%= link_to 'Profile', user_path(current_user.id) %></div>
+          <div class='sidebar-link'><%= link_to 'Playlists', playlists_path %></div>
+          <div class='sidebar-link'><%= link_to 'Discover', publications_path %></div>
+          <div class='sidebar-link'><%= link_to 'Shake It Up', adduser_path %></div>
+          <div class='sidebar-link'><%= link_to 'Search', search_path %></div>
+        </div>
       </div>
+
       <% if user_signed_in? %>
         <script src="https://sdk.scdn.co/spotify-player.js"></script>
-        <div class="sidebar-player d-flex flex-column">
-          <img class="player-cover w-50" data-player-target='playerCoverImg' src="https://i.scdn.co/image/ab67616d0000b27324e55312fa159bd1a9957aab" alt="">
+        <div class="sidebar-player">
+          <img class="player-cover" data-player-target='playerCoverImg' src="https://i.scdn.co/image/ab67616d0000b27324e55312fa159bd1a9957aab" alt="">
           <div class="player-song-name" data-player-target='playerSongName'>En Lea</div>
           <div class="player-artist" data-player-target='playerArtist'>Muddy Monk</div>
+          <div class="player-seekbar">
             <input type="range" id="seekbar" data-player-target='seekbar' data-action='change->player#changeSeek'
                   name="seekbar" min="0" max="" value="0" step="1">
-          <div class="player-controls d-flex">
+          </div>
+          <div class="player-controls">
             <i data-player-target='previous' data-action='click->player#previous' class="far fa-arrow-alt-circle-left"></i>
             <i data-player-target='play' data-action='click->player#play' class="far fa-play-circle"></i>
             <i data-player-target='pause' data-action='click->player#play' class="far fa-pause-circle d-none"></i>
             <i data-player-target='next' data-action='click->player#next' class="far fa-arrow-alt-circle-right"></i>
           </div>
-          <div class='-player-set-volume d-flex flex-column align-items-center' data-action='change->player#changeVolume'>
+          <div class='player-set-volume' data-action='change->player#changeVolume'>
+            <i class="fas fa-volume-down"></i>
             <input type="range" id="volume" data-player-target='volume' name="volume"
                   min="0" max="1" value="0.50" step="0.01">
-            <label for="volume">Volume</label>
+            <i class="fas fa-volume-up"></i>
           </div>
-
         </div>
       <% end %>
     </div>
@@ -48,9 +54,7 @@
           <% end %>
         </div>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="/playlists">Playlists</a>
+          <%= link_to 'Playlists', playlists_path, class: 'dropdown-item' %>
           <%= link_to 'Edit Profil', edit_user_registration_path, class: 'dropdown-item' %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
         </div>

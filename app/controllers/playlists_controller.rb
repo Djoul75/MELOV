@@ -55,42 +55,74 @@ class PlaylistsController < ApplicationController
 
 
 
+  # def shaker
+  #   @playlist = Playlist.new(user: current_user, shaker: true, name: "Shaker - #{current_user.nickname} - #{Time.now}", spotify_id: current_user.spotify_id)
+  #   authorize @playlist
+  #   @playlist.save!
+
+  #   @songs_in_common = []
+  #   current_user.playlists.each do |playlist|
+  #     playlist.songs.each do |song|
+  #       @songs_in_common << song.id
+  #     end
+  #   end
+
+  #   @user = User.find(params[:format].to_i)
+  #   @user.playlists.each do |playlist|
+  #     playlist.songs.each do |song|
+  #       @songs_in_common << song.id
+  #     end
+  #   end
+
+  #   @songs_in_common.reject! do |song|
+  #     @songs_in_common.count(song) == 1
+  #   end
+
+  #   @songs_in_common.uniq!
+  #   date = Time.now.strftime("%d/%m/%y")
+
+  #   @songs_in_common.each do |song|
+  #       PlaylistSong.create!(song_id: song, playlist_id: @playlist.id)
+  #     end
+
+  #   if @songs_in_common.any?
+  #     spotify_user = RSpotify::User.find(current_user.spotify_id)
+  #     @spotify_playlist = spotify_user.create_playlist!("Shaker Playlist with #{@user.nickname} - #{date}") # et ajouter un id unique comme la date ?
+  #     @tracks = @playlist.songs.map { |song| RSpotify::Track.find(song.spotify_track_id) }.compact
+  #     @spotify_playlist.add_tracks!(@tracks)
+  #   end
+  # end
+
   def shaker
-    @playlist = Playlist.new(user: current_user, shaker: true, name: "Shaker - #{current_user.nickname} - #{Time.now}", spotify_id: current_user.spotify_id)
+    @playlist = Playlist.new
     authorize @playlist
-    @playlist.save!
 
     @songs_in_common = []
-    current_user.playlists.each do |playlist|
-      playlist.songs.each do |song|
-        @songs_in_common << song.id
+    current_user.playlists.each do |p|
+      p.songs.each do |s|
+        @songs_in_common << s.spotify_track_id
       end
     end
 
     @user = User.find(params[:format].to_i)
-    @user.playlists.each do |playlist|
-      playlist.songs.each do |song|
-        @songs_in_common << song.id
+    @user.playlists.each do |p|
+      p.songs.each do |s|
+        @songs_in_common << s.spotify_track_id
       end
     end
 
-    @songs_in_common.reject! do |song|
-      @songs_in_common.count(song) == 1
+    @songs_in_common.reject! do |s|
+      @songs_in_common.count(s) == 1
     end
 
     @songs_in_common.uniq!
     date = Time.now.strftime("%d/%m/%y")
 
-    @songs_in_common.each do |song|
-        PlaylistSong.create!(song_id: song, playlist_id: @playlist.id)
-      end
-
     if @songs_in_common.any?
       spotify_user = RSpotify::User.find(current_user.spotify_id)
-      @spotify_playlist = spotify_user.create_playlist!("Shaker Playlist with #{@user.nickname} - #{date}") # et ajouter un id unique comme la date ?
-      @tracks = @playlist.songs.map { |song| RSpotify::Track.find(song.spotify_track_id) }.compact
-      @spotify_playlist.add_tracks!(@tracks)
+      @playlist = spotify_user.create_playlist!("Shaker Playlist with #{@user.nickname} - #{date}") # et ajouter un id unique comme la date ?
+      @tracks = @songs_in_common.map { |track| RSpotify::Track.find(track) }
+      @playlist.add_tracks!(@tracks)
     end
-
   end
 end

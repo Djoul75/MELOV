@@ -1,0 +1,44 @@
+.results {
+  color: white;
+  list-style: none;
+}
+
+.card-result-search {
+  background-color: rgba(68, 54, 67, 0.5);
+  padding: 2vw;
+  margin: 2vw 0;
+  width: 85%;
+  border-radius: 20px;
+}
+
+.search-infos {
+  width: 100%;
+
+
+  .search-infos-cover {
+    width: 20%;
+  }
+
+  .search-infos-name {
+
+  }
+}
+
+.search-card-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: ease 300ms;
+    margin-right: 2vw;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      transform: scale(1.1);
+    }
+  }
+}

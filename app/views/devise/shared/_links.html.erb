@@ -18,4 +18,4 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
-<%= link_to "Sign in with Spotify", user_spotify_omniauth_authorize_path, method: :post %>
+<%= link_to "Sign in with Spotify", user_spotify_omniauth_authorize_path, method: :post, class: 'sign-in-spotify btn-submit' %>

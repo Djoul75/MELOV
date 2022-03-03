@@ -1,9 +1,10 @@
-// Specific CSS for your home-page
 .container-home {
   width: 100vw;
   height: 100vh;
   background-image: url('https://images.unsplash.com/photo-1620120966883-d977b57a96ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80');
   background-size: cover;
+  overflow-y: scroll;
+  color: white;
 }
 
 .container-page-home {
@@ -17,10 +18,21 @@
   overflow-y: scroll;
 }
 
-.test {
+.card-post-bg {
   flex-direction: column;
   padding: 2vw;
   background-color: rgba(68, 54, 67, 0.5);
   border-radius: 20px;
   margin: 5vh 0;
+  width: 85%;
+}
+
+.container-form-post {
+  color: white;
+  width: 85%;
+  margin: 0;
+}
+
+.home-welcome {
+  color: white;
 }
