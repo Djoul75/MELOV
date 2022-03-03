@@ -1,11 +1,13 @@
-<div class="container-home col-md-6 offset-md-3"
- data-controller="feed-subscription"
- data-feed-subscription-feed-id-value="<%= current_user.id %>">
-  <h1>Social Feed</h1>
-    <div class="container-message" data-feed-subscription-target="messages">
-      <% @publications.each do | publication | %>
-        <%= render "publication", publication: publication %>
-      <% end %>
-    </div>
+<div class="container-login">
+  <div class="container-page-login">
+    <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
+      <h1>Social Feed</h1>
+        <div class="container-message" data-feed-subscription-target="messages">
+          <% @publications.each do | publication | %>
+            <%= render "publication", publication: publication %>
+          <% end %>
+        </div>
 
+    </div>
+  </div>
 </div>
