@@ -1,24 +1,15 @@
 <div class="container-login">
   <div class="container-page-login">
-    <h2>Log in</h2>
-
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" } %>
-        <%= f.input :password,
-                    required: false,
-                    input_html: { autocomplete: "current-password" } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Log in", class: 'btn-submit' %>
-      </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
+    <h1>WELCOME TO MELOV</h1>
+    <h3>Your new favorite music social network !</h3>
+    <br><br>
+    <h4>With <i>Melov</i> you can share your latest musical discovery with your friends,
+        follow your favorite personalities and above all thanks to Shaker, you can
+        create unique playlists by matching your tastes with those of your friends.</h4>
+    <br><br>
+    <h3>Now, all you have to do is</h3>
+    <br>
+    <%= link_to "CONNECT YOUR SPOTIFY", user_spotify_omniauth_authorize_path, method: :post, class: 'btn-sign-in-spotify' %>
+    <br>
   </div>
 </div>

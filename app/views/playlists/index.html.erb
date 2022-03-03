@@ -1,11 +1,6 @@
-<div class="container-login">
-  <div class="container-page-login">
     <%= link_to 'Import playlists', playlists_path, method: :post %>
     <br>
 
     <% @playlists.each do |p| %>
       <%= link_to p.name, playlist_path(p) %>
     <% end %>
-
-  </div>
-</div>

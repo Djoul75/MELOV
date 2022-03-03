@@ -21,11 +21,17 @@
 
   <body data-controller='player' data-player-token-value='<%= current_user&.token %>'>
     <%#= render 'shared/flashes' %>
-     <% if user_signed_in? %>
+    <% if user_signed_in? %>
       <%= render 'shared/navbar' %>
+      <div class="container-home">
+        <div class="container-page-home">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
     <% end %>
     <div>
-    <%= yield %>
     </div>
   </body>
 </html>

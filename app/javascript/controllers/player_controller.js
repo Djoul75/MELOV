@@ -79,12 +79,24 @@ export default class extends Controller {
     }
   }
 
+  previous() {
+    this.player.previousTrack().then(() => {
+      console.log('Set to previous track!');
+    });
+  }
+
   play() {
     if (this.uri) {
       this.player.togglePlay();
     } else {
       this.setPlay('spotify:track:4BNiO9JthDUkbNsKxLH9lg');
     }
+  }
+
+  next() {
+    this.player.nextTrack().then(() => {
+      console.log('Skipped to next track!');
+    });
   }
 
   changeVolume() {

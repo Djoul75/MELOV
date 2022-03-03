@@ -1,3 +1,9 @@
+.home-post-card-music {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .home-post-card {
   display: flex;
   // padding: 2vw;
@@ -6,46 +12,93 @@
   // margin: 5vh 0;
 }
 
-.home-post-card-cover {
-  padding: 1vw;
+.home-post-card-avatar-nickname {
+  display: flex;
+  align-items: center;
+  width: 20%;
+  color: white;
+  padding: 0 0 2vw 1vw;
 }
 
 .home-post-card-infos {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 1vw;
+  padding: 0 1vw;
+
 
   .home-post-card-content-top {
     display: flex;
     justify-content: space-between;
-    padding: 1vw;
+    width: 100%;
+
+    .home-post-card-cover {
+      width: 20%;
+      transition: ease 300ms;
+
+      img {
+        width: 100%;
+      }
+    }
 
     .home-post-card-title-artist {
       flex-grow: 1;
       color: #C5C7CD;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 1vw;
+
+      p {
+        margin: 0;
+      }
     }
 
-    .home-post-card-avatar-nickname {
+    .post-card-play {
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      width: 40%;
-      color: white;
+
+      i {
+        font-size: 5rem;
+        color: rgba(255, 255, 255, 0.7);
+        transition: ease 300ms;
+        margin-right: 2vw;
+
+        &:hover {
+          cursor: pointer;
+          color: white;
+          transform: scale(1.1);
+        }
+      }
     }
   }
+}
 
-  .home-post-card-content-bottom {
+.home-post-card-content-bottom {
+  // display: flex;
+  // justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  margin: 1vw;
+
+  p {
     text-align: justify;
-    padding: 1vw;
-    color: white;
+    padding: 2vw;
+    color: black;
   }
 }
 
 .home-post-card-interraction {
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   padding: 1vw;
   color: #F9B63A;
+  font-size: x-large;
+}
+
+.home-post-card-just-content {
+  display: flex;
+  flex-direction: column;
 }

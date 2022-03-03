@@ -1,55 +1,49 @@
-
-<div class="container-login">
-
-  <div class="container-page-login">
-    <div class="row">
-      <div class="col-4">
-        <div class="profile-pic">
-          <% if @user.photo.key? %>
-           <%= cl_image_tag @user.photo.key, class: 'rounded-pp' %>
-          <% else %>
-            <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar", class: "rounded-pp")%>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-8">
-        <div class="user-info">
-          <div class="row">
-            <h1><%= @user.nickname %>'s profile</h1>
-            <% if @user.follower_ids.include?(current_user.id) %>
-              <p class="btn-submit">Already Followed!</p>
-            <% elsif @user == current_user %>
-            <% else %>
-              <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "btn-submit" %>
-            <% end %>
-            <p><%= pluralize @user.followers.count, "follower"%></p>
-            <p><%= pluralize @user.followings.count, "following" %> </p>
-          </div>
-          <div class="row mt-4">
-            <h2> Shakers :</h2>
-            <p><%= pluralize @user.buddies.count, "buddy" %> for shaker!</p>
-            <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "shaker" %> made</p>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <h2>Playlists :</h2>
-          <%= @user.playlists.count %>  playlists :</p>
-        <ul>
-          <% @user.playlists.each do |playlist| %>
-            <li> <%=  playlist.name  %>
-            <h6> <%= playlist.playlist_songs.count %> songs </h6>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <div class="row">
-      <h2>Publications :</h2>
-        <div class="container-message" data-feed-subscription-target="messages">
-            <% @user.publications.each do | publication | %>
-              <%= render "publications/publication", publication: publication %>
-            <% end %>
-        </div>
+<div class="row">
+  <div class="col-4">
+    <div class="profile-pic">
+      <% if @user.photo.key? %>
+        <%= cl_image_tag @user.photo.key, class: 'rounded-pp' %>
+      <% else %>
+        <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar", class: "rounded-pp")%>
+      <% end %>
     </div>
   </div>
+  <div class="col-8">
+    <div class="user-info">
+      <div class="row">
+        <h1><%= @user.nickname %>'s profile</h1>
+        <% if @user.follower_ids.include?(current_user.id) %>
+          <p class="btn-submit">Already Followed!</p>
+        <% elsif @user == current_user %>
+        <% else %>
+          <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "btn-submit" %>
+        <% end %>
+        <p><%= pluralize @user.followers.count, "follower"%></p>
+        <p><%= pluralize @user.followings.count, "following" %> </p>
+      </div>
+      <div class="row mt-4">
+        <h2> Shakers :</h2>
+        <p><%= pluralize @user.buddies.count, "buddy" %> for shaker!</p>
+        <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "shaker" %> made</p>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <h2>Playlists :</h2>
+      <%= @user.playlists.count %>  playlists :</p>
+    <ul>
+      <% @user.playlists.each do |playlist| %>
+        <li> <%=  playlist.name  %>
+        <h6> <%= playlist.playlist_songs.count %> songs </h6>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<div class="row">
+  <h2>Publications :</h2>
+    <div class="container-message" data-feed-subscription-target="messages">
+        <% @user.publications.each do | publication | %>
+          <%= render "publications/publication", publication: publication %>
+        <% end %>
+    </div>
 </div>
