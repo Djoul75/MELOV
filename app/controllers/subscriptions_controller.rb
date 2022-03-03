@@ -11,8 +11,9 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = Subscription.new
-    @subscription.follower = current_user
-    @subscription.following = User.find(params[:id])
+    authorize @subscription
+    @subscription.following = current_user
+    @subscription.follower = User.find(params[:id])
     @subscription.save!
   end
 
