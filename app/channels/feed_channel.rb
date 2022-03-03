@@ -3,7 +3,6 @@ class FeedChannel < ApplicationCable::Channel
     # stream_from "some_channel"
     user = User.find(params[:id])
     #user = point en commun
-    # Feed for users
     stream_for user
   end
 
