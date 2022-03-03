@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
   def index
     @playlists = policy_scope(Playlist)
+    @playlists = current_user.playlists
   end
 
   def show
