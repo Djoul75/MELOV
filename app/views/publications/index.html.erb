@@ -8,12 +8,4 @@
       <% end %>
     </div>
 
-    <div class="container-form">
-      <%= simple_form_for @publication, remote: true,
-      html: {data: {feed_subscription_target: "form", action: "submit->feed-subscription#reset"}},
-      class: "d-flex" do |f| %>
-        <%= f.input :content, label: false, placeholder: "Insert your message here" %>
-        <%= f.submit "Submit", class: "btn btn-primary"%>
-      <% end %>
-    </div>
 </div>
