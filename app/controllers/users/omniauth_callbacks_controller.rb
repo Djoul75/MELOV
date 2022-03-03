@@ -9,10 +9,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.new_record?
       @user.password = Devise.friendly_token
+      redirection_url = edit_user_registration_path
+    else
+      redirection_url = root_path
     end
     @user.save
     sign_in @user
 
-    redirect_to root_path
+    redirect_to redirection_url
   end
 end
