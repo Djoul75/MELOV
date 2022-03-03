@@ -1,28 +1,36 @@
-<div class="user-infos">
-  <div class="user-infos-avatar">
-    <img src="avatar" alt="avatar">
-  </div>
-  <div class="user-infos-profile">
-    <div class="user-infos-profile-header">
-      <h1><%=  @user.nickname %></h1>
-      <p>Member since...</p>
-      <%= link_to 'Follow', users_path(@user)%>
-    </div>
-    <div class="user-infos-profile-playlists">
-      <%= current_user.playlists.each do |paylist| %>
-        <div class="user-infos-profile-playlists-card">
-          <div class="user-infos-profile-playlists-card-image">
-            <%=  <img src="playlist.photo" alt="playlist_photo"> %>
-          </div>
-          <div class="user-infos-profile-playlists-card-name">
-            <%= <p> playlist.name </p> %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
 
-<div class="user-feed" >
+<div class="container-login">
 
+  <div class="container-page-login">
+    <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar") %>
+    <h1>This is the profile of <%= @user.nickname %></h1>
+
+    <%= link_to 'Follow'%>
+    <p><%= @user.followers.count %> followers</p>
+    <p><%= @user.followings.count %> followees</p>
+
+    <h3> Shakers :</h3>
+    <p><%= @user.buddies.count %> buddies for shaker!</p>
+    <p><%= @user.playlists.where(user: @user.id, shaker: true).count %> shakers made</p>
+      <br>
+    <h2>Playlists :</h2>
+      <%= @user.playlists.count %>  playlists :</p>
+    <ul>
+      <% @user.playlists.each do |playlist| %>
+        <li> <%=  playlist.name  %>
+         <h6> <%= playlist.playlist_songs.count %> songs </h6>
+        </li>
+        <% end %>
+      </ul>
+
+    <div>
+      <h2>Publications :</h2>
+      <%= @user.publications.count %>  publications :</p>
+      <ul>
+      <% @user.publications.each do |publication| %>
+        <li> <%=  publication.content  %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
