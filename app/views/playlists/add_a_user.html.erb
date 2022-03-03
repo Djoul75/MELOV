@@ -1,0 +1,22 @@
+<div class="container-login">
+  <div class="container-page-login">
+
+    <h1>search page</h1>
+
+    <%= form_tag adduser_path, method: :get do %>
+      <%= text_field_tag :query,
+                         params[:query],
+                         class: "form-control",
+                         placeholder: "Find a buddy"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
+    <% if params[:query].present? %>
+      <h1 class="page-header">Buddy matching whith "<%= params[:query] %>"</h1>
+      <% match_users = @users.where("email LIKE ?", "%#{params[:query]}%") %>
+      <% match_users.each do |u| %>
+        <li><%= u.email %> <%= link_to 'Add user', shaker_path(u.id)%></li>
+      <% end %>
+    <% end %>
+  </div>

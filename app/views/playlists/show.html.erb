@@ -1,3 +1,10 @@
-<h1>Here's your playlist <%= #{playlist.name}%> </h1>
-
-<%= render 'shared/playlist' %>
+<div class="container-login">
+  <div class="container-page-login">
+    <h1>Here's your playlist <%= "#{@playlist.name}"%> </h1>
+    <ul>
+      <% @playlist.songs.each do |s| %>
+        <li><%= s.title %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
