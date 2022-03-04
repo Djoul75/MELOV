@@ -19,6 +19,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
+    authorize @subscription
   end
 
 

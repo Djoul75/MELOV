@@ -9,4 +9,8 @@ class SubscriptionPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def destoy?
+    true
+  end
 end
