@@ -1,17 +1,19 @@
 <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
-<h1>Find your shaker buddies :</h1>
-
-<div class="container-form-post">
-  <%= form_tag lookforuser_path, method: :get do %>
-    <%= text_field_tag :query,
-                        params[:query],
-                        class: "form-control",
-                        placeholder: "Find a buddy"
-    %>
-    <%= submit_tag "Search", class: "btn yellow-button" %>
-
-  <% end %>
-</div>
+  <h1>Find your next shaker buddy :</h1>
+    <div class="container-form-post-search">
+      <div class="form-left">
+        <%= form_tag lookforuser_path, method: :get do %>
+          <%= text_field_tag :query,
+                              params[:query],
+                              class: "form-control form-search",
+                              placeholder: "Look for a buddy"
+          %>
+      </div>
+      <div class="form-right">
+          <%= submit_tag "Search", class: "btn yellow-button" %>
+        <% end %>
+      </div>
+    </div>
 <br><br>
 <% if params[:query].present? %>
   <h1 class="page-header">Buddy matching whith "<%= params[:query] %>"</h1>
