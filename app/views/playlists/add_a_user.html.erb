@@ -7,7 +7,7 @@
                         class: "form-control",
                         placeholder: "Find a buddy"
     %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <%= submit_tag "Search", class: "btn yellow-button" %>
   <% end %>
 </div>
 <br><br>
@@ -15,6 +15,6 @@
   <h1 class="page-header">Buddy matching whith "<%= params[:query] %>"</h1>
   <% match_users = @users.where("email LIKE ?", "%#{params[:query]}%") %>
   <% match_users.each do |u| %>
-    <li><%= u.email %> <%= link_to 'Add user', shaker_path(u.id)%></li>
+    <li><%= u.nickname %> <%= link_to 'Add user', shaker_path(u.id)%></li>
   <% end %>
 <% end %>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :songs, only: %i[new create]
   get '/adduser', to: 'playlists#add_a_user'
   get '/shaker', to: 'playlists#shaker'
+  get '/lookforuser', to: 'publications#look_for_user'
   resources :playlists do
     get '/users', to: 'users#index'
     resources :playlist_songs, only: %i[new create]

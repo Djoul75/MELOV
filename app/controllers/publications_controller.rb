@@ -53,6 +53,12 @@ class PublicationsController < ApplicationController
   end
 end
 
+def look_for_user
+  @user = User.new
+  authorize @user
+  @users = User.all
+end
+
 
 private
 
