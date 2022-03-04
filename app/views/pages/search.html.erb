@@ -25,7 +25,6 @@
               <p><%= "#{(track.duration_ms / 60_000)}:#{(track.duration_ms / 1_000 % 60)}"%></p>
             </div>
             <div class="search-card-action">
-              <i class="fas fa-plus"></i>
               <%= render 'button_add', track_id: track.id %>
             </div>
             <div class="search-card-action">
@@ -40,5 +39,3 @@
     <% end %>
   <% end %>
 </div>
-
-<%= console %>
