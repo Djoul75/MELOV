@@ -22,7 +22,7 @@
             <div class="home-post-card-title-artist">
               <h2><%= track.name %></h2>
               <h4><%= track.artists[0].name %></h4>
-              <p><%= track.duration_ms %></p>
+              <p><%= "#{(track.duration_ms / 60_000)}:#{(track.duration_ms / 1_000 % 60)}"%></p>
             </div>
             <div class="search-card-action">
               <i class="fas fa-plus"></i>
