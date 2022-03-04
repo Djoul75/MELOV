@@ -6,12 +6,16 @@ class UserPolicy < ApplicationPolicy
       scope.all
     end
   end
-  
-   def show?
-      true
-   end
+
+  def show?
+    true
+  end
 
   def add_a_user?
+    true
+  end
+
+  def look_for_user?
     true
   end
 end
