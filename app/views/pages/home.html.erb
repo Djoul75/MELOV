@@ -1,12 +1,17 @@
 <h1 class='home-welcome'>Welcome back,  <%= current_user.nickname %></h1>
 <br>
-<div class="container-form-post">
-  <%= simple_form_for @publication, remote: true,
-  html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
-  class: "d-flex" do |f| %>
-    <%= f.input :content, label: false, placeholder: "Insert your message here" %>
-    <%= f.input :spotify_url, label: false, placeholder: "insert Spotify URL" %>
-    <%= f.submit "Submit", class: "btn yellow-button"%>
+<div class="container-form-post-feed form-inline">
+  <div class="submit-form pt-2">
+    <%= simple_form_for @publication, remote: true,
+    html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
+    wrapper: :input_group do |f| %>
+      <small><i>Share with your community</i></small>
+      <%= f.input :content, label: false, placeholder: "What are you listening to today?" %>
+      <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %>
+  </div>
+    <div class="submit-button">
+      <%= f.submit "Submit", class: "btn button-form"%>
+    </div>
   <% end %>
 </div>
 

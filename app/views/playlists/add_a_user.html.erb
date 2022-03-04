@@ -1,14 +1,19 @@
-<h1>Find your shaker buddies :</h1>
+<h1>Add a buddy to your shaker :</h1>
 
-<div class="container-form-post">
-  <%= form_tag adduser_path, method: :get do %>
-    <%= text_field_tag :query,
-                        params[:query],
-                        class: "form-control",
-                        placeholder: "Find a buddy"
-    %>
-    <%= submit_tag "Search", class: "btn yellow-button" %>
-  <% end %>
+<div class="container-form-post-search">
+  <div class="form-left">
+    <%= form_tag adduser_path, method: :get do %>
+      <%= text_field_tag :query,
+                          params[:query],
+                          class: "form-control",
+                          placeholder: "Find a buddy"
+      %>
+      </div>
+      <div class="form-right">
+      <%= submit_tag "Search", class: "btn yellow-button" %>
+    <% end %>
+      </div>
+  </div>
 </div>
 <br><br>
 <% if params[:query].present? %>
