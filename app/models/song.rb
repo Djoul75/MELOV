@@ -5,4 +5,8 @@ class Song < ApplicationRecord
   validates :artist, :title, presence: true
   validates :title, uniqueness: { scope: :artist }
   serialize :genres, Array
+
+  def spotify_track
+    @spotify_track ||= RSpotify::Track.find(spotify_track_id)
+  end
 end

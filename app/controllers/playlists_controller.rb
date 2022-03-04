@@ -56,7 +56,11 @@ class PlaylistsController < ApplicationController
 
 
   def shaker
-    playlist = Playlist.new(user: current_user, shaker: true, name: "Shaker - #{current_user.nickname} - #{Time.now}", spotify_id: current_user.spotify_id)
+    date = Time.now.strftime("%d/%m/%y")
+    @user = User.find(params[:format].to_i)
+    playlist_name = "Shaker Playlist with #{@user.nickname} - #{date}"
+
+    playlist = Playlist.new(user: current_user, shaker: true, name: playlist_name)
     authorize playlist
     playlist.save!
 
@@ -67,7 +71,6 @@ class PlaylistsController < ApplicationController
       end
     end
 
-    @user = User.find(params[:format].to_i)
     @user.playlists.each do |pl|
       pl.songs.each do |song|
         @songs_in_common << song.id
@@ -79,7 +82,6 @@ class PlaylistsController < ApplicationController
     end
 
     @songs_in_common.uniq!
-    date = Time.now.strftime("%d/%m/%y")
 
     @songs_in_common.each do |song|
         PlaylistSong.create!(song_id: song, playlist_id: playlist.id)
@@ -87,7 +89,9 @@ class PlaylistsController < ApplicationController
 
     if @songs_in_common.any?
       spotify_user = RSpotify::User.find(current_user.spotify_id)
-      @spotify_playlist = spotify_user.create_playlist!("Shaker Playlist with #{@user.nickname} - #{date}") # et ajouter un id unique comme la date ?
+      @spotify_playlist = spotify_user.create_playlist!(playlist_name)
+      playlist.spotify_id = @spotify_playlist.id
+      playlist.save!
       @tracks = playlist.songs.map { |song| RSpotify::Track.find(song.spotify_track_id) }.compact
       @spotify_playlist.add_tracks!(@tracks)
     end
