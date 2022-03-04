@@ -8,7 +8,9 @@
             <div class="home-post-card-infos">
               <div class="home-post-card-content-top">
                 <div class="home-post-card-cover">
-                  <%= image_tag(p.spotify_playlist.images.first["url"]) unless p.spotify_playlist.images.blank? %>
+                  <% if p.spotify_playlist.images.any? && p.spotify_playlist.images.first && p.spotify_playlist.images.first["url"] %>
+                    <%= image_tag(p.spotify_playlist.images.first["url"]) %>
+                  <% end %>
                 </div>
                 <div class="home-post-card-title-artist">
                   <%= link_to playlist_path(p) do %>
