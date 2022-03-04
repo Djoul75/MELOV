@@ -10,3 +10,19 @@
     color: #F9B63A;
   }
 }
+
+.yellow-button-lg {
+  text-decoration: none;
+  color: #20242C;
+  background: #F9B63A;
+  border-radius: 10px;
+  border: 2px solid #F9B63A;
+  font-weight: 700;
+  padding: 1vh 5vh;
+  transition: ease 300ms;
+
+  &:hover {
+    background: transparent;
+    color: #F9B63A;
+  }
+}

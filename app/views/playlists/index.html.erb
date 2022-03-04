@@ -1,6 +1,35 @@
-    <%= link_to 'Import playlists', playlists_path, method: :post %>
-    <br>
+    <%= link_to 'Import playlists', playlists_path, method: :post, class: 'yellow-button-lg' %>
+    <br><br>
 
-    <% @playlists.each do |p| %>
-      <%= link_to p.name, playlist_path(p) %>
-    <% end %>
+
+    <%# unless @playlist.nil? %>
+
+
+      <% @playlists.each do |p| %>
+        <%= link_to p.name, playlist_path(p) %>
+
+            <div class="home-post-card-content-top">
+              <div class="home-post-card-cover">
+                <%= image_tag(p.spotify_playlist.images.first["url"]) unless p.spotify_playlist.images.blank? %>
+              </div>
+              <div class="home-post-card-title-artist">
+                <h2><%= p.spotify_playlist.name %></h2>
+              </div>
+              <div
+                class="post-card-play"
+                data-action='click->player#sendplaylist'
+                data-playlist-id='spotify:playlist:<%= p.spotify_playlist.id %>'
+                data-track-id='<%= p.spotify_playlist.tracks_cache.first.uri unless p.spotify_playlist.tracks_cache.first.nil? %>'
+              >
+                <i class="far fa-play-circle"></i>
+              </div>
+            </div>
+
+      <% end %>
+    <%# else %>
+      <%# @playlists.each do |p| %>
+        <%#= link_to p.name, playlist_path(p) %>
+      <%# end %>
+    <%# end %>
+
+<% console %>
