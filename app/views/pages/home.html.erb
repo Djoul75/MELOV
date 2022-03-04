@@ -1,6 +1,6 @@
 <h1 class='home-welcome'>Welcome back,  <%= current_user.nickname %></h1>
 <br>
-<div class="container-form-post-feed form-inline">
+<div class="container-form-post container-form-post-feed form-inline">
   <div class="submit-form pt-2">
     <%= simple_form_for @publication, remote: true,
     html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},

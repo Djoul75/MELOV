@@ -1,6 +1,6 @@
 <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
   <h1>Find your next shaker buddy :</h1>
-    <div class="container-form-post-search">
+    <div class="container-form-post container-form-post-search">
       <div class="form-left">
         <%= form_tag lookforuser_path, method: :get do %>
           <%= text_field_tag :query,

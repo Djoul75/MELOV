@@ -1,6 +1,6 @@
 <h1>Add a buddy to your shaker :</h1>
 
-<div class="container-form-post-search">
+<div class="container-form-post container-form-post-search">
   <div class="form-left">
     <%= form_tag adduser_path, method: :get do %>
       <%= text_field_tag :query,
@@ -14,12 +14,25 @@
     <% end %>
       </div>
   </div>
-</div>
 <br><br>
 <% if params[:query].present? %>
   <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
-  <% match_users = @users.where("email LIKE ?", "%#{params[:query]}%") %>
-  <% match_users.each do |u| %>
-    <li><%= u.nickname %> <%= link_to 'Add user', shaker_path(u.id)%></li>
+  <% match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") %>
+    <% match_users.each do |u| %>
+    <div class="user-card-link">
+      <%= link_to shaker_path(u.id) do %>
+        <div class="user-card">
+          <div class="user-card-avatar-nickname">
+              <% if u.photo.attached? %>
+                <%= cl_image_tag u.photo.key, crop: :fill, class: 'avatar' %>
+              <% else %>
+                <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+              <% end %>
+              <h4><%= u.nickname %></h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
+</div>
