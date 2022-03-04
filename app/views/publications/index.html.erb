@@ -1,30 +1,31 @@
-    <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
-      <h1>Find your shaker buddies :</h1>
+<div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
+<h1>Find your shaker buddies :</h1>
 
-      <div class="container-form-post">
-        <%= form_tag lookforuser_path, method: :get do %>
-          <%= text_field_tag :query,
-                              params[:query],
-                              class: "form-control",
-                              placeholder: "Find a buddy"
-          %>
-          <%= submit_tag "Search", class: "btn yellow-button" %>
-        <% end %>
-      </div>
-      <br><br>
-      <% if params[:query].present? %>
-        <h1 class="page-header">Buddy matching whith "<%= params[:query] %>"</h1>
-        <% match_users = @users.where("email LIKE ?", "%#{params[:query]}%") %>
-        <% match_users.each do |u| %>
-          <li><%= u.nickname %> <%= link_to 'See profile', user_path(u.id)%></li>
-        <% end %>
-      <% end %>
+<div class="container-form-post">
+  <%= form_tag lookforuser_path, method: :get do %>
+    <%= text_field_tag :query,
+                        params[:query],
+                        class: "form-control",
+                        placeholder: "Find a buddy"
+    %>
+    <%= submit_tag "Search", class: "btn yellow-button" %>
 
-      <h1>Social Feed</h1>
-        <div class="container-message" data-feed-subscription-target="messages">
-          <% @publications.each do | publication | %>
-            <%= render "publication", publication: publication %>
-          <% end %>
-        </div>
+  <% end %>
+</div>
+<br><br>
+<% if params[:query].present? %>
+  <h1 class="page-header">Buddy matching whith "<%= params[:query] %>"</h1>
+  <% match_users = @users.where("email LIKE ?", "%#{params[:query]}%") %>
+  <% match_users.each do |u| %>
+    <li><%= u.nickname %> <%= link_to 'See profile', user_path(u.id)%></li>
+  <% end %>
+<% end %>
 
-    </div>
+<h1>Social Feed</h1>
+  <div class="container-message" data-feed-subscription-target="messages">
+    <% @publications.each do | publication | %>
+      <%= render "publication", publication: publication %>
+    <% end %>
+  </div>
+
+</div>

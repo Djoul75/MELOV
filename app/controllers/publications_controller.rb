@@ -51,16 +51,14 @@ class PublicationsController < ApplicationController
     authorize @publication
     @publication.destroy
   end
-end
 
-def look_for_user
-  @user = User.new
-  authorize @user
-  @users = User.all
-end
+  def look_for_user
+    @user = User.new
+    authorize @user
+    @users = User.all
+  end
 
-
-private
+  private
 
   def publication_find
     @publication = Publication.find(params[:id])
@@ -69,3 +67,4 @@ private
   def publication_params
     params.require(:publication).permit(:content, :spotify_url)
   end
+end
