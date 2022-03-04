@@ -12,6 +12,20 @@
   right: 5vw;
   top: 5vh;
   z-index: 10;
+  transition: ease 300ms;
+
+  &:hover {
+    cursor: pointer;
+    border: 5px solid #F9B63A;
+  }
+
+  &:focus {
+    border: 5px solid #F9B63A;
+  }
+
+  &::after {
+    display: none;
+  }
 }
 
 .login-button {
