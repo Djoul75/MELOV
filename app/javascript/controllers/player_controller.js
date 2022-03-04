@@ -79,6 +79,10 @@ export default class extends Controller {
     }
   }
 
+  disconnect() {
+    clearInterval(this.seekInterval)
+  }
+
   previous() {
     this.player.previousTrack().then(() => {
       console.log('Set to previous track!');
