@@ -12,7 +12,8 @@ class User < ApplicationRecord
   #                      class_name: "User"
   has_many :followings, through: :received_subscriptions,
                        source: :follower,
-                       class_name: "User"
+                       class_name: "User",
+                       dependent: :destroy
 
   has_many :send_subscriptions, foreign_key: :follower_id,
                                 class_name: "Subscription"
@@ -22,7 +23,8 @@ class User < ApplicationRecord
   #                       class_name: "User"
   has_many :followers, through: :send_subscriptions,
                         source: :following,
-                        class_name: "User"
+                        class_name: "User",
+                        dependent: :destroy
 
 
   has_many :buddies, dependent: :destroy
