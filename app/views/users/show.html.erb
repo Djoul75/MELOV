@@ -10,14 +10,12 @@
   </div>
   <div class="col-8">
     <div class="user-info">
-      <div class="row">
+      <div class="row" data-controller="follow-btn">
         <h1><%= @user.nickname %>'s profile</h1>
-        <% if @user.follower_ids.include?(current_user.id) %>
-          <p class="btn-submit">Already Followed!</p>
-        <% elsif @user == current_user %>
-        <% else %>
-          <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "btn-submit" %>
-        <% end %>
+
+        <p class="yellow-button <%= "d-none" unless @user.follower_ids.include?(current_user.id) %>" data-follow-btn-target="unfollowBtn" data-action="click->follow-btn#displayFollowBtn">Unfollow</p>
+        <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }", "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
+
         <p><%= pluralize @user.followers.count, "follower"%></p>
         <p><%= pluralize @user.followings.count, "following" %> </p>
       </div>
