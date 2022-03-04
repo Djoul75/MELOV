@@ -40,4 +40,8 @@ class PublicationPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def look_for_user?
+    true
+  end
 end
