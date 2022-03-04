@@ -65,6 +65,16 @@
       p {
         margin: 0;
       }
+
+      a {
+        color: #C5C7CD;
+        text-decoration: none;
+        transition: ease 300ms;
+
+        &:hover {
+          color: white;
+        }
+      }
     }
 
     .post-card-play {
