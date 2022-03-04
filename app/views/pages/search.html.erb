@@ -16,7 +16,7 @@
 <br><br>
 <div class="results">
   <% if params[:query].present? %>
-    <h1 class="page-header">Tracks Matching whith "<%= params[:query] %>"</h1>
+    <h1 class="page-header">Tracks Matching with "<%= params[:query] %>"</h1>
     <% @tracks.each do |track| %>
       <div class="card-result-search">
         <div class="home-post-card-infos">
@@ -27,10 +27,10 @@
             <div class="home-post-card-title-artist">
               <h2><%= track.name %></h2>
               <h4><%= track.artists[0].name %></h4>
-              <p><%= track.duration_ms %></p>
+              <p><%= "#{(track.duration_ms / 60_000)}:#{(track.duration_ms / 1_000 % 60)}"%></p>
             </div>
             <div class="search-card-action">
-              <i class="fas fa-plus"></i>
+              <%= render 'button_add', track_id: track.id %>
             </div>
             <div class="search-card-action">
               <i class="fas fa-share"></i>

@@ -2,14 +2,16 @@
   <div class="home-post-card">
     <% if publication.track %>
       <div class="home-post-card-music">
+          <%= link_to user_path(publication.user) do %>
         <div class="home-post-card-avatar-nickname">
-          <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, crop: :fill, class: 'avatar' %>
-          <% else %>
-            <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
-          <% end %>
-          <p><strong><%= publication.user.nickname %></strong></p>
+            <% if publication.user.photo.attached? %>
+              <%= cl_image_tag publication.user.photo.key, crop: :fill, class: 'avatar' %>
+            <% else %>
+              <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+            <% end %>
+            <h4><%= publication.user.nickname %></h4>
         </div>
+          <% end %>
         <div class="home-post-card-infos">
           <div class="home-post-card-content-top">
             <div class="home-post-card-cover">
@@ -31,6 +33,7 @@
           <i class="fas fa-heart"></i>
           <i class="fas fa-comment"></i>
           <i class="fas fa-share"></i>
+          <i class="fas fa-plus"></i>
         </div>
       </div>
     <% else %>

@@ -56,6 +56,10 @@ class PublicationsController < ApplicationController
     @user = User.new
     authorize @user
     @users = User.all
+
+    if params[:query].present?
+      @match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+    end
   end
 
   private

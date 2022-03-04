@@ -1,4 +1,4 @@
-class SubscriptionPolicy < ApplicationPolicy
+class PlaylistSongPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
@@ -7,10 +7,6 @@ class SubscriptionPolicy < ApplicationPolicy
   end
 
   def create?
-    true
-  end
-
-  def destoy?
     true
   end
 end

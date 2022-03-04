@@ -1,6 +1,37 @@
+<%= link_to 'back', playlists_path, class: 'yellow-button-lg' %>
+<br><br>
     <h1>Here's your playlist <%= "#{@playlist.name}"%> </h1>
     <ul>
       <% @playlist.songs.each do |s| %>
         <li><%= s.title %></li>
+        <div class="card-result-search">
+          <div class="home-post-card-infos">
+            <div class="home-post-card-content-top">
+              <div class="home-post-card-cover">
+                <%= image_tag(s.spotify_track.album.images.first["url"]) %>
+              </div>
+              <div class="home-post-card-title-artist">
+                <h2><%= s.spotify_track.name %></h2>
+                <h4><%= s.spotify_track.artists[0].name %></h4>
+                <p><%= s.spotify_track.duration_ms %></p>
+              </div>
+              <div class="search-card-action">
+                <i class="fas fa-plus"></i>
+              </div>
+              <div class="search-card-action">
+                <i class="fas fa-share"></i>
+              </div>
+              <div
+                class="post-card-play"
+                data-action='click->player#sendtrack'
+                data-track-id='spotify:track:<%= s.spotify_track.id %>'
+              >
+                <i class="far fa-play-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     </ul>
+
+<% console %>
