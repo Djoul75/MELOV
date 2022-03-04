@@ -12,10 +12,6 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = [ "followBtn", "unfollowBtn" ]
 
-  connect() {
-    this.outputTarget.textContent = 'Hello, Stimulus!'
-  }
-
   displayUnfollowBtn() {
     this.unfollowBtnTarget.classList.remove('d-none')
     this.followBtnTarget.classList.add('d-none')
