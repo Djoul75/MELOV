@@ -1,0 +1,46 @@
+.playlist-caroussel {
+  width: 85%;
+  height: 30vh;
+  background-color: rgba(255, 255, 255, 0.082);
+  overflow-y: hidden;
+  overflow-x: scroll;
+  border-radius: 20px;
+
+  .row-playlist-carroussel {
+    height: 100%;
+    width: fit-content;
+    display: flex;
+
+  }
+
+  .row-playlist-carroussel::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.playlist-carroussel-cover {
+  position: relative;
+
+  img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 450ms;
+    padding: 1.5vh;
+    border-radius: 20px;
+  }
+
+  .carroussel-playlist-info {
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 1% 2%;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+}

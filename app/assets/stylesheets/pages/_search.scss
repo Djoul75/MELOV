@@ -7,38 +7,32 @@
   background-color: rgba(68, 54, 67, 0.5);
   padding: 2vw;
   margin: 2vw 0;
-  width: 85%;
+  width: 100%;
   border-radius: 20px;
 }
 
-.search-infos {
-  width: 100%;
-
-
-  .search-infos-cover {
-    width: 20%;
-  }
-
-  .search-infos-name {
-
-  }
+.home-results {
+  background: white;
+  color: black;
+  list-style: none;
+  width: 78.5%;
+  height: 30vh;
+  overflow-y: scroll;
 }
 
-.search-card-action {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.card-result {
+  padding: 2%;
+  border-bottom: 1px solid black;
+  transition: ease 300ms;
 
-  i {
-    font-size: 2.5rem;
-    color: rgba(255, 255, 255, 0.7);
-    transition: ease 300ms;
-    margin-right: 2vw;
+  img {
+    width: 8%;
+    margin-right: 2%;
+  }
 
-    &:hover {
-      cursor: pointer;
-      color: white;
-      transform: scale(1.1);
-    }
+  &:hover {
+    transform: scaleY(1.02) scaleX(1.01);
+    background-color: rgb(214, 214, 214);
+    cursor: pointer;
   }
 }

@@ -7,40 +7,42 @@
                           class: "form-control",
                           placeholder: "Artist or title"
       %>
-    </div>
+  </div>
     <div class="form-right">
-  <%= submit_tag "Search", class: "btn yellow-button" %>
-  <% end %>
+      <%= submit_tag "Search", class: "btn yellow-button" %>
     </div>
+  <% end %>
 </div>
 <br><br>
 <div class="results">
   <% if params[:query].present? %>
     <h1 class="page-header">Tracks Matching with "<%= params[:query] %>"</h1>
     <% @tracks.each do |track| %>
-      <div class="card-result-search">
-        <div class="home-post-card-infos">
-          <div class="home-post-card-content-top">
-            <div class="home-post-card-cover">
-              <%= image_tag(track.album.images.first["url"]) %>
+      <div class="card-bg col-md-12">
+        <div class="post-card-music">
+            <div class="card-content-song row col-sm-12 col-md-12">
+              <div class="card-cover col-sm-12 col-md-2 ">
+                <div
+                class="card-play-song"
+                data-action='click->player#sendtrack'
+                data-track-id='spotify:track:<%= track.id %>'
+              >
+                <i class="far fa-play-circle"></i>
+              </div>
+                <%= image_tag(track.album.images.first["url"]) %>
+              </div>
+              <div class="card-title-artist col-sm-12 col-md-8 ">
+                <h2><%= track.name %></h2>
+                <p><%= track.artists[0].name %></p>
+              </div>
+              <div class="post-card-interraction row col-md-2">
+                  <i class="fas fa-plus col-md-1"></i>
+                  <i class="fas fa-share col-md-1"></i>
+              </div>
             </div>
-            <div class="home-post-card-title-artist">
-              <h2><%= track.name %></h2>
-              <h4><%= track.artists[0].name %></h4>
-              <p><%= "#{(track.duration_ms / 60_000)}:#{(track.duration_ms / 1_000 % 60)}"%></p>
-            </div>
-            <div class="search-card-action">
-              <%= render 'button_add', track_id: track.id %>
-            </div>
-            <div class="search-card-action">
-              <i class="fas fa-share"></i>
-            </div>
-            <div class="post-card-play" data-action='click->player#sendtrack' data-track-id='spotify:track:<%= track.id %>'>
-              <i class="far fa-play-circle"></i>
-            </div>
-          </div>
         </div>
       </div>
+
     <% end %>
   <% end %>
 </div>

@@ -1,5 +1,7 @@
 .submit-form{
   flex: 4 1 auto;
+  width: 70%;
+  margin-right: 2%;
 }
 
 .submit-button{
@@ -25,7 +27,7 @@
 .container-form-post-feed {
   color: white;
   display: flex;
-  width: 83%;
+  width: 85%;
   margin: 0;
   border:solid;
   border-color:#F9B63A;
@@ -40,7 +42,7 @@
   border-radius: 25px;
   padding:16px;
   border-style: groove;
-  width: 50%;
+  width: 100%;
   display: flex;
 }
 
@@ -49,6 +51,13 @@
 }
 
 .form-left{
+  position: relative;
   flex-grow: 1;
   margin-right:1rem;
+}
+
+.form-right {
+  a {
+    text-decoration: none;
+  }
 }

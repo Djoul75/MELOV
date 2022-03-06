@@ -1,21 +1,62 @@
 <h1 class='home-welcome'>Welcome back,  <%= current_user.nickname %></h1>
 <br>
-<div class="container-form-post container-form-post-feed form-inline">
-  <div class="submit-form pt-2">
-    <%= simple_form_for @publication, remote: true,
-    html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
-    wrapper: :input_group do |f| %>
-      <small><i>Share with your community</i></small>
-      <%= f.input :content, label: false, placeholder: "What are you listening to today?" %>
-      <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %>
-  </div>
-    <div class="submit-button">
-      <%= f.submit "Submit", class: "btn button-form"%>
+<div class="container-form-post-feed form-inline d-flex flex-column" data-controller='search'>
+  <div class='d-flex align-items-center'>
+    <div class="submit-form pt-2">
+      <%= simple_form_for @publication, remote: true,
+      html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset", search_target: "spotifyurl"}},
+      wrapper: :input_group do |f| %>
+        <small><i>Share with your community</i></small>
+        <%= f.input :content, label: false, placeholder: "What are you listening to today?" %>
+        <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %>
     </div>
-  <% end %>
+        <div class="submit-button">
+          <%= f.submit "Submit", class: "btn yellow-button"%>
+        </div>
+      <% end %>
+  </div>
+
+
+  <div class="container-form-post-search d-flex flex-column">
+    <div class="d-flex align-items-center">
+      <div class="form-left">
+
+        <%= form_tag root_path, method: :get do %>
+          <%= text_field_tag :query,
+                              params[:query],
+                              class: "form-control",
+                              placeholder: "Artist or title"
+          %>
+      </div>
+        <div class="form-right">
+          <%= button_tag(type: "submit", class: "btn yellow-button") do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+          <%#= submit_tag "Search", class: "btn yellow-button" %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if params[:query].present? %>
+      <div class="home-results">
+        <% index = 0 %>
+        <% @tracks.each do |track| %>
+
+            <div class="card-result d-flex align-items-center" data-action='click->search#songchoice'>
+              <%= image_tag(track.album.images.first['url']) %>  <strong><%= track.name %></strong> / <i><%= track.artists[0].name %></i>
+              <p class='d-none' id='trackid'><%= track.id %></p>
+            </div>
+
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+
 </div>
 
-<div class="home-posts-cards" >
+
+<div class="home-posts-cards mt-5" >
   <div class="home-post-card">
     <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
 

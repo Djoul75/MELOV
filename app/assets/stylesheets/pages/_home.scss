@@ -36,3 +36,17 @@
 .home-welcome {
   color: white;
 }
+
+.post-card-music {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  a{
+    text-decoration: none;
+  }
+}
+
+#publication_spotify_url {
+  display: none;
+}

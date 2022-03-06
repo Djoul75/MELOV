@@ -1,4 +1,5 @@
 <div class="row">
+
   <div class="col-4">
     <div class="profile-pic">
       <% if @user.photo.key? %>
@@ -8,39 +9,48 @@
       <% end %>
     </div>
   </div>
+
   <div class="col-8">
     <div class="user-info">
       <div class="row" data-controller="follow-btn">
-        <h1><%= @user.nickname %>'s profile</h1>
+        <h1><%= @user.nickname %></h1>
 
         <p class="yellow-button <%= "d-none" unless @user.follower_ids.include?(current_user.id) %>" data-follow-btn-target="unfollowBtn" data-action="click->follow-btn#displayFollowBtn">Unfollow</p>
         <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }", "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
 
         <p><%= pluralize @user.followers.count, "follower"%></p>
         <p><%= pluralize @user.followings.count, "following" %> </p>
-      </div>
-      <div class="row mt-4">
-        <h2> Shakers :</h2>
-        <p><%= pluralize @user.buddies.count, "buddy" %> for shaker!</p>
         <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "shaker" %> made</p>
       </div>
     </div>
   </div>
-  <div class="row mt-4">
-    <h2>Playlists :</h2>
-      <%= @user.playlists.count %>  playlists :</p>
-    <ul>
-      <% @user.playlists.each do |playlist| %>
-        <li> <%=  playlist.name  %>
-        <h6> <%= playlist.playlist_songs.count %> songs </h6>
-        </li>
-      <% end %>
+  <div class="row mt-5">
+    <h2><%= @user.playlists.count %> Playlists :</h2>
+
+      <div class="playlist-caroussel">
+        <div class="row-playlist-carroussel">
+          <% @user.playlists.each do |playlist| %>
+            <div class="playlist-carroussel-cover">
+              <% if playlist.playlist_songs.count > 0 %>
+                <div class="carroussel-playlist-info">
+                  <%= playlist.name  %>
+                  <h6> <%= playlist.playlist_songs.count %> songs </h6>
+                </div>
+                <% if playlist.spotify_playlist.images.any? && playlist.spotify_playlist.images.first && playlist.spotify_playlist.images.first["url"] %>
+                  <%= image_tag(playlist.spotify_playlist.images.first["url"]) %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
     </ul>
   </div>
-<div class="row">
+<div class="row mt-5">
   <h2>Publications :</h2>
     <div class="container-message" data-feed-subscription-target="messages">
-        <% @user.publications.each do | publication | %>
+        <% @user.publications.reverse.each do | publication | %>
           <%= render "publications/publication", publication: publication %>
         <% end %>
     </div>

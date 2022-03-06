@@ -10,6 +10,8 @@ class PagesController < ApplicationController
     following_ids = current_user.followings.ids+[current_user.id]
     @publications = policy_scope(Publication).where(user_id: following_ids).order(created_at: :desc)
     @publication = Publication.new
+
+    @tracks = RSpotify::Track.search(params[:query]) if params[:query].present?
   end
 
   def search
