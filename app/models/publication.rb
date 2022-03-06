@@ -2,12 +2,8 @@ class Publication < ApplicationRecord
   belongs_to :user
   after_create :build_track
 
-  def track_id
-    spotify_url&.scan(%r{track/(.*)\?})&.flatten&.first
-  end
-
   def track
-    RSpotify::Track.find(track_id)
+    RSpotify::Track.find(spotify_url)
   end
 
   def build_track

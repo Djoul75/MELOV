@@ -1,0 +1,146 @@
+.card-bg {
+  background-color: rgba(68, 54, 67, 0.5);
+  padding: 2vw;
+  margin: 0 0 2vw 0;
+  width: 85%;
+  border-radius: 20px;
+}
+
+.card-cover {
+  position: relative;
+  img {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
+
+.card-title-artist {
+  flex-grow: 1;
+  color: #C5C7CD;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 1vw;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: #C5C7CD;
+    text-decoration: none;
+    transition: ease 300ms;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.card-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: ease 300ms;
+    margin-right: 2vw;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.card-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: ease 300ms;
+    margin-right: 2vw;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.card-play-song {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-35%, -50%);
+
+  i {
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: ease 300ms;
+    margin-right: 2vw;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      transform: scale(1.1);
+    }
+  }
+}
+
+// POST CARD MUSIC //
+
+.card-avatar-nickname {
+  // display: flex;
+  align-items: center;
+  // width: 30%;
+  color: white;
+  padding: 0 0 1vw 0.5vw;
+
+  img {
+    border-radius: 50%;
+  }
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.card-content {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  margin: 1vw 0;
+  padding: 2vw;
+
+  p {
+    text-align: justify;
+    color: black;
+  }
+}
+
+.post-card-interraction {
+  color: #F9B63A;
+  font-size: x-large;
+  // display: flex;
+  // justify-content: center;
+  align-items: center;
+
+  i {
+    margin-right: 2vw;
+    transition: ease 300ms;
+
+    &:hover {
+      cursor: pointer;
+      color: #F9B63A;
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,33 +1,42 @@
-    <%= link_to 'Import playlists', playlists_path, method: :post, class: 'yellow-button-lg' %>
-    <br><br>
+<%= link_to 'Import playlists', playlists_path, method: :post, class: 'yellow-button-lg' %>
+<br><br>
 
 
-      <% @playlists.each do |p| %>
+<% @playlists.each do |p| %>
 
-          <div class="card-result-search">
-            <div class="home-post-card-infos">
-              <div class="home-post-card-content-top">
-                <div class="home-post-card-cover">
-                  <% if p.spotify_playlist.images.any? && p.spotify_playlist.images.first && p.spotify_playlist.images.first["url"] %>
-                    <%= image_tag(p.spotify_playlist.images.first["url"]) %>
-                  <% end %>
-                </div>
-                <div class="home-post-card-title-artist">
-                  <%= link_to playlist_path(p) do %>
-                    <h2><%= p.spotify_playlist.name %></h2>
-                  <% end %>
-                </div>
-                <div
-                  class="post-card-play"
-                  data-action='click->player#sendplaylist'
-                  data-playlist-id='spotify:playlist:<%= p.spotify_playlist.id %>'
-                  data-track-id='<%= p.spotify_playlist.tracks_cache.first.uri unless p.spotify_playlist.tracks_cache.first.nil? %>'
-                >
-                  <i class="far fa-play-circle"></i>
-                </div>
-              </div>
-            </div>
+    <div class="card-bg col-md-12">
+      <div class="post-card-music">
+        <div class="card-content-song row col-sm-12 col-md-12">
+          <div class="card-cover col-sm-12 col-md-3">
+            <% if p.spotify_playlist.images.any? && p.spotify_playlist.images.first && p.spotify_playlist.images.first["url"] %>
+              <%= image_tag(p.spotify_playlist.images.first["url"]) %>
+            <% end %>
           </div>
+          <div class="card-title-artist col-sm-12 col-md-7">
+            <%= link_to playlist_path(p) do %>
+              <h2><%= p.spotify_playlist.name %></h2>
+              <% if p.spotify_playlist.tracks_cache.first.artists.length < 2 %>
+                <p><%= p.spotify_playlist.tracks_cache.first.artists.sample.name %></p>
+              <% else %>
+                <p>
+                  <%= p.spotify_playlist.tracks_cache.sample.artists.first.name %>,
+                  <%= p.spotify_playlist.tracks_cache.sample.artists.first.name %>,
+                  <%= p.spotify_playlist.tracks_cache.sample.artists.first.name %>...
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+          <div
+            class="card-play col-sm-12 col-md-1"
+            data-action='click->player#sendplaylist'
+            data-playlist-id='spotify:playlist:<%= p.spotify_playlist.id %>'
+            data-track-id='<%= p.spotify_playlist.tracks_cache.first.uri unless p.spotify_playlist.tracks_cache.first.nil? %>'
+          >
+            <i class="far fa-play-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-      <% end %>
+<% end %>
