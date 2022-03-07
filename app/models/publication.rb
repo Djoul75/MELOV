@@ -9,6 +9,11 @@ class Publication < ApplicationRecord
   def build_track
     if Song.find_by(spotify_track_id: spotify_url)
       @track = Song.find_by(spotify_track_id: spotify_url)
+      self.cover_url = @track.image_url
+      self.title = @track.title
+      self.artist = @track.artist
+      self.song_duration = @track.length
+      save
     else
       @track = track
 
@@ -18,12 +23,12 @@ class Publication < ApplicationRecord
         length: @track.duration_ms,
         spotify_track_id: @track.id,
         image_url: @track.album.images.first["url"]
-      )
+        )
+        self.cover_url = @track.album.images.first["url"]
+        self.title = @track.name
+        self.artist = @track.artists.first.name
+        self.song_duration = @track.duration_ms
+        save
     end
-    self.cover_url = @track.image_url
-    self.title = @track.title
-    self.artist = @track.artist
-    self.song_duration = @track.length
-    save
   end
 end
