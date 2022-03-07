@@ -52,7 +52,7 @@
 <div class="row mt-5">
   <h2>Publications :</h2>
     <div class="container-message" data-feed-subscription-target="messages">
-        <% @user.publications.reverse.each do | publication | %>
+        <% @user.publications.order(id: :desc).each do | publication | %>
           <%= render "publications/publication", publication: publication %>
         <% end %>
     </div>

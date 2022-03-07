@@ -61,7 +61,7 @@
     <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
 
     <div class="container-message" data-feed-subscription-target="messages">
-      <% @publications.each do | publication | %>
+      <% @publications.order(id: :desc).each do | publication | %>
         <%= render "publications/publication", publication: publication %>
       <% end %>
     </div>
