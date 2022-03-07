@@ -16,6 +16,7 @@
   align-items: center;
   color: white;
   list-style: none;
+  backdrop-filter: blur(8px);
 
   .sidebar-logo {
     display: flex;
@@ -64,4 +65,5 @@
   align-items: center;
   color: white;
   padding: 10vh 0;
+  backdrop-filter: blur(8px);
 }
