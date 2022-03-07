@@ -21,8 +21,6 @@ class PublicationsController < ApplicationController
   end
 
   def create
-    @song = Song.find_by(spotify_track_id: params[:publication][:track_id])
-
     @publication = Publication.new(publication_params)
     @publication.user = current_user
     authorize @publication

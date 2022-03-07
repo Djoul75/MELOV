@@ -8,12 +8,16 @@
         <h5 class="modal-title" id="exampleModalLabel">Add to a playlist</h5>
       </div>
       <div class="modal-body">
+      <% track = Song.find_by(spotify_track_id: track_id) %>
         <%= simple_form_for @publication do |f| %>
           <%= f.error_notification %>
           <%= f.input :content, as: :text, required: true %>
           <%= f.submit class: 'btn submit-button'%>
-          <%= f.hidden_field :track_id, value: track_id %>
-
+          <%= f.hidden_field :spotify_url, value: track_id %>
+          <%#= f.hidden_field :artist, value: track.artist %>
+          <%#= f.hidden_field :title, value: track.title %>
+          <%#= f.hidden_field :length, value: track.length %>
+          <%#= f.hidden_field :image_url, value: track.image_url %>
         <% end %>
       </div>
       <div class="modal-footer">
