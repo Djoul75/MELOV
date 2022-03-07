@@ -50,7 +50,7 @@
       <% if !@user.follower_ids.include?(current_user.id) %>
         <br><br>
         <div class="card-bg text-center mt-5">
-          <h1>Sorry, you haven't imported any playlists yet</h1>
+          <h1>You haven't imported any playlists yet</h1>
           <div class="d-flex flex-column justify-content-center align-items-center">
             <h2><%= link_to 'Import your playlists', playlists_path, class: 'yellow-button w-100' %></h2>
           </div>
@@ -77,7 +77,7 @@
     <br><br>
     <% if !@user.follower_ids.include?(current_user.id) %>
     <div class="card-bg text-center">
-      <h1>Sorry, you don't have any publications yet</h1>
+      <h1>You don't have any publications yet</h1>
       <br>
       <div class="d-flex flex-column justify-content-center align-items-center">
         <h2>Make your first post or   </h2>
