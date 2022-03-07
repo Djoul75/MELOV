@@ -1,10 +1,11 @@
 .playlist-caroussel {
   width: 85%;
   height: 30vh;
-  background-color: rgba(255, 255, 255, 0.082);
+  background-color: rgba(68, 54, 67, 0.5);
   overflow-y: hidden;
   overflow-x: scroll;
   border-radius: 20px;
+  backdrop-filter: blur(8px);
 
   .row-playlist-carroussel {
     height: 100%;

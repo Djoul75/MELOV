@@ -18,6 +18,10 @@
   overflow-y: scroll;
 }
 
+.home-posts-cards::-webkit-scrollbar {
+  display: none;
+}
+
 .card-post-bg {
   flex-direction: column;
   padding: 2vw;
