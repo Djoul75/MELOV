@@ -1,9 +1,14 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Edit your profile</h2>
+<br><br>
+<div class="form-inputs container-form-post card-bg">
+  <%= simple_form_for(
+    resource,
+    as: resource_name,
+    url: registration_path(resource_name),
+    html: { method: :put },
+    autocomplete: "off") do |f| %>
+  <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-<%= f.error_notification %>
-
-<div class="form-inputs">
   <%= f.input :email, required: true, autofocus: true %>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -17,9 +22,10 @@
   <%= f.input :nickname,
               required: true %>
   <%= f.input :photo, as: :file %>
-</div>
+<br>
 
-<div class="form-actions">
-  <%= f.button :submit, "Update", class: 'btn-submit' %>
+  <div class="form-actions">
+    <%= f.button :submit, "Update", class: 'btn yellow-button' %>
+  </div>
+  <% end %>
 </div>
-<% end %>

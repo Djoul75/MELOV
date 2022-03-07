@@ -1,8 +1,8 @@
-<h1>Add a buddy to your shaker :</h1>
+<h1>Add a buddy to your shaker:</h1>
 
 <div class="container-form-post-search">
   <div class="form-left">
-    <%= form_tag adduser_path, method: :get do %>
+    <%= form_tag adduser_path, method: :get, autocomplete: "off" do %>
       <%= text_field_tag :query,
                           params[:query],
                           class: "form-control",
