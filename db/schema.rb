@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_112257) do
+ActiveRecord::Schema.define(version: 2022_03_07_101835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_112257) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "spotify_track_id"
     t.text "genres"
+    t.string "image_url"
   end
 
   create_table "subscriptions", force: :cascade do |t|

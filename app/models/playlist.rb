@@ -6,10 +6,12 @@ class Playlist < ApplicationRecord
 
   validates :name, presence: true
 
-  def spotify_playlist
-    @spotify_playlist ||= begin
-      user = User.find(user_id).spotify_id
-      RSpotify::Playlist.find(user, spotify_id)
+  def artist_names
+    artists = songs.map { |song| song.artist}.uniq
+    if artists.size > 1
+      "#{artists.first(3).join(', ')}..."
+    else
+      artists.first
     end
   end
 end
