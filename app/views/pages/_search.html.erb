@@ -1,0 +1,10 @@
+    <% if params[:query].present? %>
+      <div class="home-results" search-target="list">
+        <% index = 0 %>
+        <% @tracks.each do |track| %>
+            <div class="card-result d-flex align-items-center" data-action='click->search#songchoice' data-spotify-id='<%= track.id %>'>
+              <%= image_tag(track.album.images.first['url']) %>  <strong><%= track.name %></strong> / <i><%= track.artists[0].name %></i>
+            </div>
+        <% end %>
+      </div>
+    <% end %>

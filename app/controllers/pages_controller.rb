@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
   def search
     @tracks = RSpotify::Track.search(params[:query]) if params[:query].present?
-
+    render partial: "pages/search.html", locals: { tracks: @tracks}
     # render :json => @tracks
     # filepath = render :json => @search
 

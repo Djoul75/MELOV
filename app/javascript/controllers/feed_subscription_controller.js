@@ -3,10 +3,10 @@ import consumer from "../channels/consumer"
 
 export default class extends Controller {
   static values = { feedId: Number }
-  static targets = ["messages", "form"]
+  static targets = ["messages", "form", "searchInput"]
 
   connect() {
-    console.log(`Subscribe to the feed with the id ${this.feedIdValue}.`)
+    // console.log(`Subscribe to the feed with the id ${this.feedIdValue}.`)
     this.channel = consumer.subscriptions.create(
       { channel: "FeedChannel", id: this.feedIdValue },
       { received: data => this.#insertMessageScrollDownAndResetForm(data)},
@@ -14,7 +14,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    console.log("Unsubscribed from the chatroom")
+    // console.log("Unsubscribed from the chatroom")
     this.channel.unsubscribe()
   }
 
@@ -25,5 +25,7 @@ export default class extends Controller {
 
   reset(){
     this.formTarget.reset()
+    this.searchInputTarget.value = "";
+    console.log("reset?")
   }
 }
