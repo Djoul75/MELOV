@@ -12,12 +12,12 @@
         <% end %>
         <div class="card-content-song row col-sm-12 col-md-12">
           <div class="card-cover col-sm-12 col-md-3 ">
-            <%= image_tag(publication.track.album.images.first["url"]) %>
+            <%= image_tag(publication.cover_url) %>
           </div>
           <div class="card-title-artist col-sm-12 col-md-8 ">
-            <h2><%= publication.track.name %></h2>
-            <h4><%= publication.track.artists[0].name %></h4>
-            <p><%= "#{(publication.track.duration_ms / 60_000)}:#{(publication.track.duration_ms / 1_000 % 60)}"%></p>
+            <h2><%= publication.title %></h2>
+            <h4><%= publication.artist %></h4>
+            <p><%= "#{(publication.song_duration / 60_000)}:#{(publication.song_duration / 1_000 % 60)}"%></p>
           </div>
           <div
             class="card-play col-sm-12 col-md-1 "
@@ -34,7 +34,7 @@
         <i class="fas fa-heart col-md-1"></i>
         <i class="fas fa-comment col-md-1"></i>
         <%= render 'publications/button_repost', track_id: publication.spotify_url %>
-        <%= render 'publications/button_add', track_id: publication.track.id %>
+        <%= render 'publications/button_add', track_id: publication.spotify_url %>
       </div>
     </div>
 </div>
