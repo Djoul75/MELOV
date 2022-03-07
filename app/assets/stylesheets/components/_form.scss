@@ -44,6 +44,7 @@
   border-style: groove;
   width: 100%;
   display: flex;
+  align-items: center;
 }
 
 .container-search{
@@ -59,5 +60,17 @@
 .form-right {
   a {
     text-decoration: none;
+  }
+}
+
+.form-control{
+  // background-color: transparent;
+  // border: none;
+  border-radius: 16px;
+  box-shadow: 8px 8px 8px rgba(58, 58, 58, 0.2);
+  width: 100%;
+  &::placeholder{
+    color:rgb(56, 56, 56);
+    font-style: italic;
   }
 }
