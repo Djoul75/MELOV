@@ -47,13 +47,20 @@
         </div>
       </div>
     <% else %>
-      <br><br>
-      <div class="card-bg text-center mt-5">
-        <h1>Sorry, you haven't imported any playlists yet</h1>
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        <h2><%= link_to 'Import your playlists', playlists_path, class: 'yellow-button w-100' %></h2>
-      </div>
-      </div>
+      <% if !@user.follower_ids.include?(current_user.id) %>
+        <br><br>
+        <div class="card-bg text-center mt-5">
+          <h1>Sorry, you haven't imported any playlists yet</h1>
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <h2><%= link_to 'Import your playlists', playlists_path, class: 'yellow-button w-100' %></h2>
+          </div>
+        </div>
+      <% else %>
+        <br><br>
+        <div class="card-bg text-center mt-5">
+          <h1>This user has not uploaded imported <br> any playlists yet</h1>
+        </div>
+      <% end %>
     <% end %>
 
   </div>
@@ -68,6 +75,7 @@
     </div>
   <% else %>
     <br><br>
+    <% if !@user.follower_ids.include?(current_user.id) %>
     <div class="card-bg text-center">
       <h1>Sorry, you don't have any publications yet</h1>
       <br>
@@ -76,4 +84,9 @@
         <h2><%= link_to 'Follow someone', publications_path, class: 'yellow-button w-100' %></h2>
       </div>
     </div>
+    <% else %>
+      <div class="card-bg text-center">
+        <h1>This user doesn't have any publications yet</h1>
+      </div>
+    <% end %>
   <% end %>
