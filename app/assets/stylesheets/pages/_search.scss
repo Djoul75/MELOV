@@ -15,9 +15,12 @@
   background: white;
   color: black;
   list-style: none;
-  width: 78.5%;
+  width: 42vw;
   height: 30vh;
   overflow-y: scroll;
+  z-index: 99;
+  position: absolute;
+  border-radius: 15px;
 }
 
 .card-result {

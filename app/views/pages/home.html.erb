@@ -5,24 +5,28 @@
     <div class='d-flex align-items-center'>
       <div class="submit-form pt-2">
         <small><i>Share with your community</i></small>
-          <%= form_tag search_path, method: :get, data: { search_target: 'form'} do %>
-            <%= text_field_tag :query,
-                                params[:query],
-                                class: "form-control",
-                                placeholder: "Artist or title",
-                                data: {
-                                search_target: 'searchInput',
-                                feed_subscription_target: 'searchInput',
-                                action: "keyup->search#update"
-            }%>
-        <% end %>
-        <div data-search-target="list">
-        </div>
-        <%= simple_form_for @publication, remote: true,
-        html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
-        wrapper: :input_group do |f| %>
-          <%= f.input :content, label: false, placeholder: "What are you listening to today?" %>
-          <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %> <!--IMPORTANT-->
+          <div class="row">
+            <%= form_tag search_path, autocomplete: "off",method: :get, data: { search_target: 'form'} do %>
+              <%= text_field_tag :query,
+                                  params[:query],
+                                  class: "form-control",
+                                  placeholder: "Artist or title",
+                                  data: {
+                                  search_target: 'searchInput',
+                                  feed_subscription_target: 'searchInput',
+                                  action: "keyup->search#update",
+              }%>
+            <% end %>
+              <div data-search-target="list">
+              </div>
+          </div>
+          <div class="row mt-2">
+            <%= simple_form_for @publication, remote: true,
+            html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
+            wrapper: :input_group do |f| %>
+              <%= f.input :content, label: false, placeholder: "What's on your mind?" %>
+              <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %> <!--IMPORTANT-->
+          </div>
       </div>
         <div class="submit-button">
           <%= f.submit "Submit", class: "btn yellow-button"%>

@@ -27,13 +27,13 @@
 .container-form-post-feed {
   color: white;
   display: flex;
-  width: 85%;
+  width: 83%;
   margin: 0;
   border:solid;
   border-color:#F9B63A;
   opacity: 0.85;
   border-radius: 25px;
-  padding:16px;
+  padding: 1em 1em 0 1em;
   border-style: groove;
 }
 
@@ -42,9 +42,10 @@
   border-radius: 25px;
   padding:16px;
   border-style: groove;
-  width: 100%;
   display: flex;
   align-items: center;
+  opacity: 0.85;
+  width: 60%;
 }
 
 .container-search{
@@ -73,4 +74,8 @@
     color:rgb(56, 56, 56);
     font-style: italic;
   }
+}
+
+#query{
+  position: relative;
 }
