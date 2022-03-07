@@ -14,25 +14,40 @@
     <% end %>
       </div>
   </div>
-<br><br>
-<% if params[:query].present? %>
-  <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
-  <% match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") %>
-    <% match_users.each do |u| %>
-    <div class="user-card-link">
-      <%= link_to shaker_path(u.id) do %>
-        <div class="user-card">
-          <div class="user-card-avatar-nickname">
-              <% if u.photo.attached? %>
-                <%= cl_image_tag u.photo.key, crop: :fill, class: 'avatar' %>
-              <% else %>
-                <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
-              <% end %>
-              <h4><%= u.nickname %></h4>
+  <br><br>
+  <% if params[:query].present? %>
+    <% match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") %>
+      <% if match_users.any? %>
+        <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
+        <% match_users.each do |u| %>
+          <div class="user-card-link">
+            <%= link_to shaker_path(u.id) do %>
+              <div class="user-card">
+                <div class="user-card-avatar-nickname">
+                    <% if u.photo.attached? %>
+                      <%= cl_image_tag u.photo.key, crop: :fill, class: 'avatar' %>
+                    <% else %>
+                      <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+                    <% end %>
+                    <h4><%= u.nickname %></h4>
+                </div>
+              </div>
+            <% end %>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+      <div class="card-bg text-center mt-5">
+        <h1>We couldn't find anyone with <br> this nickname or email</h1>
+        <br>
+        <%= image_tag("https://media2.giphy.com/media/6uGhT1O4sxpi8/giphy.gif?cid=790b76118ac4b8f57d227e7de0ea0db2bfdce9e521004ef7&rid=giphy.gif&ct=g", class:"rounded-3") %>
+      </div>
       <% end %>
-    </div>
+  <% else %>
+  <br><br>
+  <div class="card-bg text-center mt-3">
+    <h1>Look for buddy to add to your shaker</h1>
+    <br>
+    <%= image_tag("https://media0.giphy.com/media/z1lax1YXiqDwQ/giphy.gif?cid=790b7611b88f2dea20b6b839620320f0c0d60ffd72444364&rid=giphy.gif&ct=g", class:"rounded-3") %>
+  </div>
   <% end %>
-<% end %>
 </div>
