@@ -18,9 +18,9 @@
         <p class="yellow-button <%= "d-none" unless @user.follower_ids.include?(current_user.id) %>" data-follow-btn-target="unfollowBtn" data-action="click->follow-btn#displayFollowBtn">Unfollow</p>
         <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }", "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
 
-        <p><%= pluralize @user.followers.count, "follower"%></p>
-        <p><%= pluralize @user.followings.count, "following" %> </p>
-        <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "shaker" %> made</p>
+        <p><%= pluralize @user.followers.count, "Subscribers" %></p>
+        <p><%= pluralize @user.followings.count, "Subscribtions" %> </p>
+        <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Shaker" %> made</p>
       </div>
     </div>
   </div>
@@ -31,13 +31,15 @@
         <div class="row-playlist-carroussel">
           <% @user.playlists.each do |playlist| %>
             <div class="playlist-carroussel-cover">
-              <% if playlist.playlist_songs.count > 0 %>
-                <div class="carroussel-playlist-info">
-                  <%= playlist.name  %>
-                  <h6> <%= playlist.playlist_songs.count %> songs </h6>
-                </div>
-                <% if playlist.spotify_playlist.images.any? && playlist.spotify_playlist.images.first && playlist.spotify_playlist.images.first["url"] %>
-                  <%= image_tag(playlist.spotify_playlist.images.first["url"]) %>
+              <%= link_to playlist_path(playlist) do %>
+                <% if playlist.playlist_songs.count > 0 %>
+                  <div class="carroussel-playlist-info">
+                    <%= playlist.name  %>
+                    <h6> <%= playlist.playlist_songs.count %> songs </h6>
+                  </div>
+                  <% if playlist.spotify_playlist.images.any? && playlist.spotify_playlist.images.first && playlist.spotify_playlist.images.first["url"] %>
+                    <%= image_tag(playlist.spotify_playlist.images.first["url"]) %>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>
