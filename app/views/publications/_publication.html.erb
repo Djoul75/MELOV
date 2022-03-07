@@ -33,7 +33,7 @@
       <div class="post-card-interraction row col-sm-12 col-md-4">
         <i class="fas fa-heart col-md-1"></i>
         <i class="fas fa-comment col-md-1"></i>
-        <i class="fas fa-share col-md-1"></i>
+        <%= render 'publications/button_repost', track_id: publication.spotify_url %>
         <%= render 'publications/button_add', track_id: publication.track.id %>
       </div>
     </div>
