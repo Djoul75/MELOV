@@ -1,0 +1,31 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn yellow-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Import Your Playlist
+</button>
+
+<!-- Modal -->
+<div class="modal fade text-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" data-controller='import'>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-dark" style="height: fit-content;">
+        <div class='' data-import-target='listplaylist'>
+          <% @spotify_playlist.each do |sp| %>
+          <ul>
+            <%= link_to playlists_path(spotify_playlist_id: sp.id), method: :post, data: {action: 'click->import#loading'} do %>
+              <%= sp.name %>
+            <% end %>
+          </ul>
+          <% end %>
+        </div>
+        <div class='d-none' data-import-target='loader'>
+          <h1>Please wait while we import your playlist</h1>
+          <%= image_tag('equalizer.gif') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

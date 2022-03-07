@@ -13,11 +13,15 @@
           >
             <i class="far fa-play-circle"></i>
           </div>
-            <%= image_tag(s.spotify_track.album.images.first["url"]) %>
+            <% if s.image_url %>
+              <%= image_tag(s.image_url) %>
+            <% else %>
+            <%= image_tag("avatardefaut.jpg") %>
+            <% end %>
           </div>
           <div class="card-title-artist col-sm-12 col-md-8 ">
-            <h2><%= s.spotify_track.name %></h2>
-            <p><%= s.spotify_track.artists[0].name %></p>
+            <h2><%= s.title %></h2>
+            <p><%= s.artist %></p>
           </div>
           <div class="post-card-interraction row col-md-2">
               <i class="fas fa-plus col-md-1"></i>
