@@ -1,25 +1,23 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Add to a playlist
-</button>
+<!-- Modal trigger -->
+<i class="fas fa-plus col-md-1" data-bs-toggle="modal" data-bs-target="#addSong"></i>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addSong" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLabel">Add to a playlist</h5>
       </div>
       <div class="modal-body">
         <ul>
           <% current_user.playlists.each do |p| %>
-            <%= link_to p.name, playlist_playlist_songs_path(p.id, track_id: track_id), method: :post %>
+            <li>
+              <%= link_to p.name, playlist_playlist_songs_path(p.id, track_id: track_id), method: :post %>
+            </li>
           <% end %>
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
