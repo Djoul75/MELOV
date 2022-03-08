@@ -29,8 +29,10 @@
               data-track-id='spotify:track<%= p.songs.first&.spotify_track_id %>'
             >
               <i class="far fa-play-circle"></i>
-              <%= link_to playlist_path(p.id), method: :delete do %>
-                <i class="fas fa-times col-md-1"></i>
+              <% if p.user_id == current_user.id %>
+                <%= link_to playlist_path(p.id), method: :delete do %>
+                  <i class="fas fa-times col-md-1"></i>
+                <% end %>
               <% end %>
             </div>
           </div>
