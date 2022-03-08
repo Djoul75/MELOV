@@ -37,16 +37,14 @@
 
 
 <div class="home-posts-cards mt-5" >
-  <div class="home-post-card">
-    <% if @publications.any? %>
-      <div class="container-message" data-feed-subscription-target="messages">
+  <div class="home-post-card" data-feed-subscription-target="connector">
+      <div class="container-message  <% if @publications.empty? %>d-none<% end %>" data-feed-subscription-target="messages">
         <% @publications.order(id: :desc).each do | publication | %>
           <%= render "publications/publication", publication: publication %>
         <% end %>
       </div>
-    <% else %>
       <br><br>
-      <div class="card-bg text-center">
+      <div class="card-bg text-center <% if @publications.any? %>d-none<% end %>" data-feed-subscription-target="follow">
         <h1>You don't have any publications yet</h1>
         <br>
         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -54,6 +52,5 @@
           <h2><%= link_to 'Follow someone', publications_path, class: 'yellow-button w-100' %></h2>
         </div>
       </div>
-    <% end %>
   </div>
 </div>

@@ -3,7 +3,7 @@ class Song < ApplicationRecord
   has_many :playlists, through: :playlist_songs
 
   validates :artist, :title, presence: true
-  validates :title, uniqueness: { scope: :artist }
+  validates :spotify_track_id, uniqueness: true
   serialize :genres, Array
 
   def spotify_track
