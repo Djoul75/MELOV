@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
   def index
     @playlists = policy_scope(Playlist)
     @playlists = current_user.playlists
-    spotify_user = RSpotify::User.find(current_user.spotify_id)
+    spotify_user = RSpotify::User.new(current_user.spotify_hash)
     @spotify_playlist = spotify_user.playlists
   end
 
@@ -12,7 +12,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    user = RSpotify::User.find(current_user.spotify_id)
+    user = RSpotify::User.new(current_user.spotify_hash)
     spotify_playlist = RSpotify::Playlist.find(user.id, params[:spotify_playlist_id])
     @playlist = Playlist.new(
       name: spotify_playlist.name,
@@ -96,11 +96,11 @@ class PlaylistsController < ApplicationController
 
     @playlist = Playlist.new(user: current_user, shaker: true, name: playlist_name)
     authorize @playlist
-    
+
     songs_user_a = []
     songs_user_b = []
 
-    
+
 
     current_user.playlists.each do |pl|
       pl.songs.each do |song|
@@ -124,7 +124,7 @@ class PlaylistsController < ApplicationController
     songs_in_common.uniq!
 
     if songs_in_common.any?
-      spotify_user = RSpotify::User.find(current_user.spotify_id)
+      spotify_user = RSpotify::User.new(current_user.spotify_hash)
       @spotify_playlist = spotify_user.create_playlist!(playlist_name)
       @playlist.spotify_id = @spotify_playlist.id
       @playlist.save!
