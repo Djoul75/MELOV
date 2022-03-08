@@ -3,7 +3,7 @@
         <%= link_to user_path(publication.user) do %>
       <div class="card-avatar-nickname row col-md-12">
           <% if publication.user.photo.attached? %>
-            <%= cl_image_tag publication.user.photo.key, crop: :fill, class: 'col-2 col-md-1' %>
+            <%= cl_image_tag publication.user.photo.key, crop: :thumb, gravity: :face, class: 'col-2 col-md-1' %>
           <% else %>
             <%= image_tag 'avatardefaut.jpg', class: 'col-2 col-md-1' %>
           <% end %>
