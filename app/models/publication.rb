@@ -33,11 +33,7 @@ class Publication < ApplicationRecord
     save
   end
 
-  def already_liked?(user)
-    Like.where(publication_id: self.id, user_id: user.id).exists?
-  end
-
   def like_for(user)
-    Like.find_by(publication_id: self.id, user_id: user.id)
+    likes.find_by(user_id: user.id)
   end
 end
