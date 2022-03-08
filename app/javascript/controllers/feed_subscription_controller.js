@@ -28,6 +28,5 @@ export default class extends Controller {
   reset(){
     this.formTarget.reset()
     this.searchInputTarget.value = "";
-    console.log("reset?")
   }
 }

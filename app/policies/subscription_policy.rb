@@ -10,7 +10,7 @@ class SubscriptionPolicy < ApplicationPolicy
     true
   end
 
-  def destoy?
+  def destroy?
     true
   end
 end
