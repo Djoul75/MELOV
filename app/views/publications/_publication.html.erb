@@ -27,6 +27,7 @@
             <i class="far fa-play-circle"></i>
           </div>
         </div>
+        <p class="publication-date">Posted on <%= publication.created_at.strftime("%m/%d/%Y") %></p>
       <div class="card-content col-md-12">
         <p><%= publication.content %></p>
       </div>
