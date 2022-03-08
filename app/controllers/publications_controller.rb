@@ -33,7 +33,12 @@ class PublicationsController < ApplicationController
           render_to_string(partial: "publication", locals: { publication: @publication })
         )
       }
-      head :ok
+      if params[:share]
+        redirect_to root_path
+      else
+        head :ok
+      end
+
     else
       render :show
     end
