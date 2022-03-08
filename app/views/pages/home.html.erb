@@ -1,4 +1,4 @@
-<h1 class='home-welcome'>Welcome back,  <%= current_user.nickname %></h1>
+<h1 class='home-welcome'>Welcome back  <%= current_user.nickname %></h1>
 <br>
 <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
   <div class="container-form-post-feed form-inline d-flex flex-column" data-controller='search'>
@@ -20,33 +20,33 @@
               <div data-search-target="list">
               </div>
           </div>
-          <div class="row mt-2">
+          <div class="mt-2">
             <%= simple_form_for @publication, remote: true,
-            html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
+            html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}, :class => 'd-flex'},
             wrapper: :input_group do |f| %>
-              <%= f.input :content, label: false, placeholder: "What's on your mind?" %>
-              <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %> <!--IMPORTANT-->
+              <div class="form-left">
+                <%= f.input :content, label: false, placeholder: "What's on your mind?" %>
+                <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %> <!--IMPORTANT-->
+              </div>
+              <div class="form-right ">
+                <%= f.submit "Submit", class: "btn yellow-button h-50"%>
+              </div>
+            <% end %>
           </div>
       </div>
-        <div class="submit-button">
-          <%= f.submit "Submit", class: "btn yellow-button"%>
-        </div>
-      <% end %>
   </div>
 </div>
 
 
 <div class="home-posts-cards mt-5" >
-  <div class="home-post-card">
-    <% if @publications.any? %>
-      <div class="container-message" data-feed-subscription-target="messages">
+  <div class="home-post-card" data-feed-subscription-target="connector">
+      <div class="container-message  <% if @publications.empty? %>d-none<% end %>" data-feed-subscription-target="messages">
         <% @publications.order(id: :desc).each do | publication | %>
           <%= render "publications/publication", publication: publication %>
         <% end %>
       </div>
-    <% else %>
       <br><br>
-      <div class="card-bg text-center">
+      <div class="card-bg text-center <% if @publications.any? %>d-none<% end %>" data-feed-subscription-target="follow">
         <h1>You don't have any publications yet</h1>
         <br>
         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -54,6 +54,5 @@
           <h2><%= link_to 'Follow someone', publications_path, class: 'yellow-button w-100' %></h2>
         </div>
       </div>
-    <% end %>
   </div>
 </div>

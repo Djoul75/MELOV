@@ -7,4 +7,11 @@ class PlaylistSongsController < ApplicationController
     playlist_song.save!
     redirect_to playlist_path(params[:playlist_id])
   end
+
+  def destroy
+    @playlist_song = PlaylistSong.find_by(playlist_id: params[:id], song_id: params[:song_id])
+    authorize @playlist_song
+    @playlist_song.destroy
+    redirect_to playlist_path(params[:id])
+  end
 end

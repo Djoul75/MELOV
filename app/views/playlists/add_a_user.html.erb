@@ -1,18 +1,18 @@
 <h1>Add a buddy to your shaker:</h1>
 
-<div class="container-form-post-search">
-  <div class="form-left">
-    <%= form_tag adduser_path, method: :get, autocomplete: "off" do %>
+<div class="">
+  <%= form_tag adduser_path, method: :get, autocomplete: "off", :class => 'container-form-post-search' do %>
+    <div class="form-left">
       <%= text_field_tag :query,
                           params[:query],
                           class: "form-control",
                           placeholder: "Find a buddy"
       %>
-      </div>
-      <div class="form-right">
+    </div>
+    <div class="form-right">
       <%= submit_tag "Search", class: "btn yellow-button" %>
-    <% end %>
-      </div>
+    </div>
+  <% end %>
   </div>
   <br><br>
   <% if params[:query].present? %>
@@ -21,11 +21,11 @@
         <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
         <% match_users.each do |u| %>
           <div class="user-card-link">
-            <%= link_to shaker_path(u.id) do %>
+            <%= link_to addingredient_path(user_id: u.id) do %>
               <div class="user-card">
                 <div class="user-card-avatar-nickname">
                     <% if u.photo.attached? %>
-                      <%= cl_image_tag u.photo.key, crop: :fill, class: 'avatar' %>
+                      <%= cl_image_tag u.photo.key, crop: :thumb, gravity: :face, class: 'avatar' %>
                     <% else %>
                       <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
                     <% end %>

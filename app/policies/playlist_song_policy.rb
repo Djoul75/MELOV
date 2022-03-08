@@ -9,4 +9,9 @@ class PlaylistSongPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def destroy?
+    playlist_user = Playlist.find(@record.playlist_id).user_id
+    playlist_user == user.id
+  end
 end

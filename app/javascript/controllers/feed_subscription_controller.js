@@ -3,7 +3,7 @@ import consumer from "../channels/consumer"
 
 export default class extends Controller {
   static values = { feedId: Number }
-  static targets = ["messages", "form", "searchInput"]
+  static targets = ["messages", "form", "searchInput", "follow"]
 
   connect() {
     // console.log(`Subscribe to the feed with the id ${this.feedIdValue}.`)
@@ -19,6 +19,8 @@ export default class extends Controller {
   }
 
   #insertMessageScrollDownAndResetForm(data) {
+    this.followTarget.classList.add('d-none')
+    this.messagesTarget.classList.remove('d-none')
     this.messagesTarget.insertAdjacentHTML("afterbegin", data)
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }

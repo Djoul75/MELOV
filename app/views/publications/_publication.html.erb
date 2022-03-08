@@ -3,7 +3,7 @@
         <%= link_to user_path(publication.user) do %>
       <div class="card-avatar-nickname row col-md-12">
           <% if publication.user.photo.attached? %>
-            <%= cl_image_tag publication.user.photo.key, crop: :fill, class: 'col-2 col-md-1' %>
+            <%= cl_image_tag publication.user.photo.key, crop: :thumb, gravity: :face, class: 'col-2 col-md-1' %>
           <% else %>
             <%= image_tag 'avatardefaut.jpg', class: 'col-2 col-md-1' %>
           <% end %>
@@ -27,14 +27,19 @@
             <i class="far fa-play-circle"></i>
           </div>
         </div>
+        <p class="publication-date">Posted on <%= publication.created_at.strftime("%d %B %Y") %></p>
       <div class="card-content col-md-12">
         <p><%= publication.content %></p>
       </div>
       <div class="post-card-interraction row col-sm-12 col-md-4">
         <i class="fas fa-heart col-md-1"></i>
-        <i class="fas fa-comment col-md-1"></i>
         <%= render 'publications/button_repost', track_id: publication.spotify_url %>
         <%= render 'publications/button_add', track_id: publication.spotify_url %>
+        <% if publication.user_id == current_user.id %>
+            <%= link_to publication_path(publication.id), method: :delete do %>
+              <i class="fas fa-times col-md-1"></i>
+            <% end %>
+          <% end %>
       </div>
     </div>
 </div>

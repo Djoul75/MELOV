@@ -26,8 +26,6 @@
     }
   }
 
-
-
   &:hover {
     background: transparent;
     color: #F9B63A;
@@ -47,5 +45,43 @@
   &:hover {
     background: transparent;
     color: #F9B63A;
+  }
+}
+
+.yellow-button-shaker {
+  color: #20242C;
+  background: #F9B63A;
+  border-radius: 10px;
+  border: 2px solid #F83157;
+  font-weight: 700;
+  display: flex;
+  width: 170px;
+  margin: 6px;
+  text-decoration: none;
+
+  image {
+    margin: 7px
+  }
+
+
+  a {
+    text-decoration: none;
+    color: #F83157;
+    padding: 6px 6px 6px 5px;
+    transition: ease 300ms;
+    min-width: 100%;
+    min-height: 100%;
+    text-align: start;
+
+    &:hover {
+      background: transparent;
+      color: #F9B63A;
+    }
+  }
+
+  &:hover {
+    background: #F83157;
+    color: #F9B63A;
+    border: 2px solid #F9B63A;
   }
 }

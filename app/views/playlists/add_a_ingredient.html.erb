@@ -1,0 +1,26 @@
+<ul>
+  <% @ingredients.first(10).each do |genre| %>
+    <li><%= genre %></li>
+  <% end %>
+</ul>
+
+  <div class="">
+    <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-post-search' do %>
+      <div class="form-left">
+        <% @ingredients.first(10).each do |genre| %>
+          <label>
+            <%= check_box_tag 'ingredients[]',
+                              genre,
+                              class: "form-control",
+                              checked: 'false'
+            %>
+            <%= genre %>
+          </label>
+        <% end %>
+      </div>
+      <div class="form-right">
+        <%= submit_tag "Search", class: "btn yellow-button" %>
+      </div>
+    <% end %>
+  </div>
+</div>

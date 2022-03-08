@@ -11,7 +11,7 @@
         <div class="sidebar-links">
           <div class='yellow-button'><%= link_to 'Playlists', playlists_path %></div>
           <div class='yellow-button'><%= link_to 'Discover', publications_path %></div>
-          <div class='yellow-button'><%= link_to 'Shake It Up', adduser_path %></div>
+          <div class='yellow-button-shaker'> <%= image_tag('shaker.gif', size: "36x36", alt: "Shake it up")%> <%= link_to 'Shake It Up', adduser_path %> </div>
         </div>
       </div>
 
@@ -47,9 +47,9 @@
       <div class="nav-item dropdown">
         <div class="avatar-fix dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier">
           <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, crop: :fill, class: 'avatar-fix' %>
+            <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, class: 'avatar-fix' %>
           <% else %>
-            <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+            <%= image_tag 'avatardefaut.jpg', class: 'avatar-fix' %>
           <% end %>
         </div>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

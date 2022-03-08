@@ -14,11 +14,19 @@ class PlaylistPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    @record.user_id == user.id
+  end
+
   def add_a_user?
     true
   end
 
   def shaker?
+    true
+  end
+
+  def add_a_ingredient?
     true
   end
 end

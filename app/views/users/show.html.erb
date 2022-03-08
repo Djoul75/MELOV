@@ -3,7 +3,7 @@
   <div class="col-4">
     <div class="profile-pic">
       <% if @user.photo.key? %>
-        <%= cl_image_tag @user.photo.key, class: 'rounded-pp' %>
+        <%= cl_image_tag @user.photo.key, crop: :thumb, gravity: :face, class: 'rounded-pp' %>
       <% else %>
         <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar", class: "rounded-pp")%>
       <% end %>

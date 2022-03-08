@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :songs, only: %i[new create]
   get '/adduser', to: 'playlists#add_a_user'
-  get '/shaker', to: 'playlists#shaker'
+  get '/addingredient', to: 'playlists#add_a_ingredient'
+  post '/shaker', to: 'playlists#shaker'
   get '/lookforuser', to: 'publications#look_for_user'
   post '/subscriptions_toggle', to: 'subscriptions#toggle'
 
@@ -15,9 +16,10 @@ Rails.application.routes.draw do
     resources :playlist_songs, only: %i[new create]
     resources :buddies, only: %i[new create]
   end
-  resources :playlist_songs, only: :delete
+  resources :playlist_songs, only: :destroy
   resources :publications
   resources :subscriptions, only: %i[index]
+
   resources :users, only: %i[show]
   resources :buddies, only: :create
 end
