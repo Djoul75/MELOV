@@ -137,11 +137,16 @@
   i {
     margin-right: 2vw;
     transition: ease 300ms;
+    color: #F9B63A;
 
     &:hover {
       cursor: pointer;
       color: #F9B63A;
       transform: scale(1.1);
+    }
+
+    &.is-liked {
+      color: #F9B63A;
     }
   }
 }
