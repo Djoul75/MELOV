@@ -6,6 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # Access private data
     @user.spotify_token = @spotify_user.id
     @user.token = @spotify_user.credentials["token"]
+    @user.spotify_hash = @spotify_user.to_hash
 
     if @user.new_record?
       @user.password = Devise.friendly_token
