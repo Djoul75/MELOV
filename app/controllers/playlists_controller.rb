@@ -63,6 +63,7 @@ class PlaylistsController < ApplicationController
     authorize @playlist
 
     @songs_in_common = []
+    @songs_in_common.clear
 
     current_user.playlists.each do |pl|
       pl.songs.each do |song|
@@ -82,7 +83,6 @@ class PlaylistsController < ApplicationController
 
     @songs_in_common.uniq!
 
-
     if @songs_in_common.any?
       spotify_user = RSpotify::User.find(current_user.spotify_id)
       @spotify_playlist = spotify_user.create_playlist!(playlist_name)
@@ -98,6 +98,5 @@ class PlaylistsController < ApplicationController
       @playlist.image_url = @spotify_playlist.images.first["url"]
       @playlist.save!
     end
-    @songs_in_common.clear
   end
 end
