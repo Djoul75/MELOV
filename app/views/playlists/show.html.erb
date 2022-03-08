@@ -1,6 +1,6 @@
 <%= link_to 'Back', 'javascript:history.back()', class: 'yellow-button-lg' %>
 <br><br>
-<h1>Here's your playlist <%= "#{@playlist.name}"%> </h1>
+<h1><%= "#{@playlist.name}"%> </h1>
 <% @playlist.songs.each do |s| %>
   <div class="card-bg col-md-12">
     <div class="post-card-music">
@@ -26,6 +26,9 @@
           <div class="post-card-interraction row col-md-2">
             <%= render 'publications/button_repost', track_id: s.spotify_track_id %>
             <%= render 'publications/button_add', track_id: s.spotify_track_id %>
+            <%= link_to playlist_song_path(song_id: s.id), method: :delete do %>
+            <i class="fas fa-trash col-md-1" style="color:#F9B63A"></i>
+            <% end %>
           </div>
         </div>
     </div>
