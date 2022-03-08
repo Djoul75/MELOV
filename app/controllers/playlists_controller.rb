@@ -49,6 +49,13 @@ class PlaylistsController < ApplicationController
     redirect_to playlists_path
   end
 
+  def destroy
+    @playlist = Playlist.find(params[:id])
+    authorize @playlist
+    @playlist.destroy
+    redirect_to playlists_path
+  end
+
   def add_a_user
     @user = User.new
     authorize @user

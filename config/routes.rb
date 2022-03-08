@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     resources :playlist_songs, only: %i[new create]
     resources :buddies, only: %i[new create]
   end
-  resources :playlist_songs, only: :delete
+  resources :playlist_songs, only: :destroy
   resources :publications
-  resources :subscriptions, only: %i[index new create delete]
+  resources :subscriptions, only: %i[index new create destroy]
   resources :users, only: %i[show]
   resources :buddies, only: :create
 end
