@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/addingredient', to: 'playlists#add_a_ingredient'
   post '/shaker', to: 'playlists#shaker'
   get '/lookforuser', to: 'publications#look_for_user'
+  post '/subscriptions_toggle', to: 'subscriptions#toggle'
+
+
   resources :playlists do
     get '/users', to: 'users#index'
     resources :playlist_songs, only: %i[new create]
@@ -15,7 +18,8 @@ Rails.application.routes.draw do
   end
   resources :playlist_songs, only: :destroy
   resources :publications
-  resources :subscriptions, only: %i[index new create destroy]
+  resources :subscriptions, only: %i[index]
+
   resources :users, only: %i[show]
   resources :buddies, only: :create
 end
