@@ -4,9 +4,9 @@
   <% end %>
 </ul>
 
-  <div class="container-form-post-search">
-    <div class="form-left">
-      <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off" do %>
+  <div class="">
+    <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-post-search' do %>
+      <div class="form-left">
         <% @ingredients.first(10).each do |genre| %>
           <label>
             <%= check_box_tag 'ingredients[]',
@@ -17,10 +17,10 @@
             <%= genre %>
           </label>
         <% end %>
-    </div>
+      </div>
       <div class="form-right">
-      <%= submit_tag "Search", class: "btn yellow-button" %>
+        <%= submit_tag "Search", class: "btn yellow-button" %>
+      </div>
     <% end %>
-    </div>
   </div>
 </div>

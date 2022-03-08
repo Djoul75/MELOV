@@ -1,18 +1,18 @@
 <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
   <h1>Find someone to follow:</h1>
-    <div class="container-form-post container-form-post-search">
-      <div class="form-left">
-        <%= form_tag lookforuser_path, method: :get, autocomplete: "off" do %>
+    <div class="">
+      <%= form_tag lookforuser_path, method: :get, autocomplete: "off", :class => 'container-form-post container-form-post-search' do %>
+        <div class="form-left">
           <%= text_field_tag :query,
                               params[:query],
                               class: "form-control form-search",
                               placeholder: "Look for a buddy"
           %>
-      </div>
-      <div class="form-right">
-          <%= submit_tag "Search", class: "btn yellow-button" %>
-        <% end %>
-      </div>
+        </div>
+        <div class="form-right">
+            <%= submit_tag "Search", class: "btn yellow-button" %>
+        </div>
+      <% end %>
     </div>
 <br><br>
 <% if params[:query].present? %>

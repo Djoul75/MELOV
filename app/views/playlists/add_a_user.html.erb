@@ -1,18 +1,18 @@
 <h1>Add a buddy to your shaker:</h1>
 
-<div class="container-form-post-search">
-  <div class="form-left">
-    <%= form_tag adduser_path, method: :get, autocomplete: "off" do %>
+<div class="">
+  <%= form_tag adduser_path, method: :get, autocomplete: "off", :class => 'container-form-post-search' do %>
+    <div class="form-left">
       <%= text_field_tag :query,
                           params[:query],
                           class: "form-control",
                           placeholder: "Find a buddy"
       %>
-      </div>
-      <div class="form-right">
+    </div>
+    <div class="form-right">
       <%= submit_tag "Search", class: "btn yellow-button" %>
-    <% end %>
-      </div>
+    </div>
+  <% end %>
   </div>
   <br><br>
   <% if params[:query].present? %>

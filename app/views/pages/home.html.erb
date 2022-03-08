@@ -20,18 +20,20 @@
               <div data-search-target="list">
               </div>
           </div>
-          <div class="row mt-2">
+          <div class="mt-2">
             <%= simple_form_for @publication, remote: true,
-            html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
+            html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}, :class => 'd-flex'},
             wrapper: :input_group do |f| %>
-              <%= f.input :content, label: false, placeholder: "What's on your mind?" %>
-              <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %> <!--IMPORTANT-->
+              <div class="form-left">
+                <%= f.input :content, label: false, placeholder: "What's on your mind?" %>
+                <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %> <!--IMPORTANT-->
+              </div>
+              <div class="form-right ">
+                <%= f.submit "Submit", class: "btn yellow-button h-50"%>
+              </div>
+            <% end %>
           </div>
       </div>
-        <div class="submit-button">
-          <%= f.submit "Submit", class: "btn yellow-button"%>
-        </div>
-      <% end %>
   </div>
 </div>
 
