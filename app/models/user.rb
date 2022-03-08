@@ -31,4 +31,8 @@ class User < ApplicationRecord
   has_many :publications, dependent: :destroy
   has_many :playlists, dependent: :destroy
   has_one_attached :photo
+
+  def follow?(user)
+    Subscription.find_by(follower_id: user.id, following_id: id).present?
+  end
 end
