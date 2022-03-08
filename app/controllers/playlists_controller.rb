@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
   def index
     @playlists = policy_scope(Playlist)
     @playlists = current_user.playlists
-    spotify_user = RSpotify::User.find(current_user.spotify_id)
+    spotify_user = RSpotify::User.new(current_user.spotify_hash)
     @spotify_playlist = spotify_user.playlists
   end
 
@@ -12,7 +12,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    user = RSpotify::User.find(current_user.spotify_id)
+    user = RSpotify::User.new(current_user.spotify_hash)
     spotify_playlist = RSpotify::Playlist.find(user.id, params[:spotify_playlist_id])
     @playlist = Playlist.new(
       name: spotify_playlist.name,
@@ -24,7 +24,7 @@ class PlaylistsController < ApplicationController
     @playlist.save!
 
     spotify_playlist.tracks.each do |t|
-      song = Song.find_by(title: t.name)
+      song = Song.find_by(spotify_track_id: t.id)
       artist = RSpotify::Artist.find(t.artists.first.id)
       attributes = {
         artist: artist.name,
@@ -34,6 +34,7 @@ class PlaylistsController < ApplicationController
         spotify_track_id: t.id,
         image_url: t.album.images.dig(0, "url")
       }
+
       if song
         song.update!(attributes)
       else
@@ -61,6 +62,40 @@ class PlaylistsController < ApplicationController
     @users = User.all
   end
 
+  def add_a_ingredient
+    date = Time.now.strftime("%d/%m/%y")
+    @user = User.find(params[:user_id].to_i)
+    playlist_name = "Shaker Playlist with #{@user.nickname} - #{date}"
+
+    @playlist = Playlist.new(user: current_user, shaker: true, name: playlist_name)
+    authorize @playlist
+
+    songs_user_a = []
+    songs_user_b = []
+
+    current_user.playlists.each do |pl|
+      pl.songs.each do |song|
+        songs_user_a << song
+      end
+    end
+
+    @user.playlists.each do |pl|
+      pl.songs.each do |song|
+        songs_user_b << song
+      end
+    end
+
+    songs_in_common = songs_user_a.uniq + songs_user_b.uniq
+
+    @ingredients = []
+    songs_in_common.each do |song|
+      @ingredients += song.genres
+    end
+
+    @ingredients = @ingredients.tally.sort_by(&:last).reverse.map(&:first)
+    # @ingredients.uniq!
+  end
+
   def shaker
     date = Time.now.strftime("%d/%m/%y")
     @user = User.find(params[:user_id].to_i)
@@ -69,37 +104,44 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(user: current_user, shaker: true, name: playlist_name)
     authorize @playlist
 
-    @songs_in_common = []
-    @songs_in_common.clear
+    songs_user_a = []
+    songs_user_b = []
+
+
 
     current_user.playlists.each do |pl|
       pl.songs.each do |song|
-        @songs_in_common << song.id
+        songs_user_a << song
       end
     end
 
     @user.playlists.each do |pl|
       pl.songs.each do |song|
-        @songs_in_common << song.id
+        songs_user_b << song
       end
     end
 
-    @songs_in_common.reject! do |song|
-      @songs_in_common.count(song) == 1
+    songs_in_common = songs_user_a.uniq + songs_user_b.uniq
+
+
+    songs_in_common.select! do |song|
+      (song.genres & params[:ingredients]).any?
     end
 
-    @songs_in_common.uniq!
+    songs_in_common.uniq!
 
-    if @songs_in_common.any?
-      spotify_user = RSpotify::User.find(current_user.spotify_id)
+    if songs_in_common.any?
+      spotify_user = RSpotify::User.new(current_user.spotify_hash)
       @spotify_playlist = spotify_user.create_playlist!(playlist_name)
       @playlist.spotify_id = @spotify_playlist.id
       @playlist.save!
-      @songs_in_common.each do |song|
-        PlaylistSong.create!(song_id: song, playlist_id: @playlist.id)
+      songs_in_common.first(30).each do |song|
+        PlaylistSong.create!(song_id: song.id, playlist_id: @playlist.id)
       end
-      @tracks = @playlist.songs.map { |song| Song.find(song.id) }.compact
-      tracks = @playlist.songs.map { |song| RSpotify::Track.find(song.spotify_track_id) }.compact
+      @tracks = @playlist.songs.first(30).map { |song| Song.find(song.id) }.compact
+      tracks = @playlist.songs.first(30).map do |song|
+        RSpotify::Track.find(song.spotify_track_id)
+      end
       @spotify_playlist.add_tracks!(tracks)
       @spotify_playlist = RSpotify::Playlist.find(spotify_user.id, @playlist.spotify_id)
       @playlist.image_url = @spotify_playlist.images.first["url"]

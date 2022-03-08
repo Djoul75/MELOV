@@ -31,4 +31,6 @@ class User < ApplicationRecord
   has_many :publications, dependent: :destroy
   has_many :playlists, dependent: :destroy
   has_one_attached :photo
+
+  serialize :spotify_hash, Hash
 end

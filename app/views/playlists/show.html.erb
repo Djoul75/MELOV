@@ -1,6 +1,9 @@
 <%= link_to 'Back', 'javascript:history.back()', class: 'yellow-button-lg' %>
 <br><br>
-<h1><%= "#{@playlist.name}"%> </h1>
+
+<h1><%= "#{@playlist.name}"%></h1>
+<p><%= "#{@playlist.songs.count}"%> songs :</p>
+
 <% @playlist.songs.each do |s| %>
   <div class="card-bg col-md-12">
     <div class="post-card-music">
