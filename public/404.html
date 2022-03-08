@@ -1,67 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>MELOV | Music Social Network</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
-
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
 </head>
 
-<body class="rails-default-error-page">
+<body>
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+  <div class="container-home">
+      <h1>Is it me you're looking for?</h1>
+      <h2 class="yellow-button"><a href="https://www.melov.fr/">Home</a>
   </div>
+
+  <style>
+    .container-home {
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1620120966883-d977b57a96ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80');
+      background-size: cover;
+      overflow-y: scroll;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #F9B63A;
+      font-weight: 700;
+      font-size: 5rem;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+      .yellow-button {
+        text-align: center;
+        position: fixed;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 700;
+        font-size: 5rem;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #20242C;
+        background: #F9B63A;
+        border-radius: 10px;
+        border: 2px solid #F9B63A;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        width: 290px;
+        margin: 6px;
+        text-decoration: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: #20242C;
+        padding: 6px;
+        transition: ease 300ms;
+        min-width: 100%;
+        min-height: 100%;
+        text-align: center;
+      }
+
+      a:hover {
+        background: transparent;
+        color: #F9B63A;
+      }
+
+      h2:hover{
+        background-color: black;
+      }
+  </style>
 </body>
 </html>
