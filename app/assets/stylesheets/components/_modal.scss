@@ -1,0 +1,29 @@
+.modal-content{
+  background-color: rgba(68, 54, 67, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(24px);
+  a{
+    text-decoration: none;
+    color:white;
+  }
+  a:hover{
+    color:#F9B63A;
+    font-weight: 500;
+  }
+}
+
+.modal-body:-webkit-scrollbar {
+  display: none;
+}
+
+.modal-title{
+  text-align: center;
+  color:white;
+}
+
+.modal-header{
+  border-bottom: none;
+  // .btn-close:hover{
+  //   filter: drop-shadow(0 0 0.2rem #F9B63A);
+  // }
+}
