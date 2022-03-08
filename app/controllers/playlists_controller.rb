@@ -96,9 +96,11 @@ class PlaylistsController < ApplicationController
 
     @playlist = Playlist.new(user: current_user, shaker: true, name: playlist_name)
     authorize @playlist
-
+    
     songs_user_a = []
     songs_user_b = []
+
+    
 
     current_user.playlists.each do |pl|
       pl.songs.each do |song|
@@ -118,7 +120,6 @@ class PlaylistsController < ApplicationController
     songs_in_common.select! do |song|
       (song.genres & params[:ingredients]).any?
     end
-
 
     songs_in_common.uniq!
 
