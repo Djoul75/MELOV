@@ -54,17 +54,16 @@ class PlaylistsController < ApplicationController
     @users = User.all
   end
 
-
-
   def shaker
     date = Time.now.strftime("%d/%m/%y")
-    @user = User.find(params[:format].to_i)
+    @user = User.find(params[:user_id].to_i)
     playlist_name = "Shaker Playlist with #{@user.nickname} - #{date}"
 
     @playlist = Playlist.new(user: current_user, shaker: true, name: playlist_name)
     authorize @playlist
 
     @songs_in_common = []
+
     current_user.playlists.each do |pl|
       pl.songs.each do |song|
         @songs_in_common << song.id
@@ -99,5 +98,6 @@ class PlaylistsController < ApplicationController
       @playlist.image_url = @spotify_playlist.images.first["url"]
       @playlist.save!
     end
+    @songs_in_common.clear
   end
 end
