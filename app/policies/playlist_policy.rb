@@ -21,4 +21,8 @@ class PlaylistPolicy < ApplicationPolicy
   def shaker?
     true
   end
+
+  def add_a_ingredient?
+    true
+  end
 end

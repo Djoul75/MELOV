@@ -21,7 +21,7 @@
         <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
         <% match_users.each do |u| %>
           <div class="user-card-link">
-            <%= link_to shaker_path(user_id: u.id) do %>
+            <%= link_to addingredient_path(user_id: u.id) do %>
               <div class="user-card">
                 <div class="user-card-avatar-nickname">
                     <% if u.photo.attached? %>

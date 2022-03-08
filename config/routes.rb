@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :songs, only: %i[new create]
   get '/adduser', to: 'playlists#add_a_user'
-  get '/shaker', to: 'playlists#shaker'
+  get '/addingredient', to: 'playlists#add_a_ingredient'
+  post '/shaker', to: 'playlists#shaker'
   get '/lookforuser', to: 'publications#look_for_user'
   resources :playlists do
     get '/users', to: 'users#index'
