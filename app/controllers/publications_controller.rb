@@ -56,6 +56,7 @@ class PublicationsController < ApplicationController
   def destroy
     authorize @publication
     @publication.destroy
+    redirect_to root_path
   end
 
   def look_for_user

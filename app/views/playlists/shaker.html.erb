@@ -29,8 +29,8 @@
                 <p><%= s.artist %></p>
               </div>
               <div class="post-card-interraction row col-md-2">
-                  <i class="fas fa-plus col-md-1"></i>
-                  <i class="fas fa-share col-md-1"></i>
+                <%= render 'publications/button_repost', track_id: s.spotify_track_id %>
+                <%= render 'publications/button_add', track_id: s.spotify_track_id %>
               </div>
             </div>
         </div>

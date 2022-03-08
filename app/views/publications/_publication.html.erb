@@ -35,6 +35,11 @@
         <i class="fas fa-heart col-md-1"></i>
         <%= render 'publications/button_repost', track_id: publication.spotify_url %>
         <%= render 'publications/button_add', track_id: publication.spotify_url %>
+        <% if publication.user_id == current_user.id %>
+            <%= link_to publication_path(publication.id), method: :delete do %>
+              <i class="fas fa-times col-md-1"></i>
+            <% end %>
+          <% end %>
       </div>
     </div>
 </div>
