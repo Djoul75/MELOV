@@ -1,6 +1,7 @@
 class Publication < ApplicationRecord
   belongs_to :user
   after_create :build_track
+  has_many :likes, dependent: :destroy
 
   def track
     RSpotify::Track.find(spotify_url)
@@ -30,5 +31,9 @@ class Publication < ApplicationRecord
         self.song_duration = @track.duration_ms
     end
     save
+  end
+
+  def like_for(user)
+    likes.find_by(user_id: user.id)
   end
 end

@@ -17,9 +17,10 @@ Rails.application.routes.draw do
     resources :buddies, only: %i[new create]
   end
   resources :playlist_songs, only: :destroy
-  resources :publications
+  resources :publications do
+    resources :likes, only: %i[new create destroy]
+  end
   resources :subscriptions, only: %i[index]
-
   resources :users, only: %i[show]
   resources :buddies, only: :create
 end

@@ -32,7 +32,15 @@
         <p><%= publication.content %></p>
       </div>
       <div class="post-card-interraction row col-sm-12 col-md-4">
-        <i class="fas fa-heart col-md-1"></i>
+        <% if like = publication.like_for(current_user) %>
+          <%= link_to publication_like_path(publication.id, like.id), method: :delete do %>
+            <i class='fas fa-heart is-liked'></i>
+          <% end %>
+        <% else %>
+          <%= link_to publication_likes_path(publication.id), method: :post do %>
+            <i class='far fa-heart'></i>
+          <% end %>
+        <% end %>
         <%= render 'publications/button_repost', track_id: publication.spotify_url %>
         <%= render 'publications/button_add', track_id: publication.spotify_url %>
         <% if publication.user_id == current_user.id %>
