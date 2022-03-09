@@ -18,8 +18,9 @@
 
         <h1><%= @user.nickname %></h1>
 
-        <%= button_tag current_user.follow?(@user) ? 'Unsubscribe' : 'Subscribe', data: { follow_btn_target: 'btn', action: 'click->follow-btn#toggle' }, class: 'yellow-button' %>
-
+        <% if params[:id].to_i != current_user.id %>
+          <%= button_tag current_user.follow?(@user) ? 'Unsubscribe' : 'Subscribe', data: { follow_btn_target: 'btn', action: 'click->follow-btn#toggle' }, class: 'yellow-button' %>
+        <% end %>
         <%#= link_to 'Subscribe', subscriptions_path(id: @user.id), method: :post,
         class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }",
         "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
@@ -30,13 +31,13 @@
         <div class="user-count" data-follow-btn-target="count">
           <%= @user.followers.count %> Subscribers
         </div>
-        <p class="profile-count"><%= pluralize @user.followings.count, "Subscriptions" %></p>
-        <p class="profile-count"><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Shaker" %> made</p>
+          <p class="profile-count"><%= pluralize @user.followings.count, "Subscription" %></p>
+          <p class="profile-count"><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Created shaker" %></p>
       </div>
     </div>
   </div>
   <div class="row mt-5">
-    <h2><%= @user.playlists.count %> Playlists:</h2>
+    <h2><%= pluralize @user.playlists.count, "Playlist" %></h2>
     <% if @user.playlists.any? %>
       <div class="playlist-caroussel">
         <div class="row-playlist-carroussel">
@@ -58,7 +59,7 @@
         </div>
       </div>
     <% else %>
-      <% if !@user.follower_ids.include?(current_user.id) %>
+      <% if !@user.follower_ids.include?(current_user.id) && params[:id].to_i == current_user.id %>
         <br><br>
         <div class="card-bg text-center mt-5">
           <h1>You haven't imported any playlists yet</h1>
@@ -69,14 +70,14 @@
       <% else %>
         <br><br>
         <div class="card-bg text-center mt-5">
-          <h1>This user has not uploaded imported <br> any playlists yet</h1>
+          <h1>This user hasn't imported <br> any playlists yet</h1>
         </div>
       <% end %>
     <% end %>
 
   </div>
     <div class="row mt-5">
-      <h2>Publications:</h2>
+      <h2>Publications</h2>
   <% if @user.publications.any? %>
         <div class="container-message" data-feed-subscription-target="messages">
             <% @user.publications.order(id: :desc).each do | publication | %>
@@ -86,7 +87,7 @@
     </div>
   <% else %>
     <br><br>
-    <% if !@user.follower_ids.include?(current_user.id) %>
+    <% if !@user.follower_ids.include?(current_user.id) && params[:id].to_i == current_user.id %>
     <div class="card-bg text-center">
       <h1>You don't have any publications yet</h1>
       <br>
