@@ -3,7 +3,7 @@
 
   <div class="card-bg">
     <div class="form-home">
-      <h2>Add some ingredients to your shaker</h2>
+      <h2>What's in your shaker?</h2>
       <div class="forms-style">
         <div class="submit-form">
           <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-ingredient' do %>
@@ -12,12 +12,13 @@
                 <label class='ingredient'>
                   <%= check_box_tag 'ingredients[]',
                                     genre,
-                                    class: "form-control"
+                                    class: "form-control",
+                                    checked: 'off'
                   %>
-                  <%= genre.capitalize %>
+                  <div class="label-ingredient"><%= genre.capitalize %></div>
                 </label>
               <% end %>
-              <%= submit_tag "Add your ingredients", class: "btn yellow-button-lg" %>
+              <%= submit_tag "Add your ingredients", class: "btn yellow-button-lg mt-3" %>
             </div>
           <% end %>
         </div>
