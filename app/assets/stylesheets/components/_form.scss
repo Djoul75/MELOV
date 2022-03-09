@@ -16,8 +16,8 @@
   width: 60%;
 
   input {
-    background-color: rgba(white,0.1);
-    color: white;
+    // background-color: rgba(white,0.8);
+    color: black;
     border: 0;
     border-radius: 10px;
 
@@ -27,15 +27,16 @@
     }
 
     &:focus {
-      background-color: rgba(white,0.1);
-      color: white;
+      // background-color: rgba(white,0.8);
+      color: black;
       box-shadow: none;
     }
+
   }
 
   textarea {
-    background-color: rgba(white,0.1);
-    color: white;
+    // background-color: rgba(white,0.8);
+    color: black;
     border: 0;
     border-radius: 10px;
 
@@ -44,8 +45,8 @@
     }
 
     &:focus {
-      background-color: rgba(white,0.1);
-      color: white;
+      // background-color: rgba(white,0.8);
+      color: black;
       box-shadow: none;
     }
   }
@@ -55,8 +56,8 @@
   width: 100%;
 
   input {
-    background-color: rgba(white,0.1);
-    color: white;
+    // background-color: rgba(white,0.1);
+    color: black;
     border: 0;
     border-radius: 10px;
 
@@ -66,8 +67,8 @@
     }
 
     &:focus {
-      background-color: rgba(white,0.1);
-      color: white;
+      // background-color: rgba(white,0.1);
+      color: black;
       box-shadow: none;
     }
   }
