@@ -47,12 +47,23 @@
         <%= image_tag("https://media2.giphy.com/media/6uGhT1O4sxpi8/giphy.gif?cid=790b76118ac4b8f57d227e7de0ea0db2bfdce9e521004ef7&rid=giphy.gif&ct=g", class:"rounded-3") %>
       </div>
       <% end %>
-  <% else %>
+    <% end %>
   <br><br>
   <div class="card-bg-shaker-explain text-center mt-3">
-    <h3> Add your friends, grab a shaker and discover a <strong>unique playlist</strong>,
-    <br> which matches your <strong>shared interests.</strong>
-    <br> Fill up your glass and let's <strong>party</strong> 🎉 !</h3>
+    <% current_user.followings.each do |u| %>
+      <div class="user-card-link">
+        <%= link_to addingredient_path(user_id: u.id) do %>
+          <div class="user-card">
+            <div class="user-card-avatar-nickname">
+                <% if u.photo.attached? %>
+                  <%= cl_image_tag u.photo.key, crop: :thumb, gravity: :face, class: 'avatar' %>
+                <% else %>
+                  <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+                <% end %>
+                <h4><%= u.nickname %></h4>
+            </div>
+          </div>
+        <% end %>
+    <% end %>
   </div>
-  <% end %>
 </div>
