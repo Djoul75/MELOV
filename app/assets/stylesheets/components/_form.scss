@@ -101,3 +101,19 @@
 .form-post-content {
   width: 100%;
 }
+
+#new_publication {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.container-form-post-search {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.publication_content {
+  width: 100%;
+}

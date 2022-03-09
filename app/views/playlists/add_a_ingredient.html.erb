@@ -14,13 +14,13 @@
                 <label class='ingredient'>
                   <%= check_box_tag 'ingredients[]',
                                     genre,
-                                    class: "form-control",
-                                    checked: 'off'
+                                    false,
+                                    class: "form-control"
                   %>
                   <div class="label-ingredient"><%= genre.capitalize %></div>
                 </label>
               <% end %>
-              <%= submit_tag "Shake it up!", class: "btn yellow-button-lg mt-3" %>
+              <%= submit_tag "SHAKE IT UP", class: "btn yellow-button-lg-shaker mt-3" %>
             </div>
           <% end %>
         </div>
