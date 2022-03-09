@@ -7,6 +7,19 @@
   backdrop-filter: blur(8px);
 }
 
+
+.card-bg-shaker-explain h3 {
+  line-height: 1.2em;
+  word-spacing: 0.1em;
+  font-weight: lighter;
+  background-color: rgba($pourpre, 0.5);
+  padding: 2vw;
+  margin: 0 0 2vw 0;
+  width: 100%;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
 .card-cover {
   position: relative;
   img {
@@ -132,11 +145,17 @@
   margin: 1vw 0;
   padding: 2vw;
 
-  p {
+  .publication-date {
+    font-size: 0.8em;
+    color: rgb(97, 94, 94);
+  }
+
+  .publication-content {
     text-align: justify;
     color: grey;
     font-size: larger;
   }
+
 }
 
 .post-card-interraction {
@@ -161,10 +180,4 @@
       color: #F9B63A;
     }
   }
-}
-
-.publication-date {
-  font-size: smaller;
-  color: grey;
-  margin: 0;
 }
