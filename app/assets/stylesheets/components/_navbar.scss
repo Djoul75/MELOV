@@ -17,8 +17,8 @@
   align-items: center;
   justify-content: center;
   background-color: rgba($pourpre, 0.5);
-  padding: 1%;
-  border-radius: 20px;
+  padding: 5px 5px 5px 1%;
+  border-radius: 30px;
   margin-right: 5%;
   backdrop-filter: blur(8px);
 }
@@ -27,4 +27,20 @@
 .home-welcome {
   color: white;
   margin: 0 2vh 0 0;
+}
+
+.dropdown-menu {
+  background-color: rgba($color: $pourpre, $alpha: 0.5);
+  color: white;
+  border-radius: 10px;
+  top: 1%;
+
+  .dropdown-item {
+    color: white;
+
+    &:hover {
+      background-color: rgba($color: $pourpre, $alpha: 0.7);
+      cursor: pointer;
+    }
+  }
 }
