@@ -23,7 +23,7 @@
   </head>
 
   <body data-controller='player' data-player-token-value='<%= current_user&.token %>'>
-    <%#= render 'shared/flashes' %>
+    <%= render 'shared/flashes' %>
     <% if user_signed_in? %>
       <%= render 'shared/navbar' %>
       <div class="container-home">

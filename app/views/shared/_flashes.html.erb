@@ -1,14 +1,20 @@
-<% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
-    <%= notice %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
+<% if flash[:alert].present? %>
+    <div class="flash flash-danger alert alert-dismissible fade show"><%=flash.alert%>
+      <a data-bs-dismiss="alert" aria-label="Close">
+    <i class="fas fa-times"></i>
+      </a>
+</div>
+<% elsif flash[:success].present? %>
+    <div class="flash flash-success alert alert-dismissible fade show"><%=flash[:success]%>
+      <a data-bs-dismiss="alert" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </a>
+</div>
 <% end %>
-<% if alert %>
-  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
-    <%= alert %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
-<% end %>
+
+<script>
+  setTimeout(() => {
+    const box = document.querySelector('.flash-success');
+    box.style.display = 'none';
+  }, 2500);
+</script>
