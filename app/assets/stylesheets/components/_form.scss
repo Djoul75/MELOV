@@ -51,6 +51,32 @@
   }
 }
 
+.forms-style-edit {
+  width: 100%;
+
+  input {
+    background-color: rgba(white,0.1);
+    color: white;
+    border: 0;
+    border-radius: 10px;
+
+    &::placeholder {
+      color: grey;
+      font-style: none;
+    }
+
+    &:focus {
+      background-color: rgba(white,0.1);
+      color: white;
+      box-shadow: none;
+    }
+  }
+
+  form {
+    width: 100%;
+  }
+}
+
 .submit-form{
   width: 100%;
   margin-right: 2%;

@@ -55,8 +55,12 @@
             <% end %>
           </div>
         <% end %>
-      <%= render 'publications/button_repost', track_id: publication.spotify_url %>
-      <%= render 'publications/button_add', track_id: publication.spotify_url %>
+      <div class="repost">
+        <%= render 'publications/button_repost', track_id: publication.spotify_url %>
+      </div>
+      <div class="add">
+        <%= render 'publications/button_add', track_id: publication.spotify_url %>
+      </div>
     </div>
 
   </div>

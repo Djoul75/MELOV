@@ -61,7 +61,6 @@
 .card-play {
   display: flex;
   justify-content: end;
-  align-items: end;
   text-align: end;
 
   img {
@@ -76,9 +75,6 @@
   }
 }
 
-.play-circle-card {
-
-}
 
 .card-play-song {
   position: absolute;
@@ -117,8 +113,10 @@
 
   img {
     border-radius: 50%;
-    width: 8%;
-    margin-right: 2%;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    margin-right: 5%;
   }
 
   h4 {
@@ -142,7 +140,7 @@
 .post-card-interraction {
   color: $yellow;
   font-size: x-large;
-  // display: flex;
+  display: flex;
   // justify-content: center;
   align-items: center;
 
