@@ -64,6 +64,13 @@
       <div class="add">
         <%= render 'publications/button_add', track_id: publication.spotify_url %>
       </div>
+      <div>
+        <% if publication.user_id == current_user.id %>
+        <%= link_to publication_path(publication.id), method: :delete do %>
+              <% image_tag("trash.png", size: "48x48", alt: "Like") %>
+            <% end %>
+        <% end %>
+      </div>
     </div>
 
   </div>
