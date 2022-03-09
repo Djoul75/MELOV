@@ -46,13 +46,13 @@
         <% if like = publication.like_for(current_user) %>
           <div class="heart">
             <%= link_to publication_like_path(publication.id, like.id), method: :delete do %>
-              <i class='fas fa-heart is-liked'></i>
+              <% image_tag("liked.png", size: "48x48", alt: "Unlike") %>
             <% end %>
           </div>
         <% else %>
           <div class="heart">
             <%= link_to publication_likes_path(publication.id), method: :post do %>
-              <i class='col-md-1'><%= image_tag('like.png') %></i>
+              <% image_tag("like.png", size: "48x48", alt: "Like") %>
             <% end %>
           </div>
         <% end %>
