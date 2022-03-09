@@ -67,7 +67,7 @@
       <div>
         <% if publication.user_id == current_user.id %>
         <%= link_to publication_path(publication.id), method: :delete do %>
-              <% image_tag("trash.png", size: "48x48", alt: "Like") %>
+              <% image_tag("trash.png", size: "48x48", alt: "Delete") %>
             <% end %>
         <% end %>
       </div>
