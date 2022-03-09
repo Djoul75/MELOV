@@ -29,7 +29,9 @@
         <%= image_tag(publication.cover_url) %>
       </div>
       <div class="card-title-artist col-sm-12 col-md-8 ">
-        <h2><%= publication.title %></h2>
+        <div class="textbox">
+          <h2><%= publication.title %></h2>
+        </div>
         <h4><%= publication.artist %></h4>
         <p><%= "#{(publication.song_duration / 60_000) < 10 ? "0#{publication.song_duration / 60_000}" : publication.song_duration / 60_000}:#{(publication.song_duration / 1_000 % 60) < 10 ? "0#{publication.song_duration / 1_000 % 60}" : publication.song_duration / 1_000 % 60}"%></p>
       </div>
@@ -42,7 +44,7 @@
       <p class="publication-content"><%= publication.content %></p>
     </div>
 
-    <div class="post-card-interraction row col-sm-12 col-md-4">
+    <div class="post-card-interraction">
         <% if like = publication.like_for(current_user) %>
           <div class="heart">
             <%= link_to publication_like_path(publication.id, like.id), method: :delete do %>
