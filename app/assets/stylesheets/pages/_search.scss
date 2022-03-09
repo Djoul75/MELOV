@@ -1,29 +1,17 @@
-.results {
+.home-results {
+  background-color: $pourpre;
   color: white;
   list-style: none;
-}
-
-.card-result-search {
-  background-color: rgba(68, 54, 67, 0.5);
-  padding: 2vw;
-  margin: 2vw 0;
-  width: 100%;
-  border-radius: 20px;
-}
-
-.home-results {
-  background: white;
-  color: black;
-  list-style: none;
-  width: 42vw;
-  height: 30vh;
+  height: 20vh;
   overflow-y: scroll;
   z-index: 99;
   position: absolute;
-  border-radius: 15px;
+  border-radius: 10px;
+  left: 0;
 }
 
 .card-result {
+  background-color: rgba($color: white, $alpha: 0.05);
   padding: 2%;
   border-bottom: 1px solid black;
   transition: ease 300ms;
@@ -35,7 +23,7 @@
 
   &:hover {
     transform: scaleY(1.02) scaleX(1.01);
-    background-color: rgb(214, 214, 214);
+    background-color: rgba($pourpre, 0.7);
     cursor: pointer;
   }
 }

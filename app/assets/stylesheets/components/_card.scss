@@ -1,8 +1,8 @@
 .card-bg {
-  background-color: rgba(68, 54, 67, 0.5);
+  background-color: rgba($pourpre, 0.5);
   padding: 2vw;
   margin: 0 0 2vw 0;
-  width: 85%;
+  width: 100%;
   border-radius: 20px;
   backdrop-filter: blur(8px);
 }
@@ -60,21 +60,24 @@
 
 .card-play {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  align-items: end;
+  text-align: end;
 
-  i {
-    font-size: 5rem;
-    color: rgba(255, 255, 255, 0.7);
+  img {
+    width: 40%;
     transition: ease 300ms;
     margin-right: 2vw;
 
     &:hover {
       cursor: pointer;
-      color: white;
       transform: scale(1.1);
     }
   }
+}
+
+.play-circle-card {
+
 }
 
 .card-play-song {
@@ -100,14 +103,22 @@
 // POST CARD MUSIC //
 
 .card-avatar-nickname {
-  // display: flex;
+  display: flex;
   align-items: center;
-  // width: 30%;
   color: white;
   padding: 0 0 1vw 0.5vw;
 
+  a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
   img {
     border-radius: 50%;
+    width: 8%;
+    margin-right: 2%;
   }
 
   h4 {
@@ -116,32 +127,33 @@
 }
 
 .card-content {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba($pourpre, 0.7);
   border-radius: 20px;
   margin: 1vw 0;
   padding: 2vw;
 
   p {
     text-align: justify;
-    color: black;
+    color: grey;
+    font-size: larger;
   }
 }
 
 .post-card-interraction {
-  color: #F9B63A;
+  color: $yellow;
   font-size: x-large;
   // display: flex;
   // justify-content: center;
   align-items: center;
 
   i {
-    margin-right: 2vw;
+    margin-right: 15%;
     transition: ease 300ms;
     color: #F9B63A;
 
     &:hover {
       cursor: pointer;
-      color: #F9B63A;
+      color: $yellow;
       transform: scale(1.1);
     }
 

@@ -1,20 +1,25 @@
-<h1>Add a buddy to your shaker:</h1>
-
-<div class="">
-  <%= form_tag adduser_path, method: :get, autocomplete: "off", :class => 'container-form-post-search' do %>
-    <div class="form-left">
-      <%= text_field_tag :query,
-                          params[:query],
-                          class: "form-control",
-                          placeholder: "Find a buddy"
-      %>
+<div class="container-right-part">
+  <div class="card-bg">
+    <div class="form-home">
+      <h2>Add a buddy to your shaker</h2>
+      <div class="forms-style">
+        <div class="submit-form">
+          <%= form_tag adduser_path, method: :get, autocomplete: "off", :class => 'container-form-post container-form-post-search' do %>
+              <%= text_field_tag :query,
+                                  params[:query],
+                                  class: "form-control",
+                                  placeholder: "Find a buddy"
+              %>
+              <%= submit_tag "Search", class: "btn yellow-button-lg mt-3" %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="form-right">
-      <%= submit_tag "Search", class: "btn yellow-button" %>
-    </div>
-  <% end %>
   </div>
+
   <br><br>
+
+
   <% if params[:query].present? %>
     <% match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") %>
       <% if match_users.any? %>

@@ -1,26 +1,34 @@
-<ul>
-  <% @ingredients.first(10).each do |genre| %>
-    <li><%= genre %></li>
-  <% end %>
-</ul>
-
-  <div class="">
-    <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-post-search' do %>
-      <div class="form-left">
-        <% @ingredients.first(10).each do |genre| %>
-          <label>
-            <%= check_box_tag 'ingredients[]',
-                              genre,
-                              class: "form-control",
-                              checked: 'false'
-            %>
-            <%= genre %>
-          </label>
-        <% end %>
-      </div>
-      <div class="form-right">
-        <%= submit_tag "Search", class: "btn yellow-button" %>
-      </div>
+<div class="container-right-part">
+  <ul>
+    <% @ingredients.first(10).each do |genre| %>
+      <li><%= genre %></li>
     <% end %>
+  </ul>
+
+
+  <div class="card-bg">
+    <div class="form-home">
+      <h2>Add some ingredients to your shaker</h2>
+      <div class="forms-style">
+        <div class="submit-form">
+          <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-post-search' do %>
+              <% @ingredients.first(10).each do |genre| %>
+                <label>
+                  <%= check_box_tag 'ingredients[]',
+                                    genre,
+                                    class: "form-control",
+                                    checked: 'false'
+                  %>
+                  <%= genre %>
+                </label>
+              <% end %>
+              <%= submit_tag "Search", class: "btn yellow-button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
+
+
+
 </div>

@@ -1,36 +1,38 @@
-<div class="card-bg col-md-12">
-    <div class="post-card-music">
+<div class="card-bg">
+  <div class="post-card-music">
+
+    <div class="post-card-music-header d-flex justify-content-between">
+
+      <div class="card-avatar-nickname">
         <%= link_to user_path(publication.user) do %>
-      <div class="card-avatar-nickname row col-md-12">
           <% if publication.user.photo.attached? %>
             <%= cl_image_tag publication.user.photo.key, crop: :thumb, gravity: :face, class: 'col-2 col-md-1' %>
           <% else %>
-            <%= image_tag 'avatardefaut.jpg', class: 'col-2 col-md-1' %>
+            <%= image_tag 'avatardefaut.jpg' %>
           <% end %>
-          <h4 class='col-10 col-md-5'><%= publication.user.nickname %></h4>
-      </div>
+          <h4><%= publication.user.nickname %></h4>
         <% end %>
-        <div class="card-content-song row col-sm-12 col-md-12">
-          <div class="card-cover col-sm-12 col-md-3 ">
-            <%= image_tag(publication.cover_url) %>
-          </div>
-          <div class="card-title-artist col-sm-12 col-md-8 ">
-            <h2><%= publication.title %></h2>
-            <h4><%= publication.artist %></h4>
-            <p><%= "#{(publication.song_duration / 60_000) < 10 ? "0#{publication.song_duration / 60_000}" : publication.song_duration / 60_000}:#{(publication.song_duration / 1_000 % 60) < 10 ? "0#{publication.song_duration / 1_000 % 60}" : publication.song_duration / 1_000 % 60}"%></p>
-          </div>
-          <div
-            class="card-play col-sm-12 col-md-1 "
-            data-action='click->player#sendtrack'
-            data-track-id='spotify:track:<%= publication.spotify_url %>'
-          >
-            <i class="far fa-play-circle"></i>
-          </div>
-        </div>
-        <p class="publication-date">Posted on <%= publication.created_at.strftime("%d %B %Y") %></p>
-      <div class="card-content col-md-12">
-        <p><%= publication.content %></p>
       </div>
+
+
+      <div
+        class="card-play"
+        data-action='click->player#sendtrack'
+        data-track-id='spotify:track:<%= publication.spotify_url %>'
+      >
+        <i class="play-circle-card"><%= image_tag('play.png') %></i>
+      </div>
+    </div>
+
+    <div class="card-content-song row col-sm-12 col-md-12">
+      <div class="card-cover col-sm-12 col-md-3 ">
+        <%= image_tag(publication.cover_url) %>
+      </div>
+      <div class="card-title-artist col-sm-12 col-md-8 ">
+        <h2><%= publication.title %></h2>
+        <h4><%= publication.artist %></h4>
+        <p><%= "#{(publication.song_duration / 60_000) < 10 ? "0#{publication.song_duration / 60_000}" : publication.song_duration / 60_000}:#{(publication.song_duration / 1_000 % 60) < 10 ? "0#{publication.song_duration / 1_000 % 60}" : publication.song_duration / 1_000 % 60}"%></p>
+
       <div class="post-card-interraction row col-sm-12 col-md-4">
         <% if like = publication.like_for(current_user) %>
           <%= link_to publication_like_path(publication.id, like.id), method: :delete do %>
@@ -48,6 +50,21 @@
               <i class="fas fa-times col-md-1"></i>
             <% end %>
           <% end %>
+
       </div>
     </div>
+
+    <p class="publication-date">Posted on <%= publication.created_at.strftime("%d %B %Y") %></p>
+
+    <div class="card-content col-md-12">
+      <p><%= publication.content %></p>
+    </div>
+
+    <div class="post-card-interraction row col-sm-12 col-md-4">
+      <i class="col-md-1"><%= image_tag('like.png') %></i>
+      <%= render 'publications/button_repost', track_id: publication.spotify_url %>
+      <%= render 'publications/button_add', track_id: publication.spotify_url %>
+    </div>
+
+  </div>
 </div>

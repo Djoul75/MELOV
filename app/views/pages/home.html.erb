@@ -1,11 +1,12 @@
-<h1 class='home-welcome'>Welcome back  <%= current_user.nickname %></h1>
-<br>
-<div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
-  <div class="container-form-post-feed form-inline d-flex flex-column" data-controller='search'>
-    <div class='d-flex align-items-center'>
-      <div class="submit-form pt-2">
-        <small><i>Share with your community</i></small>
-          <div class="row">
+<div class='container-right-part' data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
+
+
+  <div class="card-bg form-inline d-flex flex-column" data-controller='search'>
+    <div class='form-home'>
+      <h2>Share with your community</h2>
+      <div class="forms-style">
+        <div class="submit-form pt-2">
+          <div class="row form-post-search-song">
             <%= form_tag search_path, autocomplete: "off",method: :get, data: { search_target: 'form'} do %>
               <%= text_field_tag :query,
                                   params[:query],
@@ -17,42 +18,46 @@
                                   action: "keyup->search#update",
               }%>
             <% end %>
-              <div data-search-target="list">
-              </div>
+            <div data-search-target="list" style="position: absolute; bottom: 0;"></div>
           </div>
-          <div class="mt-2">
+          <div class="form-post-content mt-2">
             <%= simple_form_for @publication, remote: true,
-            html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}, :class => 'd-flex'},
+            html: {data: {feed_subscription_target: "form", action: "ajax:success->feed-subscription#reset"}},
             wrapper: :input_group do |f| %>
-              <div class="form-left">
                 <%= f.input :content, label: false, placeholder: "What's on your mind?" %>
                 <%= f.input :spotify_url, label: false, placeholder: "Spotify URL" %> <!--IMPORTANT-->
-              </div>
-              <div class="form-right ">
-                <%= f.submit "Submit", class: "btn yellow-button h-50"%>
-              </div>
+                <%= f.submit "Submit", class: "btn yellow-button-lg"%>
             <% end %>
           </div>
+        </div>
       </div>
+    </div>
   </div>
-</div>
 
 
-<div class="home-posts-cards mt-5" >
-  <div class="home-post-card" data-feed-subscription-target="connector">
+
+  <div class="home-posts-cards mt-5" >
+    <div class="home-post-card" data-feed-subscription-target="connector">
+
       <div class="container-message  <% if @publications.empty? %>d-none<% end %>" data-feed-subscription-target="messages">
         <% @publications.order(id: :desc).each do | publication | %>
           <%= render "publications/publication", publication: publication %>
         <% end %>
       </div>
       <br><br>
-      <div class="card-bg text-center <% if @publications.any? %>d-none<% end %>" data-feed-subscription-target="follow">
-        <h1>You don't have any publications yet</h1>
-        <br>
-        <div class="d-flex flex-column justify-content-center align-items-center">
-          <h2>Make your first post or   </h2>
-          <h2><%= link_to 'Follow someone', publications_path, class: 'yellow-button w-100' %></h2>
+      <div class='container-message w-100'>
+        <div class="card-bg text-center <% if @publications.any? %>d-none<% end %>" data-feed-subscription-target="follow">
+          <h1>You don't have any publications yet</h1>
+          <br>
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <h2>Make your first post or   </h2>
+            <h2 class='mt-3'><%= link_to 'Follow someone', publications_path, class: 'yellow-button-lg w-100' %></h2>
+          </div>
         </div>
       </div>
+
+    </div>
   </div>
+
+
 </div>

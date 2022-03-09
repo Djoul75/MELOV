@@ -1,7 +1,7 @@
 .container-login {
   width: 100vw;
   height: 100vh;
-  background-image: url('https://images.unsplash.com/photo-1620120966883-d977b57a96ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80');
+  background-image: linear-gradient(rgba(0,0,0,0.34),rgba(0,0,0,0.34)), url('https://images.unsplash.com/photo-1620120966883-d977b57a96ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80');
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -15,38 +15,38 @@
   justify-content: center;
   align-items: center;
   width: 50%;
-  background-color: rgba(68, 54, 67, 0.5);
+  background-color: rgba($pourpre, 0.6);
   border-radius: 20px;
   padding: 2vw;
+  backdrop-filter: blur(8px);
+  height: fit-content;
 
   h1 {
-    color: #F9B63A;
+    font-size: 5rem;
+    font-weight: 700;
   }
 
-  h4 {
-    width: 80%;
-    text-align: justify;
-
-    i {
-      color: #F9B63A;
-      font-weight: bold;
-    }
+  p {
+    width: 90%;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-left: 5%;
   }
 
   .btn-sign-in-spotify {
     text-decoration: none;
-    color: #20242C;
-    background: #F9B63A;
+    color: white;
+    background: $yellow;
     border-radius: 10px;
-    border: 2px solid #F9B63A;
+    border: 2px solid $yellow;
     font-weight: 700;
-    padding: 1vh 5vh;
+    padding: 2vh 5vh;
     font-size: x-large;
-
+    width: fit-content;
 
     &:hover {
       background: transparent;
-      color: #F9B63A;
+      color: $yellow;
     }
   }
 }
