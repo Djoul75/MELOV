@@ -3,7 +3,7 @@
   <br><br>
 
   <% if @playlists.any? %>
-    <% @playlists.each do |p| %>
+    <% @playlists.order(id: :desc).each do |p| %>
 
         <div class="card-bg col-md-12">
           <div class="post-card-music">
