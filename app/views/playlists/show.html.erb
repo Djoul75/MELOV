@@ -3,7 +3,7 @@
   <br><br>
 
   <h1><%= @playlist.name %></h1>
-  <p><%= pluralize @playlist.songs.count, 'Song' %></p>
+  <p><%= pluralize @playlist.songs.count, 'Track' %></p>
 
   <% @playlist.songs.each do |s| %>
     <div class="card-bg col-md-12">
