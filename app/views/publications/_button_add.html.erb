@@ -1,24 +1,2 @@
 <!-- Modal trigger -->
 <i class="col-md-1" data-bs-toggle="modal" data-bs-target="#addSong<%=track_id%>"><%= image_tag('addlist.png') %></i>
-<!-- Modal -->
-<div class="modal fade" id="addSong<%=track_id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add to a playlist</h5>
-      </div>
-      <div class="modal-body">
-        <ul>
-          <% current_user.playlists.each do |p| %>
-            <li>
-              <%= link_to p.name, playlist_playlist_songs_path(p.id, track_id: track_id), method: :post %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>

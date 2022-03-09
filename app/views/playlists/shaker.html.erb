@@ -37,7 +37,10 @@
         </div>
       </div>
     <% end %>
-
+    <% @playlist.songs.each do |s| %>
+      <%= render 'publications/modal_add', track_id: s.spotify_track_id %>
+      <%= render 'publications/modal_repost', track_id: s.spotify_track_id %>
+    <% end %>
   <% else %>
     <br><br>
     <div class="card-bg text-center mt-5">
