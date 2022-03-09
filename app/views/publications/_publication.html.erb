@@ -6,13 +6,14 @@
       <div class="card-avatar-nickname">
         <%= link_to user_path(publication.user) do %>
           <% if publication.user.photo.attached? %>
-            <%= cl_image_tag publication.user.photo.key, crop: :fill %>
+            <%= cl_image_tag publication.user.photo.key, crop: :thumb, gravity: :face, class: 'col-2 col-md-1' %>
           <% else %>
             <%= image_tag 'avatardefaut.jpg' %>
           <% end %>
           <h4><%= publication.user.nickname %></h4>
         <% end %>
       </div>
+
 
       <div
         class="card-play"
@@ -31,6 +32,25 @@
         <h2><%= publication.title %></h2>
         <h4><%= publication.artist %></h4>
         <p><%= "#{(publication.song_duration / 60_000) < 10 ? "0#{publication.song_duration / 60_000}" : publication.song_duration / 60_000}:#{(publication.song_duration / 1_000 % 60) < 10 ? "0#{publication.song_duration / 1_000 % 60}" : publication.song_duration / 1_000 % 60}"%></p>
+
+      <div class="post-card-interraction row col-sm-12 col-md-4">
+        <% if like = publication.like_for(current_user) %>
+          <%= link_to publication_like_path(publication.id, like.id), method: :delete do %>
+            <i class='fas fa-heart is-liked'></i>
+          <% end %>
+        <% else %>
+          <%= link_to publication_likes_path(publication.id), method: :post do %>
+            <i class='far fa-heart'></i>
+          <% end %>
+        <% end %>
+        <%= render 'publications/button_repost', track_id: publication.spotify_url %>
+        <%= render 'publications/button_add', track_id: publication.spotify_url %>
+        <% if publication.user_id == current_user.id %>
+            <%= link_to publication_path(publication.id), method: :delete do %>
+              <i class="fas fa-times col-md-1"></i>
+            <% end %>
+          <% end %>
+
       </div>
     </div>
 

@@ -30,7 +30,7 @@
               <div class="user-card">
                 <div class="user-card-avatar-nickname">
                     <% if u.photo.attached? %>
-                      <%= cl_image_tag u.photo.key, crop: :fill, class: 'avatar' %>
+                      <%= cl_image_tag u.photo.key, crop: :thumb, gravity: :face, class: 'avatar' %>
                     <% else %>
                       <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
                     <% end %>

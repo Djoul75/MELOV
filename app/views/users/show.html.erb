@@ -1,29 +1,36 @@
 <div class="container-right-part">
   <div class="row profil-top">
 
-    <div class="col-4">
-      <div class="profile-pic">
-        <% if @user.photo.key? %>
-          <%= cl_image_tag @user.photo.key, class: 'rounded-pp' %>
-        <% else %>
-          <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar", class: "rounded-pp")%>
-        <% end %>
-      </div>
+  <div class="col-4">
+    <div class="profile-pic">
+      <% if @user.photo.key? %>
+        <%= cl_image_tag @user.photo.key, crop: :thumb, gravity: :face, class: 'rounded-pp' %>
+      <% else %>
+        <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar", class: "rounded-pp")%>
+      <% end %>
     </div>
 
+  <div class="col-8">
+    <div class="user-info">
+      <div class="row" data-controller="follow-btn"
+                       data-follow-btn-user-id-value="<%= @user.id %>">
 
-    <div class="col-8">
-      <div class="user-info">
-        <div class="row" data-controller="follow-btn">
-          <h1><%= @user.nickname %></h1>
+        <h1><%= @user.nickname %></h1>
 
-          <p class="yellow-button <%= "d-none" unless @user.follower_ids.include?(current_user.id) %>" data-follow-btn-target="unfollowBtn" data-action="click->follow-btn#displayFollowBtn">Unfollow</p>
-          <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }", "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
+        <%= button_tag current_user.follow?(@user) ? 'Unsubscribe' : 'Subscribe', data: { follow_btn_target: 'btn', action: 'click->follow-btn#toggle' }, class: 'yellow-button' %>
 
-          <p><%= pluralize @user.followers.count, "Subscribers" %></p>
-          <p><%= pluralize @user.followings.count, "Subscribtions" %> </p>
-          <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Shaker" %> made</p>
+        <%#= link_to 'Subscribe', subscriptions_path(id: @user.id), method: :post,
+        class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }",
+        "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
+
+        <%#= link_to 'Unsubscribe', subscription_path(id: @user.id), method: :delete,
+        class: "yellow-button #{ 'd-none' unless @user.follower_ids.include?(current_user.id) || @user == current_user }",
+        "data-follow-btn-target" => "unfollowBtn", "data-action" =>"click->follow-btn#displayFollowBtn" %>
+        <div class="user-count" data-follow-btn-target="count">
+          <%= @user.followers.count %> Subscribers
         </div>
+        <p class="profile-count"><%= pluralize @user.followings.count, "Subscriptions" %></p>
+        <p class="profile-count"><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Shaker" %> made</p>
       </div>
     </div>
   </div>
