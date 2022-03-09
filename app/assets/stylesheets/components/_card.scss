@@ -270,6 +270,31 @@
   }
 }
 
+.post-card-interraction-song-shaker {
+  color: $yellow;
+  font-size: x-large;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10%;
+
+  img {
+    margin-right: 15%;
+    transition: ease 300ms;
+    color: #F9B63A;
+
+    &:hover {
+      cursor: pointer;
+      color: $yellow;
+      transform: scale(1.1);
+    }
+
+    &.is-liked {
+      color: #F9B63A;
+    }
+  }
+}
+
 .trash-picto {
   img {
     margin-right: 15%;
