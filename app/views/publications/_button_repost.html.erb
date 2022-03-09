@@ -1,25 +1,2 @@
 <!-- Modal trigger -->
 <i class="col-md-1" data-bs-toggle="modal" data-bs-target="#sharePost<%=track_id%>"><%= image_tag('share.png') %></i>
-<!-- Modal -->
-<% @publication = Publication.new %>
-<div class="modal fade" id="sharePost<%=track_id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Share</h5>
-      </div>
-      <div class="modal-body">
-      <% track = Song.find_by(spotify_track_id: track_id) %>
-        <%= simple_form_for @publication do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :content, as: :text, required: true %>
-          <%= f.hidden_field :spotify_url, value: track_id %>
-          <%= f.submit class: 'btn submit-button', name: 'share', value: 'Share' %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>

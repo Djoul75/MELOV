@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 # Please do not make direct changes to this file!
-# This generator is maintained by the community around simple_form-bootstrap:
-# https://github.com/heartcombo/simple_form-bootstrap
+# This generator is maintained by the community around -bootstrap:
+# https://github.com/heartcombo/-bootstrap
 # All future development, tests, and organization should happen there.
-# Background history: https://github.com/heartcombo/simple_form/issues/1561
+# Background history: https://github.com/heartcombo//issues/1561
 
 # Uncomment this and change the path if necessary to include your own
 # components.
-# See https://github.com/heartcombo/simple_form#custom-components
+# See https://github.com/heartcombo/#custom-components
 # to know more about custom components.
 Dir[Rails.root.join('lib/components/**/*.rb')].each { |f| require f }
 
@@ -22,6 +22,7 @@ SimpleForm.setup do |config|
 
   # How the label text should be generated altogether with the required text.
   config.label_text = lambda { |label, required, explicit_label| "#{label} #{required}" }
+  config.label_text = lambda { |label, required, explicit_label| "#{label}" } #Remove *
 
   # Define the way to render check boxes / radio buttons with labels.
   config.boolean_style = :inline
@@ -307,7 +308,7 @@ SimpleForm.setup do |config|
 
 
   # Input Group - custom component
-  # see example app and config at https://github.com/heartcombo/simple_form-bootstrap
+  # see example app and config at https://github.com/heartcombo/-bootstrap
   config.wrappers :input_group, class: 'mb-3' do |b|
     b.use :html5
     b.use :placeholder

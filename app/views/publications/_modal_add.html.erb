@@ -1,0 +1,20 @@
+<!-- Modal -->
+<div class="modal fade" id="addSong<%=track_id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content" style="height: fit-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add to a playlist</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <% current_user.playlists.each do |p| %>
+            <li>
+              <%= link_to p.name, playlist_playlist_songs_path(p.id, track_id: track_id), method: :post %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
