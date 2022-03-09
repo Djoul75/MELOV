@@ -22,6 +22,15 @@
 
 .card-cover {
   position: relative;
+  width: 40%;
+  img {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
+
+.card-cover-playlist {
+  position: relative;
   img {
     width: 100%;
     border-radius: 20px;
@@ -52,20 +61,37 @@
   }
 }
 
-.textbox {
+.textbox-title {
   position: relative;
-  width: 100%;
+  width: 87%;
   height: 40px;
   overflow-x: hidden;
 }
-.textbox h2 {
+.textbox-title h2 {
   position: absolute;
   left: 0px;
   margin: 0;
   transition: left 10s linear;
   inline-size: max-content;
 }
-.textbox:hover h2 {
+.textbox-title:hover h2 {
+  left: -300px;
+}
+
+.textbox-artist {
+  position: relative;
+  width: 87%;
+  height: 40px;
+  overflow-x: hidden;
+}
+.textbox-artist h4 {
+  position: absolute;
+  left: 0px;
+  margin: 0;
+  transition: left 10s linear;
+  inline-size: max-content;
+}
+.textbox-artist:hover h4 {
   left: -300px;
 }
 
@@ -183,7 +209,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 30%;
+  width: 40%;
 
   img {
     margin-right: 15%;
