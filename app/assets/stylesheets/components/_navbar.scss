@@ -1,0 +1,30 @@
+.dropdown-toggle::after {
+  display: none;
+}
+
+.navbar-home {
+  width: 100%;
+  position: fixed;
+  top: 5vh;
+  z-index: 10;
+  display: flex;
+  justify-content: end;
+}
+
+.fix-item-avatar {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($pourpre, 0.5);
+  padding: 1%;
+  border-radius: 20px;
+  margin-right: 5%;
+  backdrop-filter: blur(8px);
+}
+
+
+.home-welcome {
+  color: white;
+  margin: 0 2vh 0 0;
+}

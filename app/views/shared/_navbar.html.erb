@@ -1,4 +1,27 @@
 <div class="fix-items" data-turbolinks-permanent>
+  <div class="navbar-home">
+    <div class="fix-item-avatar">
+      <% if user_signed_in? %>
+        <h3 class='home-welcome'>Hello <%= current_user.nickname %> 👋</h3>
+        <div class="nav-item dropdown">
+          <div class="dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier">
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, crop: :fill, class: 'avatar-fix' %>
+            <% else %>
+              <%= image_tag 'avatardefaut.jpg', class: 'avatar-fix' %>
+            <% end %>
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to 'Profile', user_path(current_user.id), class: 'dropdown-item' %>
+            <%= link_to 'Edit Profil', edit_user_registration_path, class: 'dropdown-item' %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "nav-link nav-login login-button" %>
+      <% end %>
+    </div>
+  </div>
   <div class="sidebar">
     <div class="sidebar-content">
 
@@ -11,55 +34,34 @@
         <div class="sidebar-links">
           <div class='yellow-button'><%= link_to 'Playlists', playlists_path %></div>
           <div class='yellow-button'><%= link_to 'Discover', publications_path %></div>
-          <div class='yellow-button-shaker'> <%= image_tag('shaker.gif', size: "36x36", alt: "Shake it up")%> <%= link_to 'Shake It Up', adduser_path %> </div>
+          <div class='yellow-button-shaker'><%= link_to 'Shake It Up', adduser_path %> </div>
         </div>
       </div>
 
-      <% if user_signed_in? %>
-        <script src="https://sdk.scdn.co/spotify-player.js"></script>
-        <div class="sidebar-player">
-          <img class="player-cover" data-player-target='playerCoverImg' src="https://i.scdn.co/image/ab67616d0000b27324e55312fa159bd1a9957aab" alt="">
-          <div class="player-song-name" data-player-target='playerSongName'>En Lea</div>
-          <div class="player-artist" data-player-target='playerArtist'>Muddy Monk</div>
-          <div class="player-seekbar">
-            <input type="range" id="seekbar" data-player-target='seekbar' data-action='change->player#changeSeek'
-                  name="seekbar" min="0" max="" value="0" step="1">
-          </div>
-          <div class="player-controls">
-            <i data-player-target='previous' data-action='click->player#previous' class="far fa-arrow-alt-circle-left"></i>
-            <i data-player-target='play' data-action='click->player#play' class="far fa-play-circle"></i>
-            <i data-player-target='pause' data-action='click->player#play' class="far fa-pause-circle d-none"></i>
-            <i data-player-target='next' data-action='click->player#next' class="far fa-arrow-alt-circle-right"></i>
-          </div>
-          <div class='player-set-volume' data-action='change->player#changeVolume'>
-            <i class="fas fa-volume-down"></i>
-            <input type="range" id="volume" data-player-target='volume' name="volume"
-                  min="0" max="1" value="0.50" step="0.01">
-            <i class="fas fa-volume-up"></i>
-          </div>
+      <script src="https://sdk.scdn.co/spotify-player.js"></script>
+      <div class="sidebar-player">
+        <img class="player-cover" data-player-target='playerCoverImg' src="https://i.scdn.co/image/ab67616d0000b27324e55312fa159bd1a9957aab" alt="">
+        <div class="player-song-name" data-player-target='playerSongName'>En Lea</div>
+        <div class="player-artist" data-player-target='playerArtist'>Muddy Monk</div>
+        <div class="player-seekbar">
+          <div data-player-target='progress' class='progress-bar-yellow'></div>
+          <input type="range" id="seekbar" data-player-target='seekbar' data-action='change->player#changeSeek'
+              name="seekbar" min="0" max="231807" value="0" step="1">
         </div>
-      <% end %>
+        <div class="player-controls">
+          <i data-player-target='previous' data-action='click->player#previous' class="arrow-alt-circle-left"><%= image_tag('previous.png') %></i>
+          <i data-player-target='play' data-action='click->player#play' class="play-circle"><%= image_tag('play.png') %></i>
+          <i data-player-target='pause' data-action='click->player#play' class="pause-circle d-none"><%= image_tag('pause.png') %></i>
+          <i data-player-target='next' data-action='click->player#next' class="arrow-alt-circle-right"><%= image_tag('next.png') %></i>
+        </div>
+        <%# <div class='player-set-volume' data-action='change->player#changeVolume'>
+          <i class="fas fa-volume-down"></i>
+          <input type="range" id="volume" data-player-target='volume' name="volume"
+                min="0" max="1" value="0.50" step="0.01">
+          <i class="fas fa-volume-up"></i>
+        </div> %>
+      </div>
 
     </div>
-  </div>
-  <div class="fix-item-avatar">
-    <% if user_signed_in? %>
-      <div class="nav-item dropdown">
-        <div class="avatar-fix dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier">
-          <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, crop: :fill, class: 'avatar-fix' %>
-          <% else %>
-            <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
-          <% end %>
-        </div>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to 'Profile', user_path(current_user.id), class: 'dropdown-item' %>
-          <%= link_to 'Edit Profil', edit_user_registration_path, class: 'dropdown-item' %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-        </div>
-      </div>
-    <% else %>
-      <%= link_to "Login", new_user_session_path, class: "nav-link nav-login login-button" %>
-    <% end %>
   </div>
 </div>

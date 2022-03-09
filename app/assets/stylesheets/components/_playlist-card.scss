@@ -8,13 +8,6 @@
   }
 }
 
-.home-post-card {
-  display: flex;
-  // padding: 2vw;
-  // background-color: rgba(68, 54, 67, 0.5);
-  // border-radius: 20px;
-  // margin: 5vh 0;
-}
 
 .home-post-card-avatar-nickname {
   display: flex;
@@ -116,7 +109,7 @@
   display: flex;
   justify-content: space-between;
   padding: 1vw;
-  color: #F9B63A;
+  color: $yellow;
   font-size: x-large;
   width: fit-content;
 

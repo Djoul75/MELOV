@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "play", "next", "previous", "playerSongName", "playerArtist", 'playerCoverImg', 'volume', 'seekbar', 'pause' ]
+  static targets = [ "play", "next", "progress", "previous", "playerSongName", "playerArtist", 'playerCoverImg', 'volume', 'seekbar', 'pause' ]
   static values = { token: String, songId: String }
 
   connect() {
@@ -10,7 +10,7 @@ export default class extends Controller {
       this.player = new Spotify.Player({
           name: 'MELOV APP',
           getOAuthToken: cb => { cb(token); },
-          volume: 0.5
+          volume: 1
       });
 
       // Ready
@@ -31,18 +31,22 @@ export default class extends Controller {
         console.log('Position in Song', position);
         console.log('Duration of Song', duration);
 
+
         this.playerCoverImgTarget.src = current_track.album.images[0].url
         this.playerSongNameTarget.innerText = current_track.name
         this.playerArtistTarget.innerText = current_track.artists[0].name
 
         this.seekbarTarget.value = position
         this.seekbarTarget.max = duration
+        this.progressTarget.style.width = (position / duration) * 100 + '%'
 
         clearInterval(this.seekInterval)
 
         if (!paused) {
           this.seekInterval = setInterval(() => {
-            this.seekbarTarget.value = parseInt(this.seekbarTarget.value) + 100
+            const value = parseInt(this.seekbarTarget.value) + 100
+            this.seekbarTarget.value = value
+            this.progressTarget.style.width = (value / duration) * 100 + '%'
             console.log(this.seekbarTarget.value);
           }, 100);
           this.playTarget.classList.add('d-none')
@@ -114,6 +118,7 @@ export default class extends Controller {
     const newSeek = this.seekbarTarget.value
     this.player.seek(newSeek).then(() => {
       console.log('Changed position!');
+      this.progressTarget.style.width = (parseInt(this.seekbarTarget.value) / parseInt(this.seekbarTarget.max)) * 100 + '%'
     });
   }
 

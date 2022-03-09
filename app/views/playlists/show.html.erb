@@ -1,39 +1,41 @@
-<%= link_to 'Back', 'javascript:history.back()', class: 'yellow-button-lg' %>
-<br><br>
+<div class="container-right-part">
+  <%= link_to 'Back', 'javascript:history.back()', class: 'yellow-button-lg' %>
+  <br><br>
 
-<h1><%= "#{@playlist.name}"%></h1>
-<p><%= "#{@playlist.songs.count}"%> songs :</p>
+  <h1><%= "#{@playlist.name}"%></h1>
+  <p><%= "#{@playlist.songs.count}"%> songs :</p>
 
-<% @playlist.songs.each do |s| %>
-  <div class="card-bg col-md-12">
-    <div class="post-card-music">
-        <div class="card-content-song row col-sm-12 col-md-12">
-          <div class="card-cover col-sm-12 col-md-2 ">
-            <div
-            class="card-play-song"
-            data-action='click->player#sendtrack'
-            data-track-id='spotify:track:<%= s.spotify_track_id %>'
-          >
-            <i class="far fa-play-circle"></i>
+  <% @playlist.songs.each do |s| %>
+    <div class="card-bg col-md-12">
+      <div class="post-card-music">
+          <div class="card-content-song row col-sm-12 col-md-12">
+            <div class="card-cover col-sm-12 col-md-2 ">
+              <div
+              class="card-play-song"
+              data-action='click->player#sendtrack'
+              data-track-id='spotify:track:<%= s.spotify_track_id %>'
+            >
+              <i class="far fa-play-circle"></i>
+            </div>
+              <% if s.image_url %>
+                <%= image_tag(s.image_url) %>
+              <% else %>
+              <%= image_tag("avatardefaut.jpg") %>
+              <% end %>
+            </div>
+            <div class="card-title-artist col-sm-12 col-md-8 ">
+              <h2><%= s.title %></h2>
+              <p><%= s.artist %></p>
+            </div>
+            <div class="post-card-interraction row col-md-2">
+              <%= render 'publications/button_repost', track_id: s.spotify_track_id %>
+              <%= render 'publications/button_add', track_id: s.spotify_track_id %>
+              <%= link_to playlist_song_path(song_id: s.id), method: :delete do %>
+              <i class="fas fa-trash col-md-1" style="color:#F9B63A"></i>
+              <% end %>
+            </div>
           </div>
-            <% if s.image_url %>
-              <%= image_tag(s.image_url) %>
-            <% else %>
-            <%= image_tag("avatardefaut.jpg") %>
-            <% end %>
-          </div>
-          <div class="card-title-artist col-sm-12 col-md-8 ">
-            <h2><%= s.title %></h2>
-            <p><%= s.artist %></p>
-          </div>
-          <div class="post-card-interraction row col-md-2">
-            <%= render 'publications/button_repost', track_id: s.spotify_track_id %>
-            <%= render 'publications/button_add', track_id: s.spotify_track_id %>
-            <%= link_to playlist_song_path(song_id: s.id), method: :delete do %>
-            <i class="fas fa-trash col-md-1" style="color:#F9B63A"></i>
-            <% end %>
-          </div>
-        </div>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

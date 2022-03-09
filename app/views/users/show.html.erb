@@ -1,26 +1,29 @@
-<div class="row">
+<div class="container-right-part">
+  <div class="row profil-top">
 
-  <div class="col-4">
-    <div class="profile-pic">
-      <% if @user.photo.key? %>
-        <%= cl_image_tag @user.photo.key, class: 'rounded-pp' %>
-      <% else %>
-        <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar", class: "rounded-pp")%>
-      <% end %>
+    <div class="col-4">
+      <div class="profile-pic">
+        <% if @user.photo.key? %>
+          <%= cl_image_tag @user.photo.key, class: 'rounded-pp' %>
+        <% else %>
+          <%= image_tag("avatardefaut.jpg", size: "200x200", alt: "avatar", class: "rounded-pp")%>
+        <% end %>
+      </div>
     </div>
-  </div>
 
-  <div class="col-8">
-    <div class="user-info">
-      <div class="row" data-controller="follow-btn">
-        <h1><%= @user.nickname %></h1>
 
-        <p class="yellow-button <%= "d-none" unless @user.follower_ids.include?(current_user.id) %>" data-follow-btn-target="unfollowBtn" data-action="click->follow-btn#displayFollowBtn">Unfollow</p>
-        <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }", "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
+    <div class="col-8">
+      <div class="user-info">
+        <div class="row" data-controller="follow-btn">
+          <h1><%= @user.nickname %></h1>
 
-        <p><%= pluralize @user.followers.count, "Subscribers" %></p>
-        <p><%= pluralize @user.followings.count, "Subscribtions" %> </p>
-        <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Shaker" %> made</p>
+          <p class="yellow-button <%= "d-none" unless @user.follower_ids.include?(current_user.id) %>" data-follow-btn-target="unfollowBtn" data-action="click->follow-btn#displayFollowBtn">Unfollow</p>
+          <%= link_to 'Follow', subscriptions_path(id: @user.id), method: :post, class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }", "data-follow-btn-target" => "followBtn", "data-action" =>"click->follow-btn#displayUnfollowBtn" %>
+
+          <p><%= pluralize @user.followers.count, "Subscribers" %></p>
+          <p><%= pluralize @user.followings.count, "Subscribtions" %> </p>
+          <p><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Shaker" %> made</p>
+        </div>
       </div>
     </div>
   </div>
@@ -90,3 +93,4 @@
       </div>
     <% end %>
   <% end %>
+</div>
