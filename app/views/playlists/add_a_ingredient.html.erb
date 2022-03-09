@@ -1,9 +1,4 @@
 <div class="container-right-part">
-  <ul>
-    <% @ingredients.first(10).each do |genre| %>
-      <li><%= genre %></li>
-    <% end %>
-  </ul>
 
 
   <div class="card-bg">
@@ -11,18 +6,19 @@
       <h2>Add some ingredients to your shaker</h2>
       <div class="forms-style">
         <div class="submit-form">
-          <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-post-search' do %>
+          <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-ingredient' do %>
+            <div class="ingredients">
               <% @ingredients.first(10).each do |genre| %>
-                <label>
+                <label class='ingredient'>
                   <%= check_box_tag 'ingredients[]',
                                     genre,
-                                    class: "form-control",
-                                    checked: 'false'
+                                    class: "form-control"
                   %>
-                  <%= genre %>
+                  <%= genre.capitalize %>
                 </label>
               <% end %>
-              <%= submit_tag "Search", class: "btn yellow-button" %>
+              <%= submit_tag "Add your ingredients", class: "btn yellow-button-lg" %>
+            </div>
           <% end %>
         </div>
       </div>

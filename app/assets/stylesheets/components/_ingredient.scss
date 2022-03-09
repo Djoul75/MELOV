@@ -1,0 +1,26 @@
+.container-form-ingredient {
+  width: 100%;
+}
+
+.ingredients {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  width: 100%;
+}
+
+.ingredient {
+  background-color: rgba($color: white, $alpha: 0.1);
+  // font-size: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5% 0;
+
+  &:hover {
+    background-color: rgba($color: white, $alpha: 0.05);
+  }
+
+  input {
+    // visibility: hidden;
+  }
+}
