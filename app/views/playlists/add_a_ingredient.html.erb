@@ -3,8 +3,10 @@
 
   <div class="card-bg">
     <div class="form-home">
-      <h2>What's in your shaker?</h2>
+      <h2>Here's your common tastes</h2>
+
       <div class="forms-style">
+      <p>Please choose some style from your common tastes, to create your shaker:</p>
         <div class="submit-form">
           <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-ingredient' do %>
             <div class="ingredients">
@@ -18,7 +20,7 @@
                   <div class="label-ingredient"><%= genre.capitalize %></div>
                 </label>
               <% end %>
-              <%= submit_tag "Add your ingredients", class: "btn yellow-button-lg mt-3" %>
+              <%= submit_tag "Shake it up!", class: "btn yellow-button-lg mt-3" %>
             </div>
           <% end %>
         </div>
