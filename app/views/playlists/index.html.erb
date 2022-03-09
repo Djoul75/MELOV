@@ -15,7 +15,7 @@
                   <%= image_tag("avatardefaut.jpg") %>
                 <% end %>
               </div>
-              <div class="card-title-artist col-sm-12 col-md-7">
+              <div class="card-title-artist col-sm-12 col-md-5">
                 <%= link_to playlist_path(p) do %>
                   <h2><%= p.name %></h2>
                   <p>
@@ -24,14 +24,16 @@
                 <% end %>
               </div>
               <div
-                class="card-play col-sm-12 col-md-1"
+                class="card-play-playlist col-sm-12 col-md-1"
                 data-action='click->player#sendplaylist'
                 data-playlist-id='spotify:playlist:<%= p.spotify_id %>'
                 data-track-id='spotify:track<%= p.songs.first&.spotify_track_id %>'
               >
-                <i class="far fa-play-circle"></i>
+                <i class="play-circle"><%= image_tag('play.png') %></i>
+              </div>
+              <div class="trash-picto d-flex justify-content-center align-items-center col-md-1">
                 <%= link_to playlist_path(p.id), method: :delete do %>
-                  <i class="fas fa-times col-md-1"></i>
+                  <i class="align-middle"><%= image_tag('trash.png') %></i>
                 <% end %>
               </div>
             </div>

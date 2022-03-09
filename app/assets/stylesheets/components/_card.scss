@@ -130,6 +130,23 @@
   }
 }
 
+.card-play-playlist {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    transition: ease 300ms;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}
+
 
 .card-play-song {
   position: absolute;
@@ -211,6 +228,49 @@
   align-items: center;
   width: 40%;
 
+  img {
+    margin-right: 15%;
+    transition: ease 300ms;
+    color: #F9B63A;
+
+    &:hover {
+      cursor: pointer;
+      color: $yellow;
+      transform: scale(1.1);
+    }
+
+    &.is-liked {
+      color: #F9B63A;
+    }
+  }
+}
+
+.post-card-interraction-song {
+  color: $yellow;
+  font-size: x-large;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 16%;
+
+  img {
+    margin-right: 15%;
+    transition: ease 300ms;
+    color: #F9B63A;
+
+    &:hover {
+      cursor: pointer;
+      color: $yellow;
+      transform: scale(1.1);
+    }
+
+    &.is-liked {
+      color: #F9B63A;
+    }
+  }
+}
+
+.trash-picto {
   img {
     margin-right: 15%;
     transition: ease 300ms;
