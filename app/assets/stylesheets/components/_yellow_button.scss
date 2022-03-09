@@ -31,6 +31,25 @@
   }
 }
 
+.yellow-button-lg {
+
+  text-decoration: none;
+  color: white;
+  background: $yellow;
+  border-radius: 10px;
+  border: 2px solid $yellow;
+  font-weight: 700;
+  padding: 1vh 5vh;
+  transition: ease 300ms;
+  height: 5vh;
+  width: 50%;
+
+  &:hover {
+    background: transparent;
+    color: $yellow;
+  }
+}
+
 input.yellow-button-lg {
 
   text-decoration: none;
@@ -41,6 +60,27 @@ input.yellow-button-lg {
   font-weight: 700;
   padding: 1vh 5vh;
   transition: ease 300ms;
+  height: 5vh;
+  width: 50%;
+
+  &:hover {
+    background: transparent;
+    color: $yellow;
+  }
+}
+
+input.yellow-button-lg-shaker {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+  background: $yellow;
+  border-radius: 10px;
+  border: 2px solid $yellow;
+  font-weight: 700;
+  padding: 1vh 5vh;
+  transition: ease 300ms;
+  height: 8vh;
+  width: 205%;
 
   &:hover {
     background: transparent;
