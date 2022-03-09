@@ -24,15 +24,17 @@
       </div>
     </div>
 
-    <div class="card-content-song row col-sm-12 col-md-12">
+    <div class="card-content-song d-flex">
       <div class="card-cover col-sm-12 col-md-3 ">
         <%= image_tag(publication.cover_url) %>
       </div>
       <div class="card-title-artist col-sm-12 col-md-8 ">
-        <div class="textbox">
+        <div class="textbox-title">
           <h2><%= publication.title %></h2>
         </div>
-        <h4><%= publication.artist %></h4>
+        <div class="textbox-artist">
+          <h4><%= publication.artist %></h4>
+        </div>
         <p><%= "#{(publication.song_duration / 60_000) < 10 ? "0#{publication.song_duration / 60_000}" : publication.song_duration / 60_000}:#{(publication.song_duration / 1_000 % 60) < 10 ? "0#{publication.song_duration / 1_000 % 60}" : publication.song_duration / 1_000 % 60}"%></p>
       </div>
     </div>

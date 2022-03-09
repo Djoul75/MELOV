@@ -64,7 +64,7 @@
     <% else %>
       <% if !@user.follower_ids.include?(current_user.id) && params[:id].to_i == current_user.id %>
         <br><br>
-        <div class="card-bg text-center mt-5">
+        <div class="card-bg text-center mt-5 w-50">
           <h1>You haven't imported any playlists yet</h1>
           <div class="d-flex flex-column justify-content-center align-items-center">
             <h2><%= link_to 'Import your playlists', playlists_path, class: 'yellow-button w-100' %></h2>
@@ -72,7 +72,7 @@
         </div>
       <% else %>
         <br><br>
-        <div class="card-bg text-center mt-5">
+        <div class="card-bg text-center mt-5 w-50">
           <h1>This user hasn't imported <br> any playlists yet</h1>
         </div>
       <% end %>
@@ -83,24 +83,19 @@
   <div class="home-posts-cards mt-5" >
     <h2>Publications</h2>
     <div class="home-post-card mt-3" data-feed-subscription-target="connector">
-
-      <div class="container-message  <% if @user.publications.empty? %>d-none<% end %>" data-feed-subscription-target="messages">
+    <% unless @user.publications.empty? %>
+      <div class="container-message" data-feed-subscription-target="messages">
         <% @user.publications.order(id: :desc).each do | publication | %>
           <%= render "publications/publication", publication: publication %>
         <% end %>
       </div>
 
       <br><br>
-
+    <% else %>
       <div class='container-message w-100'>
         <% if !@user.follower_ids.include?(current_user.id) && params[:id].to_i == current_user.id %>
           <div class="card-bg text-center">
             <h1>You don't have any publications yet</h1>
-            <br>
-            <div class="d-flex flex-column justify-content-center align-items-center">
-              <h2>Make your first post or   </h2>
-              <h2><%= link_to 'Follow someone', publications_path, class: 'yellow-button w-100' %></h2>
-            </div>
           </div>
         <% else %>
             <div class="card-bg text-center">
@@ -108,7 +103,7 @@
             </div>
         <% end %>
       </div>
-
+    <% end %>
     </div>
   </div>
 </div>
