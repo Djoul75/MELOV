@@ -3,14 +3,14 @@
   <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
     <div class="card-bg">
       <div class="form-home">
-        <h2>Find someone to follow</h2>
+        <h2>Find a buddy to follow</h2>
         <div class="forms-style">
           <div class="submit-form">
             <%= form_tag lookforuser_path, method: :get, autocomplete: "off", :class => 'container-form-post container-form-post-search' do %>
                 <%= text_field_tag :query,
                                     params[:query],
                                     class: "form-control",
-                                    placeholder: "Look for a buddy"
+                                    placeholder: "Find a buddy"
                 %>
                 <%= submit_tag "Search", class: "btn yellow-button-lg mt-3" %>
             <% end %>
@@ -27,8 +27,7 @@
         <li><%= u.nickname %> <%= link_to 'See profile', user_path(u.id)%></li>
       <% end %>
     <% end %>
-
-    <h1>Social Feed</h1>
+    <h1>Posts you may like</h1>
     <% if @publications.any? %>
       <div class="container-message" data-feed-subscription-target="messages">
         <% @publications.each do | publication | %>

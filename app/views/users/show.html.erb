@@ -32,7 +32,7 @@
           <%= @user.followers.count %> Subscribers
         </div>
           <p class="profile-count"><%= pluralize @user.followings.count, "Subscription" %></p>
-          <p class="profile-count"><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Created shaker" %></p>
+          <p class="profile-count"><%= pluralize @user.playlists.where(user: @user.id, shaker: true).count, "Shaker" %></p>
       </div>
     </div>
   </div>

@@ -16,10 +16,6 @@
       </div>
     </div>
   </div>
-
-
-
-
   <% if params[:query].present? %>
     <% match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") %>
     <% if match_users.any? %>
