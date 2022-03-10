@@ -3,12 +3,13 @@
 
   <div class="card-bg">
     <div class="form-home">
-      <h2>Here are some music tastes in common</h2>
+      <h2>Here are your common music tastes</h2>
 
       <div class="forms-style">
-      <p>Choose genres to add to your shaker</p>
+      <p>Select genres to add to your shaker</p>
         <div class="submit-form">
-          <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-ingredient' do %>
+          <%= form_tag shaker_path(user_id: params[:user_id]),
+           method: :post, autocomplete: "off", :class => 'container-form-ingredient' do %>
             <div class="ingredients">
               <% @ingredients.first(10).each do |genre| %>
                 <label class='ingredient'>
@@ -21,7 +22,8 @@
                 </label>
               <% end %>
               <%#= submit_tag "SHAKE IT UP", class: "btn yellow-button-lg-shaker mt-3" %>
-              <%= button_tag "SHAKE IT UP", class: "yellow-button-lg-shaker", 'data-disable-with' => "<i class='fas fa-compact-disc fa-spin'></i> Mixin' it up...".html_safe %>
+              <%= button_tag "SHAKE IT UP", class: "yellow-button-lg-shaker",
+               'data-disable-with' => "<i class='fas fa-compact-disc fa-spin'></i> Mixin' it up...".html_safe %>
             </div>
           <% end %>
         </div>
