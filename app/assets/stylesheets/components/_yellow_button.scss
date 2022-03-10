@@ -1,12 +1,10 @@
 .yellow-button {
   color: white;
-  background: $yellow;
-  border-radius: 10px;
-  border: 2px solid $yellow;
+  background: transparent;
+  border-bottom: 2px solid transparent;
   font-weight: 700;
   display: flex;
-  justify-content: center;
-  width: 170px;
+  width: 100%;
   margin: 6px;
   text-decoration: none;
 
@@ -17,11 +15,48 @@
     transition: ease 300ms;
     min-width: 100%;
     min-height: 100%;
+
+    &:hover {
+      color: white;
+      border-bottom: 2px solid white;
+    }
+  }
+
+  &:hover {
+    background: transparent;
+    color: $yellow;
+  }
+}
+
+.yellow-button-import {
+  color: $yellow;
+  background: transparent;
+  border-radius: 10px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  width: 120%;
+  margin: 6px;
+  text-decoration: none;
+  border: 2px solid transparent;
+
+  &:hover {
+    color: $yellow;
+    border: 2px solid $yellow;
+  }
+
+  a {
+    text-decoration: none;
+    color: $yellow;
+    padding: 6px;
+    transition: ease 300ms;
+    min-width: 100%;
+    min-height: 100%;
     text-align: center;
 
     &:hover {
-      background: transparent;
       color: $yellow;
+      border: 2px solid $yellow;
     }
   }
 
@@ -60,7 +95,7 @@ input.yellow-button-lg {
   font-weight: 700;
   padding: 1vh 5vh;
   transition: ease 300ms;
-  height: 5vh;
+  height: fit-content;
   width: 50%;
 
   &:hover {
@@ -90,12 +125,12 @@ input.yellow-button-lg-shaker {
 
 .yellow-button-shaker {
   color: white;
-  background: $yellow;
-  border-radius: 10px;
-  border: 2px solid $yellow;
+  background: transparent;
+  border-radius: 5px;
+  border: 2px solid white;
   font-weight: 700;
   display: flex;
-  width: 170px;
+  width: 100%;
   margin: 6px;
   text-decoration: none;
 

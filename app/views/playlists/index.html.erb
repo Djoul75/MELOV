@@ -7,7 +7,7 @@
 
         <div class="card-bg col-md-12">
           <div class="post-card-music">
-            <div class="card-content-song row col-sm-12 col-md-12">
+            <div class="card-content-song d-flex justify-content-between">
               <div class="card-cover-playlist col-sm-12 col-md-3">
                 <% if p.image_url %>
                   <%= image_tag(p.image_url) %>
@@ -24,16 +24,16 @@
                 <% end %>
               </div>
               <div
-                class="card-play-playlist col-sm-12 col-md-1"
+                class="card-lecture-playlist col-sm-12 col-md-1"
                 data-action='click->player#sendplaylist'
                 data-playlist-id='spotify:playlist:<%= p.spotify_id %>'
                 data-track-id='spotify:track<%= p.songs.first&.spotify_track_id %>'
               >
                 <i class="play-circle"><%= image_tag('play.png') %></i>
               </div>
-              <div class="trash-picto d-flex justify-content-center align-items-center col-md-1">
+              <div class="trash-picto d-flex justify-content-center">
                 <%= link_to playlist_path(p.id), method: :delete do %>
-                  <i class="align-middle"><%= image_tag('trash.png') %></i>
+                  <i class="align-middle">x</i>
                 <% end %>
               </div>
             </div>
