@@ -1,22 +1,25 @@
 
 <div class="container-right-part">
+  <br>
   <% if params[:query].present? %>
     <h1 class="page-header">User matching with "<%= params[:query] %>"</h1>
-    <% @match_users.each do |u| %>
-      <div class="user-card-link">
-        <%= link_to user_path(u) do %>
-          <div class="user-card">
-            <div class="user-card-avatar-nickname">
-                <% if u.photo.attached? %>
-                  <%= cl_image_tag u.photo.key, crop: :fill, class: 'avatar' %>
-                <% else %>
-                  <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
-                <% end %>
-                <h4><%= u.nickname %></h4>
+    <div class="grid-user-cards">
+      <% @match_users.each do |u| %>
+        <div class="user-card-link">
+          <%= link_to user_path(u) do %>
+            <div class="user-card">
+              <div class="user-card-avatar-nickname">
+                  <% if u.photo.attached? %>
+                    <%= cl_image_tag u.photo.key, crop: :fill, class: 'avatar' %>
+                  <% else %>
+                    <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+                  <% end %>
+                  <h4><%= u.nickname %></h4>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
