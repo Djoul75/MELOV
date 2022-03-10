@@ -16,10 +16,28 @@
       </div>
     </div>
   </div>
-
-  <br><br>
-
-
+  <div>
+    <% if !params[:query].present? %>
+      <div class="card-bg-shaker-explain text-center mt-3">
+        <% current_user.followings.each do |u| %>
+          <div class="user-card-link">
+            <%= link_to addingredient_path(user_id: u.id) do %>
+              <div class="user-card">
+                <div class="user-card-avatar-nickname">
+                    <% if u.photo.attached? %>
+                      <%= cl_image_tag u.photo.key, crop: :thumb, gravity: :face, class: 'avatar' %>
+                    <% else %>
+                      <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+                    <% end %>
+                    <h4><%= u.nickname %></h4>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   <% if params[:query].present? %>
     <% match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") %>
       <% if match_users.any? %>
@@ -47,23 +65,6 @@
         <%= image_tag("https://media2.giphy.com/media/6uGhT1O4sxpi8/giphy.gif?cid=790b76118ac4b8f57d227e7de0ea0db2bfdce9e521004ef7&rid=giphy.gif&ct=g", class:"rounded-3") %>
       </div>
       <% end %>
-    <% end %>
-  <br><br>
-  <div class="card-bg-shaker-explain text-center mt-3">
-    <% current_user.followings.each do |u| %>
-      <div class="user-card-link">
-        <%= link_to addingredient_path(user_id: u.id) do %>
-          <div class="user-card">
-            <div class="user-card-avatar-nickname">
-                <% if u.photo.attached? %>
-                  <%= cl_image_tag u.photo.key, crop: :thumb, gravity: :face, class: 'avatar' %>
-                <% else %>
-                  <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
-                <% end %>
-                <h4><%= u.nickname %></h4>
-            </div>
-          </div>
-        <% end %>
     <% end %>
   </div>
 </div>
