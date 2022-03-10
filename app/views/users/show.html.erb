@@ -19,7 +19,7 @@
         <h1><%= @user.nickname %></h1>
 
         <% if params[:id].to_i != current_user.id %>
-          <%= button_tag current_user.follow?(@user) ? 'Unsubscribe' : 'Subscribe', data: { follow_btn_target: 'btn', action: 'click->follow-btn#toggle' }, class: 'yellow-button' %>
+          <%= button_tag current_user.follow?(@user) ? 'Unsubscribe' : 'Subscribe', data: { follow_btn_target: 'btn', action: 'click->follow-btn#toggle' }, class: 'subscribe-btn' %>
         <% end %>
         <%#= link_to 'Subscribe', subscriptions_path(id: @user.id), method: :post,
         class: "yellow-button #{ 'd-none' if @user.follower_ids.include?(current_user.id) || @user == current_user }",

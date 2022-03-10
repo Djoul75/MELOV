@@ -193,3 +193,35 @@ button.yellow-button-lg-shaker {
     }
   }
 }
+
+.subscribe-btn {
+  color: white;
+  background: transparent;
+  // font-weight: 400;
+  // display: flex;
+  width: 25%;
+  margin: 8px;
+  // text-decoration: none;
+  border-radius: 20px;
+  border-color: white;
+
+  a {
+    text-decoration: none;
+    color: white;
+    padding: 3px;
+    transition: ease 300ms;
+    min-width: 100%;
+    min-height: 100%;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      color: white;
+      border-bottom: 2px solid white;
+    }
+  }
+
+  &:hover {
+    background: transparent;
+    color: $yellow;
+  }
+}
