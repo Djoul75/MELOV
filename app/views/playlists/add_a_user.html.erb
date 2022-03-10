@@ -48,7 +48,6 @@
   <% else %>
     <div class="grid-user-cards">
       <% current_user.followings.each do |u| %>
-        <div class="user-card-link">
           <%= link_to addingredient_path(user_id: u.id) do %>
             <div class="user-card">
               <div class="user-card-avatar-nickname">
