@@ -16,32 +16,11 @@
       </div>
     </div>
   </div>
-  <div>
-    <% if !params[:query].present? %>
-      <div class="card-bg-shaker-explain text-center mt-3">
-        <% current_user.followings.each do |u| %>
-          <div class="user-card-link">
-            <%= link_to addingredient_path(user_id: u.id) do %>
-              <div class="user-card">
-                <div class="user-card-avatar-nickname">
-                    <% if u.photo.attached? %>
-                      <%= cl_image_tag u.photo.key, crop: :thumb, gravity: :face, class: 'avatar' %>
-                    <% else %>
-                      <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
-                    <% end %>
-                    <h4><%= u.nickname %></h4>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
   <% if params[:query].present? %>
     <% match_users = @users.where("email ILIKE ? OR nickname ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") %>
-      <% if match_users.any? %>
-        <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
+    <% if match_users.any? %>
+      <h2 class="page-header">Buddy matching with "<%= params[:query] %>"</h2>
+      <div class="grid-user-cards">
         <% match_users.each do |u| %>
           <div class="user-card-link">
             <%= link_to addingredient_path(user_id: u.id) do %>
@@ -58,13 +37,31 @@
             <% end %>
           </div>
         <% end %>
-      <% else %>
+      </div>
+    <% else %>
       <div class="card-bg text-center mt-5">
         <h1>We couldn't find anyone with <br> this nickname or email</h1>
         <br>
         <%= image_tag("https://media2.giphy.com/media/6uGhT1O4sxpi8/giphy.gif?cid=790b76118ac4b8f57d227e7de0ea0db2bfdce9e521004ef7&rid=giphy.gif&ct=g", class:"rounded-3") %>
       </div>
-      <% end %>
     <% end %>
-  </div>
+  <% else %>
+    <div class="grid-user-cards">
+      <% current_user.followings.each do |u| %>
+        <div class="user-card-link">
+          <%= link_to addingredient_path(user_id: u.id) do %>
+            <div class="user-card">
+              <div class="user-card-avatar-nickname">
+                  <% if u.photo.attached? %>
+                    <%= cl_image_tag u.photo.key, crop: :thumb, gravity: :face, class: 'avatar' %>
+                  <% else %>
+                    <%= image_tag 'avatardefaut.jpg', class: 'avatar' %>
+                  <% end %>
+                  <h4><%= u.nickname %></h4>
+              </div>
+            </div>
+          <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
