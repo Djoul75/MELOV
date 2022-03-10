@@ -125,7 +125,7 @@ class PlaylistsController < ApplicationController
 
 
     songs_in_common.select! do |song|
-      (song.genres & params[:ingredients]).any?
+      (song.genres & params[:ingredients].to_a).any?
     end
 
     songs_in_common.uniq!
