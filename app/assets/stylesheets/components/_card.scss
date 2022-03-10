@@ -64,7 +64,7 @@
 
 .textbox-title {
   position: relative;
-  width: 87%;
+  width: 130%;
   height: 40px;
   overflow-x: hidden;
 }
@@ -81,7 +81,7 @@
 
 .textbox-artist {
   position: relative;
-  width: 87%;
+  width: 130%;
   height: 40px;
   overflow-x: hidden;
 }
@@ -132,6 +132,23 @@
 }
 
 .card-play-playlist {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  img {
+    width: 75%;
+    transition: ease 300ms;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.card-lecture-playlist {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -225,12 +242,11 @@
   color: $yellow;
   font-size: x-large;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: fit-content;
 
   img {
-    margin-right: 15%;
+    margin-right: 1vh;
     transition: ease 300ms;
     color: #F9B63A;
 
@@ -250,12 +266,11 @@
   color: $yellow;
   font-size: x-large;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 16%;
+  width: fit-content;
 
   img {
-    margin-right: 15%;
+    margin-right: 1vh;
     transition: ease 300ms;
     color: #F9B63A;
 
