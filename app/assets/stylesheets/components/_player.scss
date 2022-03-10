@@ -1,5 +1,5 @@
 .player-cover {
-  width: auto;
+  width: 70%;
   max-height: 60%;
   border-radius: 20px;
 }
@@ -8,6 +8,7 @@
   margin-top: 2vh;
   text-align: center;
   font-size: 20px;
+  line-height: 1;
 }
 
 .player-artist {
@@ -15,6 +16,7 @@
   text-align: center;
   color: grey;
   font-size: 1rem;
+  line-height: 1;
 }
 
 .player-seekbar {
@@ -68,7 +70,8 @@
     justify-content: center;
 
     img {
-      width: 45%;
+      max-width: 50%;
+      flex-grow: 1;
     }
 
     &:hover {
@@ -222,4 +225,27 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #6B242D;
+}
+
+.textbox-title-player {
+  position: relative;
+  width: 70%;
+  height: fit-content;
+  // overflow-x: hidden;
+}
+.textbox-title-player h2 {
+  position: absolute;
+  left: 0px;
+  margin: 0;
+  inline-size: max-content;
+  // animation: scroll-left 6s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+      transform: translateX(150%);
+  }
+  100% {
+      transform: translateX(-150%);
+  }
 }
