@@ -3,11 +3,11 @@
   height: 6vh;
   object-fit: cover;
   border-radius: 50%;
-  transition: ease 300ms;
 
   &:hover {
     cursor: pointer;
-    border: 5px solid $yellow;
+    border: 3px solid $yellow;
+    transform: scale(1.2);
   }
 }
 

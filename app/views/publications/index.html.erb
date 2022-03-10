@@ -3,14 +3,14 @@
   <div data-controller="feed-subscription" data-feed-subscription-feed-id-value="<%= current_user.id %>">
     <div class="card-bg">
       <div class="form-home">
-        <h2>Find someone to follow</h2>
+        <h2>Find a buddy to follow</h2>
         <div class="forms-style">
           <div class="submit-form">
             <%= form_tag lookforuser_path, method: :get, autocomplete: "off", :class => 'container-form-post container-form-post-search' do %>
                 <%= text_field_tag :query,
                                     params[:query],
                                     class: "form-control",
-                                    placeholder: "Look for a buddy"
+                                    placeholder: "Find a buddy"
                 %>
                 <%= submit_tag "Search", class: "btn yellow-button-lg mt-3" %>
             <% end %>
@@ -19,17 +19,15 @@
       </div>
     </div>
 
-  <br><br>
+    <br>
 
-
-  <% if params[:query].present? %>
-    <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
-    <% @match_users.each do |u| %>
-      <li><%= u.nickname %> <%= link_to 'See profile', user_path(u.id)%></li>
+    <% if params[:query].present? %>
+      <h1 class="page-header">Buddy matching with "<%= params[:query] %>"</h1>
+      <% @match_users.each do |u| %>
+        <li><%= u.nickname %> <%= link_to 'See profile', user_path(u.id)%></li>
+      <% end %>
     <% end %>
-  <% end %>
-
-  <h1>Social Feed</h1>
+    <h1>Posts you may like</h1>
     <% if @publications.any? %>
       <div class="container-message" data-feed-subscription-target="messages">
         <% @publications.each do | publication | %>
@@ -37,11 +35,8 @@
         <% end %>
       </div>
     <% else %>
-      <br><br>
       <div class="card-bg text-center mt-5">
-        <h1>Sorry, you don't have anyone to discover</h1>
-        <br>
-        <%= image_tag("https://media2.giphy.com/media/bTzFnjHPuVvva/giphy.gif?cid=ecf05e47qzw6bii03ai835ydr7juns1zwbtpathgd21agjv2&rid=giphy.gif&ct=g", class:"rounded-3") %>
+        <h1>Looks like you know everyone!</h1>
       </div>
     <% end %>
 

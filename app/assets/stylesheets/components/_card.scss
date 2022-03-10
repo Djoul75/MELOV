@@ -7,7 +7,6 @@
   backdrop-filter: blur(8px);
 }
 
-
 .card-bg-shaker-explain h3 {
   line-height: 1.2em;
   word-spacing: 0.1em;
@@ -327,4 +326,11 @@
       color: #F9B63A;
     }
   }
+}
+
+
+.grid-user-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
 }

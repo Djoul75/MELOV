@@ -1,11 +1,10 @@
 .yellow-button {
   color: white;
   background: transparent;
-  border-bottom: 2px solid transparent;
-  font-weight: 700;
+  font-weight: 400;
   display: flex;
   width: 100%;
-  margin: 6px;
+  // margin: 6px;
   text-decoration: none;
 
   a {
@@ -15,6 +14,7 @@
     transition: ease 300ms;
     min-width: 100%;
     min-height: 100%;
+    border-bottom: 2px solid transparent;
 
     &:hover {
       color: white;
@@ -29,40 +29,38 @@
 }
 
 .yellow-button-import {
-  color: $yellow;
+  color: white;
   background: transparent;
-  border-radius: 10px;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  width: 120%;
-  margin: 6px;
+  font-weight: 400;
+  width: fit-content;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: ease 300ms;
+  padding: 0;
+  border-radius: 0;
   text-decoration: none;
-  border: 2px solid transparent;
 
   &:hover {
-    color: $yellow;
-    border: 2px solid $yellow;
+    color: white;
+    border-bottom: 2px solid white;
   }
 
   a {
     text-decoration: none;
-    color: $yellow;
-    padding: 6px;
+    color: white;
     transition: ease 300ms;
-    min-width: 100%;
-    min-height: 100%;
-    text-align: center;
+    padding: 0;
+    border-radius: 0;
 
     &:hover {
-      color: $yellow;
-      border: 2px solid $yellow;
+      color: white;
+      border: 2px solid white;
     }
   }
 
   &:hover {
     background: transparent;
-    color: $yellow;
+    color: white;
   }
 }
 
@@ -156,13 +154,12 @@ button.yellow-button-lg-shaker {
   font-weight: 700;
   display: flex;
   width: 100%;
-  margin: 6px;
+  margin: 15px 0 0 0;
   text-decoration: none;
 
   image {
     margin: 7px
   }
-
 
   a {
     text-decoration: none;
@@ -173,15 +170,26 @@ button.yellow-button-lg-shaker {
     min-height: 100%;
     text-align: center;
 
+
     &:hover {
       background: transparent;
-      color: $yellow;
-    }
-  }
+      color: white;
+      animation-iteration-count: infinite;
+      animation: shake 0.5s;
 
-  &:hover {
-    background: transparent;
-    color: $yellow;
-    border: 2px solid $yellow;
+    }
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); color: $yellow; }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); color: $yellow; }
+      20% { transform: translate(-3px, 0px) rotate(1deg); color: $yellow; }
+      30% { transform: translate(3px, 2px) rotate(0deg); color: $yellow; }
+      40% { transform: translate(1px, -1px) rotate(1deg); color: $yellow; }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); color: $yellow; }
+      60% { transform: translate(-3px, 1px) rotate(0deg); color: $yellow; }
+      70% { transform: translate(3px, 1px) rotate(-1deg); color: $yellow; }
+      80% { transform: translate(-1px, -1px) rotate(1deg); color: $yellow; }
+      90% { transform: translate(1px, 2px) rotate(0deg); color: $yellow; }
+      100% { transform: translate(1px, -2px) rotate(-1deg); color: $yellow; }
+    }
   }
 }

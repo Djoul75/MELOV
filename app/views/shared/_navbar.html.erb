@@ -2,7 +2,7 @@
   <div class="navbar-home">
     <div class="fix-item-avatar">
       <% if user_signed_in? %>
-        <h3 class='home-welcome'>Hello <%= current_user.nickname %> 👋</h3>
+        <h5 class='home-welcome'>Hello <%= current_user.nickname %> 👋</h5>
         <div class="nav-item dropdown">
           <div class="dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier">
             <% if current_user.photo.attached? %>
