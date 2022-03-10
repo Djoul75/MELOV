@@ -32,17 +32,27 @@
           <% end %>
         </div>
         <div class="sidebar-links">
-          <div class='yellow-button'><%= link_to 'Playlists', playlists_path %></div>
-          <div class='yellow-button'><%= link_to 'Discover', publications_path %></div>
+          <div class='yellow-button'>
+            <%= link_to playlists_path, :class => 'd-flex justify-content-between align-items-center' do %>
+              <p class='m-0 p-0'>Playlists</p>
+              <i class="fas fa-music"></i>
+            <% end %>
+          </div>
+          <div class='yellow-button  d-flex justify-content-between align-items-center'>
+            <%= link_to publications_path, :class => 'd-flex justify-content-between align-items-center' do %>
+              <p class='m-0 p-0'>Discover</p>
+              <i class="fas fa-globe"></i>
+            <% end %>
+          </div>
           <div class='yellow-button-shaker'><%= link_to 'Shake It Up', adduser_path %> </div>
         </div>
       </div>
 
       <script src="https://sdk.scdn.co/spotify-player.js"></script>
       <div class="sidebar-player">
-        <img class="player-cover" data-player-target='playerCoverImg' src="https://i.scdn.co/image/ab67616d0000b27324e55312fa159bd1a9957aab" alt="">
-        <div class="player-song-name" data-player-target='playerSongName'>En Lea</div>
-        <div class="player-artist" data-player-target='playerArtist'>Muddy Monk</div>
+        <img class="player-cover" data-player-target='playerCoverImg' src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+        <div class="player-song-name" data-player-target='playerSongName'>...</div>
+        <div class="player-artist" data-player-target='playerArtist'>...</div>
         <div class="player-seekbar">
           <div data-player-target='progress' class='progress-bar-yellow'></div>
           <input type="range" id="seekbar" data-player-target='seekbar' data-action='change->player#changeSeek'

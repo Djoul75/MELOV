@@ -12,6 +12,15 @@ export default class extends Controller {
           getOAuthToken: cb => { cb(token); },
           volume: 1
       });
+      if (window.localStorage.cover) {
+        this.playerCoverImgTarget.src = window.localStorage.cover
+        this.playerSongNameTarget.innerText = window.localStorage.title
+        this.playerArtistTarget.innerText = window.localStorage.artist
+      } else {
+        this.playerCoverImgTarget.src = "https://i.scdn.co/image/ab67616d0000b27324e55312fa159bd1a9957aab"
+        this.playerSongNameTarget.innerText = "En lea"
+        this.playerArtistTarget.innerText = "Muddy Monk"
+      }
 
       // Ready
       this.player.addListener('ready', ({ device_id }) => {
@@ -31,6 +40,10 @@ export default class extends Controller {
         console.log('Position in Song', position);
         console.log('Duration of Song', duration);
 
+        window.localStorage.setItem("cover", current_track.album.images[0].url)
+        window.localStorage.setItem("title", current_track.name)
+        window.localStorage.setItem("artist", current_track.artists[0].name)
+        window.localStorage.setItem("song", current_track.id)
 
         this.playerCoverImgTarget.src = current_track.album.images[0].url
         this.playerSongNameTarget.innerText = current_track.name
@@ -97,7 +110,8 @@ export default class extends Controller {
     if (this.uri) {
       this.player.togglePlay();
     } else {
-      this.setPlay('spotify:track:4BNiO9JthDUkbNsKxLH9lg');
+      const track = window.localStorage.song || '4BNiO9JthDUkbNsKxLH9lg'
+      this.setPlay(`spotify:track:${track}`);
     }
   }
 
