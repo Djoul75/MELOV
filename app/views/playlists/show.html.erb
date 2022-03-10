@@ -30,9 +30,11 @@
             <div class="post-card-interraction-song">
               <%= render 'publications/button_repost', track_id: s.spotify_track_id %>
               <%= render 'publications/button_add', track_id: s.spotify_track_id %>
+            </div>
+            <div class="trash-picto d-flex">
               <% if @playlist.user_id == current_user.id %>
                 <%= link_to playlist_song_path(song_id: s.id), method: :delete do %>
-                  <% image_tag("trash.png", size: "48x48", alt: "Delete") %>
+                  <i class="fas fa-times"></i>
                 <% end %>
               <% end %>
             </div>
