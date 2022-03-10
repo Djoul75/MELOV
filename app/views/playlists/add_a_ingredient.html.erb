@@ -6,7 +6,7 @@
       <h2>Here are some music tastes in common</h2>
 
       <div class="forms-style">
-      <p>Choose styles to add to your shaker</p>
+      <p>Choose genres to add to your shaker</p>
         <div class="submit-form">
           <%= form_tag shaker_path(user_id: params[:user_id]), method: :post, autocomplete: "off", :class => 'container-form-ingredient' do %>
             <div class="ingredients">
@@ -20,7 +20,8 @@
                   <div class="label-ingredient"><%= genre.capitalize %></div>
                 </label>
               <% end %>
-              <%= submit_tag "SHAKE IT UP", class: "btn yellow-button-lg-shaker mt-3" %>
+              <%#= submit_tag "SHAKE IT UP", class: "btn yellow-button-lg-shaker mt-3" %>
+              <%= button_tag "SHAKE IT UP", class: "yellow-button-lg-shaker", 'data-disable-with' => "<i class='fas fa-compact-disc fa-spin'></i> Mixin' it up...".html_safe %>
             </div>
           <% end %>
         </div>
