@@ -1,5 +1,6 @@
 <div class="container-right-part">
-  <h1>Here's your personalised shaker - <%= @playlist.songs.count %> tracks</h1>
+  <h1>Here's your personalised Shaker with <strong><%= @user.nickname %></strong></h1>
+  <p class="p-shaker"><%= @playlist.songs.count %> tracks</p>
 
   <% if @playlist.songs.count > 0 %>
     <% @playlist.songs.each do |s| %>
