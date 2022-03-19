@@ -5,13 +5,21 @@
   background-size: cover;
   overflow-y: scroll;
   color: white;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.container-home::-webkit-scrollbar {
+  display: none; // Safari and Chrome
 }
 
 .container-page-home {
   width: 100%;
   padding-top: 10vh;
+  display: -webkit-flex; /* Safari */
+  -webkit-justify-content: flex-end; /* Safari 6.1+ */
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .container-right-part {

@@ -66,7 +66,14 @@
   width: 130%;
   height: 40px;
   overflow-x: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
+
+.textbox-title::-webkit-scrollbar {
+  display: none; // Safari and Chrome
+}
+
 .textbox-title h2 {
   position: absolute;
   left: 0px;

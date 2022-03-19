@@ -9,6 +9,8 @@
   z-index: 10;
   display: flex;
   justify-content: end;
+  display: -webkit-flex; /* Safari */
+  -webkit-justify-content: flex-end; /* Safari 6.1+ */
 }
 
 .fix-item-avatar {
