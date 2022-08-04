@@ -14,7 +14,7 @@ export default class extends Controller {
       });
       if (window.localStorage.cover) {
         this.playerCoverImgTarget.src = window.localStorage.cover
-        this.playerSongNameTarget.innerText = window.localStorage.title
+        this.playerSongNameTarget.innerHTML = '<h2>' + window.localStorage.title + '</h2>'
         this.playerArtistTarget.innerText = window.localStorage.artist
       } else {
         this.playerCoverImgTarget.src = "https://i.scdn.co/image/ab67616d0000b27324e55312fa159bd1a9957aab"
