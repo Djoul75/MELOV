@@ -46,7 +46,7 @@ export default class extends Controller {
         window.localStorage.setItem("song", current_track.id)
 
         this.playerCoverImgTarget.src = current_track.album.images[0].url
-        this.playerSongNameTarget.innerText = current_track.name
+        this.playerSongNameTarget.innerHTML = '<h2>' + current_track.name + '</h2>'
         this.playerArtistTarget.innerText = current_track.artists[0].name
 
         this.seekbarTarget.value = position

@@ -15,17 +15,17 @@
 
 .container-page-home {
   width: 100%;
-  padding-top: 10vh;
+  padding-top: 15vh;
   display: -webkit-flex; /* Safari */
-  -webkit-justify-content: flex-end; /* Safari 6.1+ */
+  -webkit-justify-content: center; /* Safari 6.1+ */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .container-right-part {
-  width: 70%;
-  margin-top: 5%;
-  margin-right: 5%;
+  width: 90vw;
+  margin: 5% 0;
+  // margin-left: 5vw;
 }
 
 .home-posts-cards {

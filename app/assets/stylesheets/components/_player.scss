@@ -1,14 +1,38 @@
 .player-cover {
-  width: 70%;
+  width: 10%;
   max-height: 60%;
   border-radius: 20px;
 }
 
 .player-song-name {
+  // margin-top: 2vh;
+  // text-align: center;
+  // font-size: 20px;
+  // line-height: 1;
+  // overflow-x: hidden;
+  // width: 100%
+
+  position: relative;
   margin-top: 2vh;
-  text-align: center;
+  /* text-align: center; */
   font-size: 20px;
   line-height: 1;
+  overflow-x: hidden;
+  width: 100px;
+  position: relative;
+  width: 130%;
+  height: 40px;
+  overflow-x: hidden;
+
+  h2 {
+    position: absolute;
+    left: 0px;
+    margin: 0;
+    transition: left 10s linear;
+    inline-size: -webkit-max-content;
+    inline-size: -moz-max-content;
+    inline-size: max-content;
+  }
 }
 
 .player-artist {
@@ -20,7 +44,7 @@
 }
 
 .player-seekbar {
-  width: 75%;
+  width: 95%;
 
 
 
@@ -34,7 +58,7 @@
   margin: 2vh 0;
 
   align-items: center;
-  width: 70%;
+  width: 80%;
   justify-content: space-between;
 
   .arrow-alt-circle-left {
@@ -47,37 +71,40 @@
   }
 
   .play-circle {
-    transition: ease 300ms;
     display: flex;
     justify-content: center;
     flex-grow: 1;
 
     img {
-      max-width: 50%;
+      transition: ease 300ms;
+      max-width: 50px;
+      min-width: 50px;
       flex-grow: 1;
+
+      &:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
     }
 
 
-    &:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-    }
   }
 
   .pause-circle {
-    transition: ease 300ms;
     display: flex;
     justify-content: center;
 
     img {
-      max-width: 50%;
+      transition: ease 300ms;
+      max-width: 30%;
       flex-grow: 1;
+
+      &:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
     }
 
-    &:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-    }
   }
 
   .arrow-alt-circle-right {
@@ -124,7 +151,7 @@
   width: 0%;
   border-radius: 25px;
   position: relative;
-  bottom: -55%;
+  bottom: -17px;
 
   // &::after {
   //   background-color: #6B242D;
